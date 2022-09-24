@@ -276,7 +276,7 @@ body {
 
 .content-message {
     background-color: rgb(255, 255, 255);
-    max-width: 22% !important;
+    max-width: 27% !important;
     border: 2px solid rgb(207, 207, 207);
 }
 
@@ -501,4 +501,106 @@ body {
 .ti-angle-right:hover {
     background-color: #f4f4f4;
     cursor: pointer;
+}
+
+.user5 {
+    float: none;
+    width: 100px;
+    height: 100px;
+}
+
+.cl3 {
+    background-color: #fff;
+    position: relative;
+    border: 2px solid rgb(207, 207, 207);
+}
+
+.information {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    padding-top: 40px;
+}
+
+.name-info {
+    position: absolute;
+    top: 150px;
+    font-weight: 400;
+}
+
+.list-info {
+    position: absolute;
+    top: 200px;
+}
+
+.list-info li {
+    text-decoration: none;
+    list-style: none;
+    display: inline-block;
+}
+
+.list-info li a:hover {
+    text-decoration: none;
+    background-color: #f4f4f4;
+}
+
+.list-info li a {
+    color: #000;
+    font-size: 24px;
+    padding: 10px 20px 10px 20px;
+}
+
+.txt1,
+.txt2 {
+    position: absolute;
+    top: 270px;
+    left: 20px;
+}
+
+.txt2 {
+    top: 400px;
+}
+
+.schedue,
+.pin {
+    position: absolute;
+    top: 300px;
+    font-size: 20px;
+    width: 100%;
+    padding: 10px 0px 10px 20px;
+}
+
+.schedue:hover,
+.pin:hover {
+    background-color: #f4f4f4;
+    cursor: pointer;
+}
+
+.pin {
+    top: 350px;
+}
+
+.file,
+.file2 {
+    position: absolute;
+    width: 100%;
+    top: 430px;
+}
+
+.file2 {
+    top: 540px;
+}
+
+.file-pic {
+    width: 33.333%;
+    float: right;
+}
+
+.list-img {
+    width: 100%;
+    padding: 0px 5px 0px 5px;
+}
+
+.list-img:hover {
+    opacity: 0.8;
 }
