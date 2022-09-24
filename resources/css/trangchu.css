@@ -298,12 +298,16 @@ body {
     list-style: none;
     text-decoration: none;
     color: #fff;
+    display: inline-block;
+    padding: 0px 19px 0px 19px;
 }
 
+.list-item2 li a:hover,
 .subnav-setting a:hover {
     text-decoration: none;
     list-style: none;
     color: #fff;
+    background-color: rgb(221, 93, 46);
 }
 
 .subnav-setting {
