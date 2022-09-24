@@ -1,0 +1,28 @@
+{
+  "name": "cnm_web_n14_network",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js",
+    "type": "module"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/letuantai15f/CNM_Web_N14_Network.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/letuantai15f/CNM_Web_N14_Network/issues"
+  },
+  "homepage": "https://github.com/letuantai15f/CNM_Web_N14_Network#readme",
+  "dependencies": {
+    "bootstrap": "^5.2.1",
+    "express": "^4.18.1",
+    "express-handlebars": "^6.0.6",
+    "nodemon": "^2.0.20"
+  }
+}
