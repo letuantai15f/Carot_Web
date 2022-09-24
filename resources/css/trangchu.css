@@ -271,16 +271,33 @@ body {
     padding-left: 20px;
 }
 
-.sub-nav {
-    width: 80%;
+
+/*  Message */
+
+.content-message {
+    background-color: rgb(255, 255, 255);
+    max-width: 22% !important;
+    border: 2px solid rgb(207, 207, 207);
+}
+
+.main-messagetext {
+    background-color: rgb(255, 255, 255);
+}
+
+.cl1 {
     background-color: orangered;
+    max-width: 6% !important;
+}
+
+.sub-nav {
+    max-width: 100%;
 }
 
 .user2 {
     width: 40px;
     height: 40px;
-    margin-right: 14px;
     margin-top: 20px;
+    margin-right: 0px;
 }
 
 .list-item2 {
@@ -311,7 +328,177 @@ body {
 }
 
 .subnav-setting {
-    margin-top: 300px;
+    margin-top: 274px;
     text-align: center;
     padding-bottom: 20px;
+}
+
+.user3 {
+    width: 50px;
+    height: 50px;
+    float: none;
+}
+
+.search-user {
+    margin-top: 20px;
+}
+
+.user-message {
+    position: relative;
+    padding: 16px 10px 0px 10px;
+}
+
+.user-message:hover {
+    background-color: #f4f4f4;
+    cursor: pointer;
+}
+
+.name-user {
+    position: absolute;
+    top: 20px;
+    left: 74px;
+}
+
+.description-user {
+    position: absolute;
+    left: 74px;
+    top: 44px;
+    color: rgb(156, 156, 156);
+}
+
+.r1 {
+    height: 80px;
+    background-color: rgb(255, 255, 255);
+    position: relative;
+    border: 2px solid rgb(207, 207, 207);
+}
+
+.r2 {
+    height: 480px;
+    background-color: rgb(255, 255, 255);
+    border: 2px solid rgb(207, 207, 207);
+}
+
+.r3 {
+    position: relative;
+    height: 104px;
+    background-color: #ffffff;
+    border: 2px solid rgb(207, 207, 207);
+}
+
+.user4 {
+    margin-top: 14px;
+    margin-left: 20px;
+}
+
+.name-user2 {
+    position: absolute;
+    top: 10px;
+    left: 90px;
+    font-size: 20px;
+    color: rgb(82, 82, 82);
+}
+
+.online-status {
+    position: absolute;
+    left: 90px;
+    top: 40px;
+    color: rgb(109, 109, 109);
+}
+
+.ti-headphone,
+.ti-video-camera {
+    position: absolute;
+    font-size: 24px;
+    right: 100px;
+    top: 0px;
+    color: #000;
+    padding: 26px;
+}
+
+.ti-headphone:hover,
+.ti-video-camera:hover {
+    text-decoration: none;
+    background-color: #f4f4f4;
+}
+
+.ti-video-camera {
+    right: 20px;
+}
+
+.mess {
+    position: relative;
+    width: 100%;
+}
+
+.text,
+.text2 {
+    position: absolute;
+    background-color: #f4f4f4;
+    padding: 4px 8px 4px 8px;
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+.text {
+    top: 24px;
+    left: 80px;
+}
+
+.text2 {
+    background-color: orangered;
+    right: 10px;
+    color: #fff;
+}
+
+.list-item3 {
+    margin-left: 20px;
+    margin-top: 10px;
+}
+
+.list-item3 li {
+    display: inline-block;
+}
+
+.list-item3 li a:hover {
+    text-decoration: none;
+    list-style: none;
+    background-color: #F4F4F4;
+}
+
+.list-item3 li a {
+    color: #636363;
+    font-size: 24px;
+    padding: 0px 10px 0px 10px;
+}
+
+.text-send {
+    position: absolute;
+    top: 54px;
+    left: 20px;
+    width: 460px;
+    height: 38px;
+    border-radius: 20px;
+    padding-left: 20px;
+    border: 1px solid rgb(196, 196, 196);
+}
+
+.text-send:hover {
+    border: 1px solid rgb(122, 122, 122);
+}
+
+.ti-angle-right {
+    position: absolute;
+    top: 50px;
+    right: 30px;
+    font-size: 20px;
+    font-weight: 600 !important;
+    padding: 10px;
+    border: 1px solid rgb(136, 136, 136);
+    border-radius: 50%;
+}
+
+.ti-angle-right:hover {
+    background-color: #f4f4f4;
+    cursor: pointer;
 }
