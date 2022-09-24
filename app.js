@@ -9,10 +9,10 @@ app.set('view engine', 'hbs');
 
 
 app.get('/', (req, res) => {
-    res.render('dangnhap');
+    res.render('login');
 });
-app.get('/trangchu', (req, res) => {
-    res.render('trangchu');
+app.get('/home', (req, res) => {
+    res.render('home');
 });
 app.get('/message', (req, res) => {
     res.render('message');
