@@ -1,63 +1,9 @@
 
-<subnav>
-    {{!-- <div class="row">
-        <div class="col-1">
-            <div class="sub-nav">
-                <div><img class="user-avatar user2" src="/img/avt.png" alt=""></div>
-                <div class="list-item2">
-                    <ul>
-                    <li><a href=""><i class="ti-home"></i></a></li>
-                    <li><a href=""><i class="ti-comment-alt"></i></a></li>
-                    <li><a href=""><i class="ti-user"></i></a></li>
-                    <li><a href=""><i class="ti-bell"></i></a></li>
-                </ul>
-                </div>
-                <div class="subnav-setting"><a href=""><i class="ti-settings"></i></a></div>
-            </div>
-        </div>
-        <div class="col-11 content-message"></div>
-    </div> --}}
-    <div class="row">
-        <div class="col-1 cl1">
-            <div class="sub-nav">
-                <div><img class="user-avatar user2" src="/img/avt.png" alt=""></div>
-                <div class="list-item2">
-                    <ul>
-                    <li><a href=""><i class="ti-home"></i></a></li>
-                    <li><a href=""><i class="ti-comment-alt"></i></a></li>
-                    <li><a href=""><i class="ti-user"></i></a></li>
-                    <li><a href=""><i class="ti-bell"></i></a></li>
-                </ul>
-                </div>
-                <div class="subnav-setting"><a href=""><i class="ti-settings"></i></a></div>
-            </div>
-        </div>
-        <div class="col-3 content-message">
-			<div class="search-user search-bar">
-        		<input type="text" class="form-control" placeholder="Tìm kiếm..." style="height:30px;width:100%;">
-        		<i class="ti-search"></i>
-			</div>
-			<div class="user-message">
-				<img class="user-avatar user3" src="/img/avt.png" alt="">
-				<span class="name-user"><b>Lê tuấn tài</b></span>
-				<span class="description-user">Đang làm gì đó bé ?</span>
-			</div>
-			<div class="user-message">
-				<img class="user-avatar user3" src="/img/avt.png" alt="">
-				<span class="name-user"><b>Lê tuấn tài</b></span>
-				<span class="description-user">Đang làm gì đó bé ?</span>
-			</div>
-			<div class="user-message">
-				<img class="user-avatar user3" src="/img/avt.png" alt="">
-				<span class="name-user"><b>Lê tuấn tài</b></span>
-				<span class="description-user">Đang làm gì đó bé ?</span>
-			</div>
-			<div class="user-message">
-				<img class="user-avatar user3" src="/img/avt.png" alt="">
-				<span class="name-user"><b>Lê tuấn tài</b></span>
-				<span class="description-user">Đang làm gì đó bé ?</span>
-			</div>
-		</div>
+<subnav >
+    
+    <div class="row"  >
+        {{> nav}}
+        {{> content-message}}
 		<div class="col-5 main-messagetext">
 			<div class="row r1">
 				<img class="user-avatar user3 user4" src="/img/avt.png" alt="">
@@ -82,8 +28,10 @@
 					<li><a href=""><i class="ti-face-smile"></i></a></li>
 					<li><a href=""><i class="ti-camera"></i></a></li>
 					<li><a href=""><i class="ti-clip"></i></a></li>
+					<input class="text-send" type="text" placeholder="Vui lòng điền tin nhăn..." style="background-color:#E4E4E4 ;">
+					<i class="ti-angle-right "></i>
 				</ul>
-				<input class="text-send" type="text"><i class="ti-angle-right"></i>
+				
 			</div>
 		</div>
 		<div class="col-3 cl3">
