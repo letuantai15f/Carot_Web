@@ -8,29 +8,33 @@
             </div>
         </div>
         <div class="col-6 ">
-            <div class=" border" style="width:90% ; text-align: center; height: 400px;" id="form-dangnhap">
-                <form class="bg-white p-4 h-100">
+            <div class="" style="width:90% ; text-align: center; height: 80%;background-color: white;" id="form-dangnhap">
+                <div style="background-color:white;">
+                <form class=" p-4 h-100" >
                     <div class="form-group mb-4 mt-5">
 
-                        <input type="email" class="form-control" style="height: 50px;" id="exampleInputEmail1"
+                        <input type="email" class="form-control" style="height: 50px;" 
                             aria-describedby="emailHelp" placeholder="Email">
 
                     </div>
                     <div class="form-group  mb-1">
 
-                        <input type="password" class="form-control " style="height: 50px;" id="exampleInputPassword1"
+                        <input type="password" class="form-control " style="height: 50px;"
                             placeholder="Password">
                     </div>
                     <div class="form-group mt-1">
-                        <button type="submit" id="id_btn_da" class="button cnm_btn m-3" style="outline: none;">Đăng nhập</button>
+                        <button type="submit"  class="button cnm_btn m-3 id_btn_da" style="outline: none;">Đăng nhập</button>
                     </div>
                     <div class="form-group m-0">
                         <a href="#">Quên mật khẩu?</a>
                     </div>
-                    <div class="form-group mt-1">
-                        {{!-- modal dang ky --}}
-                        <button type="button" id="id_btn_da" style="background: rgba(0, 71, 255, 0.68);
-                        border-radius: 10px; width: 50%; outline: none;" class="m-3" data-toggle="modal"
+    
+
+                </form>
+                </div>
+                <div style=" background-color:white; " >
+                    <button type="button"  style="background: rgba(0, 71, 255, 0.68);
+                        border-radius: 10px; width: 50%; outline: none;" class="m-2 id_btn_da" data-toggle="modal"
                             data-target="#exampleModal">Đăng ký</button>
                         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
                             aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -44,7 +48,7 @@
                                         </button>
                                     </div>
                                     <div class="modal-body">
-                                        <form>
+                                        <form action="/sign" method="post" enctype="multipart/form-data" >
                                             <div class="form-group m-4">
 
                                                 <input type="text" class="form-control" style="height: 50px;"
@@ -54,53 +58,56 @@
                                             <div class="form-group m-4">
 
                                                 <input type="email" class="form-control" style="height: 50px;"
-                                                    id="exampleInputEmail1" aria-describedby="emailHelp"
-                                                    placeholder="Email">
+                                                    
+                                                    placeholder="Email" name="email">
 
                                             </div>
                                             <div class="form-group  m-4">
 
                                                 <input type="password" class="form-control " style="height: 50px;"
-                                                    id="exampleInputPassword1" placeholder="Mật khẩu">
+                                                    placeholder="Mật khẩu" name="password">
                                             </div>
                                             <div class="form-group  m-4">
 
                                                 <input type="password" class="form-control " style="height: 50px;"
-                                                    id="exampleInputPassword1" placeholder="Nhập lại mật khẩu">
+                                                     placeholder="Nhập lại mật khẩu">
                                             </div>
                                             <div class="form-group  m-4">
 
                                                 <input type="date" class="form-control " style="height: 50px;"
-                                                    id="exampleInputPassword1">
+                                                   >
                                             </div>
                                             <div class="form-group  m-4">
-                                                
+                                                 
                                                 <select class="form-control" id="exampleFormControlSelect1" style="height: 50px;">
                                                     <option>Giới tính</option>
                                                     <option>Nam</option>
                                                     <option>Nữ</option>
                                                     
                                                 </select>
+                                               
                                             </div>
                                             <div class="form-group  m-4">
                                                 <p style="text-align:left">Người dùng dịch vụ của chúng tôi có thể đã tải thông tin liên hệ của bạn lên Carot. Tìm hiểu thêm.
 
 Bằng cách nhấp vào Đăng ký, bạn đồng ý với Điều khoản, Chính sách quyền riêng tư và Chính sách cookie của chúng tôi. Bạn có thể nhận được thông báo của chúng tôi qua SMS và hủy nhận bất kỳ lúc nào.</p>
                                             </div>
+                                            <button type="submit" class="btn btn-primary">Submit</button>
                                         </form>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary"
                                             data-dismiss="modal">Đóng</button>
-                                        <button type="button" class="btn btn-primary">Gửi</button>
+                                        {{!-- <input type="submit" class="btn btn-primary">Gửi</input> --}}
                                     </div>
                                 </div>
                             </div>
                         </div>
                         {{!-- --}}
-                    </div>
-
-                </form>
+                </div>
+              
+                        
+                    
             </div>
 
         </div>
@@ -113,5 +120,8 @@ Bằng cách nhấp vào Đăng ký, bạn đồng ý với Điều khoản, Ch�
     <div class="wave" id="wave1"></div>
     <div class="wave" id="wave1"></div>
     <div class="row">
-    <div class=" p-0 m-0">kljdfg</div>
+
+        <div class=" p-0 m-0"></div>
+
+
     </div>
