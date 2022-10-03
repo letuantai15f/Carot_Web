@@ -14,13 +14,13 @@
                     <div class="form-group mb-4 mt-5">
 
                         <input type="email" class="form-control" style="height: 50px;" 
-                            aria-describedby="emailHelp" placeholder="Email">
+                            aria-describedby="emailHelp" placeholder="Email" name="email">
 
                     </div>
                     <div class="form-group  mb-1">
 
                         <input type="password" class="form-control " style="height: 50px;"
-                            placeholder="Password">
+                            placeholder="Password" name="password">
                     </div>
                     <div class="form-group mt-1">
                         <button type="submit"  class="button cnm_btn m-3 id_btn_da" style="outline: none;">Đăng nhập</button>
@@ -48,11 +48,11 @@
                                         </button>
                                     </div>
                                     <div class="modal-body">
-                                        <form action="/sign" method="post" enctype="multipart/form-data" >
+                                        <form action="/signup" method="post" enctype="multipart/form-data" >
                                             <div class="form-group m-4">
 
                                                 <input type="text" class="form-control" style="height: 50px;"
-                                                    id="id-hoten" placeholder="Họ tên">
+                                                    id="id-hoten" placeholder="Họ tên" name="name">
 
                                             </div>
                                             <div class="form-group m-4">
@@ -70,16 +70,16 @@
                                             <div class="form-group  m-4">
 
                                                 <input type="password" class="form-control " style="height: 50px;"
-                                                     placeholder="Nhập lại mật khẩu">
+                                                     placeholder="Nhập lại mật khẩu" name="repassword">
                                             </div>
                                             <div class="form-group  m-4">
 
-                                                <input type="date" class="form-control " style="height: 50px;"
+                                                <input type="date" class="form-control " style="height: 50px;" name="date"
                                                    >
                                             </div>
                                             <div class="form-group  m-4">
                                                  
-                                                <select class="form-control" id="exampleFormControlSelect1" style="height: 50px;">
+                                                <select class="form-control" id="exampleFormControlSelect1" style="height: 50px;" name="sex">
                                                     <option>Giới tính</option>
                                                     <option>Nam</option>
                                                     <option>Nữ</option>
