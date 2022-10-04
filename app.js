@@ -24,7 +24,7 @@ app.set('view engine', 'hbs');
 const AWS=require('aws-sdk');
 const { response } = require('express');
 
-AWS.config=config;
+
 const docClient=new AWS.DynamoDB.DocumentClient();
 const tableName="UserAccounts"
 //multer
@@ -41,28 +41,7 @@ app.get('/message', (req, res) => {
     res.render('message');
 });
 //signup
-app.post('/signup', upload.fields([]), (req, res) => {
-    const {email,password,name,date,repassword,sex}=req.body;
-    console.log(req.body);
-    const params = {TableName: tableName,Item:{
-      email,password
-    }};
-    const users={TableName:'User',Item:{iduser:'1',name,email,date,sex}};
-
-    
-    docClient.put(params, (err,data) => {
-      if (err) {
-       return res.send('loi');
-    } else{
-        
-        return res.redirect('/');
-    }
-    });
-  
-    
-  });
-
-  app.use("/userAC",userRouter)
+  app.use("/",userRouter)
 
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
