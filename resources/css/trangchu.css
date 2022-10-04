@@ -159,12 +159,12 @@ body {
     margin-left: 30px;
 }
 
-.shortcut-friend,
+.shortcut-user,
 .shortcut-video,
 .shortcut-setting,
 .status,
 .posts,
-.friend-request {
+.user-request {
     height: 50px;
     background-color: #fff;
     border-radius: 8px;
@@ -197,8 +197,8 @@ body {
 
 .shortcut-video span,
 .shortcut-setting span,
-.shortcut-friend span,
-.friend-request>span {
+.shortcut-user span,
+.user-request>span {
     font-size: 20px;
     padding-left: 10px;
 }
@@ -248,26 +248,26 @@ body {
     float: right;
 }
 
-.friend-request {
+.user-request {
     width: 90%;
     height: 520px;
     float: right;
 }
 
-.friend-request li {
+.user-request li {
     list-style: none;
     padding: 4px;
 }
 
-.friend-request li a {
+.user-request li a {
     color: #000;
 }
 
-.friend-request li a:hover {
+.user-request li a:hover {
     text-decoration: none;
 }
 
-.friend-request li>span {
+.user-request li>span {
     padding-left: 20px;
 }
 

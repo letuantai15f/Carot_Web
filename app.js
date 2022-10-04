@@ -17,7 +17,10 @@ app.get('/home', (req, res) => {
 app.get('/message', (req, res) => {
     res.render('message');
 });
-
+app.get('/modal', (req, res) => {
+    res.render('modal');
+});
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
 })
+
