@@ -1,6 +1,10 @@
 const express = require('express');
 const userRouter = express.Router();
 const { User } = require('../models/model');
+// const { Contact } = require('../models/modal_contact');
+// const { ChatGroup } = require('../models/modal_chat_group');
+// const { Message } = require('../models/model_messages');
+// const { Notification } = require('../models/model_notifications');
 const multer = require('multer');
 const upload = multer();
 //
