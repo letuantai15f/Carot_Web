@@ -23,12 +23,7 @@ app.set('view engine', 'hbs');
 //configAWS
 const AWS=require('aws-sdk');
 const { response } = require('express');
-const config=new AWS.Config({
-    accessKeyId:'AKIAYN4WGNE3KXQZOA6I',
-    secretAccessKey:'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',
-    region:'ap-southeast-1'
-    
-});
+
 AWS.config=config;
 const docClient=new AWS.DynamoDB.DocumentClient();
 const tableName="UserAccounts"
