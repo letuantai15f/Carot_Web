@@ -26,7 +26,7 @@ body {
 
 #carot {}
 
-#id_btn_da {
+.id_btn_da {
     transition-duration: 0.4s;
     background-color: orangered;
     font-size: 20px;
