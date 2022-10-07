@@ -7,20 +7,11 @@ const contactSchema = new mongoose.Schema({
     username: {
         type: String,
     },
-    contactID: {
-        type: String,
+    phoneNumber: {
+        type: Number,
     },
     status: {
         type: Boolean,
-    },
-    createdAt: {
-        type: timestamp,
-    },
-    updateAt: {
-        type: timestamp,
-    },
-    deleteAt: {
-        type: timestamp,
     }
 });
 

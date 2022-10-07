@@ -9,6 +9,8 @@ const app = express();
 const port = 3000;
 
 const userRouter = require('./routes/user')
+const contactRouter = require('./routes/contact')
+const chatgroupRouter = require('./routes/chatgroup')
 dotenv.config();
 mongoose.connect((process.env.MONGODB_URL), () => {
         console.log('Connected to MongoDB');
@@ -47,6 +49,12 @@ app.get('/modal', (req, res) => {
 
 //signup
 app.use("/", userRouter)
+
+// modal contact
+app.use("/modal", contactRouter)
+
+// chatgroup message
+app.use("/message", chatgroupRouter)
 
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)

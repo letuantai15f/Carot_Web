@@ -15,16 +15,7 @@ const chatGroupSchema = new mongoose.Schema({
     },
     members: [{
         userId: String
-    }],
-    createdAt: {
-        type: timestamp,
-    },
-    updateAt: {
-        type: timestamp,
-    },
-    deleteAt: {
-        type: timestamp,
-    }
+    }]
 });
 
 let ChatGroup = mongoose.model('ChatGroup', chatGroupSchema)
