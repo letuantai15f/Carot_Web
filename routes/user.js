@@ -11,14 +11,16 @@ userRouter.post('/signup', upload.fields([]),async (req, res) => {
         username,
         gender,
         date,
-        //avata
+        avata:"https://thtuan2-130821.s3.ap-southeast-1.amazonaws.com/zyro-image.png",
         account:{email,password}
     }
     try{
     const tuser=new User(newUser);
     console.log(tuser);
     const saveUser=await tuser.save();
-    res.status(200).json(saveUser);}
+    // res.status(200).json(saveUser);
+     res.redirect('/');}
+   
             
     catch(err){
         console.log(err);
@@ -41,13 +43,15 @@ userRouter.post('/signup', upload.fields([]),async (req, res) => {
 userRouter.post('/login',upload.fields([]),async(req,res)=>{
     const {email,password} = req.body;
     const user=await User.findOne({"account.email": email});
-    console.log(user.account.password);
+    
+    console.log(user.avata);
     if(user==null){
         console.log("User not found");
     }else{
         if(user.account.password==password){
-            // res.render('/message',{avata:user});
-            res.redirect('/message');
+            
+            res.render('message',{dataimg:user.avata});
+     
         }
         else{
             // console.log(user.password);

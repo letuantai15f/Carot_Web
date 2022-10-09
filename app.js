@@ -7,6 +7,7 @@ const dotenv=require('dotenv');
 const exphbs = require('express-handlebars');
 const app = express();
 const port = 3000;
+// const path= require('path');
 
 const userRouter=require('./routes/user')
 dotenv.config();
@@ -14,6 +15,7 @@ mongoose.connect((process.env.MONGODB_URL),()=>{
     console.log('MongoDB');
 })
 //
+// app.use(express.static(path.join(__dirname,'views/partials/nav.handlebars')));
 app.use(bodyParser.json({limit:"50mb"}))
 app.use(cors());
 app.use(morgan("common"));
