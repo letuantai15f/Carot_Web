@@ -46,7 +46,7 @@ const notificationsSchema = new mongoose.Schema({
     },
     createdAt: {
         type: timestamp,
-    },
+    }
 });
 let Notifications = mongoose.model('Notifications', notificationsSchema);
 let Sender = mongoose.model('Sender', senderSchema);
