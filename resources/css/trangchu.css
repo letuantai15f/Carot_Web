@@ -131,12 +131,11 @@ body {
 }
 
 .user-avatar {
-    width: 30px;
-    height: 30px;
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
-    margin-bottom: 12px;
-    margin-right: 10px;
-    float: right;
+    margin: 0;
+    
 }
 
 .list-icon i {
@@ -285,12 +284,12 @@ body {
 }
 
 .cl1 {
-    background-color: orangered;
-    max-width: 6% !important;
+     background-color: orangered;
+    /* max-width: 6% !important;  */
 }
 
 .sub-nav {
-    max-width: 100%;
+    /* max-width: 100%; */
 }
 
 .user2 {
@@ -303,28 +302,30 @@ body {
 .list-item2 {
     width: 100%;
     text-align: center;
+    
 }
 
 .list-item2 li {
     padding-top: 20px;
+    
 }
 
 .list-item2 li a,
 .subnav-setting a {
-    font-size: 30px;
+    font-size: 20px;
     list-style: none;
     text-decoration: none;
     color: #fff;
     display: inline-block;
-    padding: 0px 19px 0px 19px;
+    /* padding: 0px 19px 0px 19px; */
 }
 
 .list-item2 li a:hover,
 .subnav-setting a:hover {
-    text-decoration: none;
+    /* text-decoration: none;
     list-style: none;
     color: #fff;
-    background-color: rgb(221, 93, 46);
+    background-color: rgb(221, 93, 46); */
 }
 
 .subnav-setting {
@@ -405,6 +406,7 @@ body {
     top: 40px;
     color: rgb(109, 109, 109);
 }
+.ti-home{font: 200px;}
 
 .ti-headphone,
 .ti-video-camera {

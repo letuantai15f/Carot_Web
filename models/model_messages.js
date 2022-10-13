@@ -41,15 +41,15 @@ const messagesSchema = new mongoose.Schema({
     file: {
         type: Buffer,
     },
-    createdAt: { 
-        type: timestamp,
-    },
-    updateAt: {
-        type: timestamp,
-    },
-    deleteAt: {
-        type: timestamp,
-    }
+    // createdAt: { 
+    //     type: timestamp,
+    // },
+    // updateAt: {
+    //     type: timestamp,
+    // },
+    // deleteAt: {
+    //     type: timestamp,
+    // }
 });
 let Messages = mongoose.model('Messages', messagesSchema);
 let Sender = mongoose.model('Sender', senderSchema);

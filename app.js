@@ -12,6 +12,7 @@ const port = 3000;
 const userRouter = require('./routes/user')
 const contactRouter = require('./routes/contact')
 const chatgroupRouter = require('./routes/chatgroup')
+const messageRouter =require('./routes/message')
 dotenv.config();
 
 mongoose.connect((process.env.MONGODB_URL),()=>{
@@ -47,9 +48,9 @@ app.get('/', (req, res) => {
 app.get('/home', (req, res) => {
     res.render('home');
 });
-app.get('/message', (req, res) => {
-    res.render('message');
-});
+// app.get('/message', (req, res) => {
+//     res.render('message');
+// });
 
 app.get('/modal', (req, res) => {
     res.render('modal');
@@ -62,7 +63,7 @@ app.use("/", userRouter)
 app.use("/modal", contactRouter)
 
 // chatgroup message
-app.use("/message", chatgroupRouter)
+app.use("/message", messageRouter)
 
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
