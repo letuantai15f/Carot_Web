@@ -24,6 +24,7 @@ userRouter.post("/signup", upload.fields([]), async (req, res) => {
     account: {
       email, password;
     }
+
   }
   try {
     const tuser = new User(newUser);
@@ -44,10 +45,44 @@ userRouter.post("/login", upload.fields([]), async (req, res) => {
   } else {
     if (user.account.password == password) {
       res.redirect("/message");
+
+    try {
+        const tuser = new User(newUser);
+        console.log(tuser);
+        const saveUser = await tuser.save();
+        res.status(200).json(saveUser);
+    } catch (err) {
+        console.log(err);
+        res.status(500).json(err);
+    }
+    }}
+  });
+userRouter.post('/login',upload.fields([]),async(req,res)=>{
+    const {email,password} = req.body;
+    const user=await User.findOne({"account.email": email});
+    
+    console.log(user.avata);
+    if(user==null){
+        console.log("User not found");
+    }else{
+        if(user.account.password==password){
+            
+            res.render('message',{dataimg:user.avata});
+     
+        }
+        else{};
+
+}});
+userRouter.post('/login', upload.fields([]), async(req, res) => {
+    const { email, password } = req.body;
+    const user = await User.findOne({ "account.email": email });
+    console.log(user.account.password);
+    if (user == null) {
+        console.log("User not found");
     } else {
       console.log("sai pass");
       res.redirect("/");
     }
   }
-});
+);
 module.exports = userRouter;
