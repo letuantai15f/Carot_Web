@@ -58,9 +58,9 @@ userRouter.post('/login',upload.fields([]),async(req,res)=>{
             res.render('message',{dataimg:user.avata});
      
         }
-        else{
+        else{};
 
-});
+}});
 userRouter.post('/login', upload.fields([]), async(req, res) => {
     const { email, password } = req.body;
     const user = await User.findOne({ "account.email": email });
