@@ -279,17 +279,16 @@ body {
     border: 2px solid rgb(207, 207, 207);
 }
 
-.main-messagetext {
-    background-color: rgb(255, 255, 255);
-}
-
 .cl1 {
-     background-color: orangered;
-    /* max-width: 6% !important;  */
+    background-color: orangered;
+    max-width: 6% !important; 
+    height: 664px;
+    position: relative;
 }
 
 .sub-nav {
     /* max-width: 100%; */
+    /* position: absolute; */
 }
 
 .user2 {
@@ -302,7 +301,13 @@ body {
 .list-item2 {
     width: 100%;
     text-align: center;
-    
+    position: absolute;
+    left: 0px;
+}
+.subnav-setting {
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
 }
 
 .list-item2 li {
@@ -312,20 +317,20 @@ body {
 
 .list-item2 li a,
 .subnav-setting a {
-    font-size: 20px;
+    font-size: 28px;
     list-style: none;
     text-decoration: none;
     color: #fff;
     display: inline-block;
-    /* padding: 0px 19px 0px 19px; */
+    padding: 6px 32px 12px 32px;
 }
 
 .list-item2 li a:hover,
 .subnav-setting a:hover {
-    /* text-decoration: none;
+    text-decoration: none;
     list-style: none;
     color: #fff;
-    background-color: rgb(221, 93, 46); */
+    background-color: rgb(221, 93, 46);
 }
 
 .subnav-setting {
@@ -344,9 +349,26 @@ body {
     margin-top: 20px;
 }
 
+.message-scroll {
+    height: 75%;
+    overflow-y: scroll;
+    margin-top: 12px;
+}
+
+.message-scroll::-webkit-scrollbar {
+    display: none;
+}
+
+.message-scroll {
+    /* hide scroll in edge */
+    -ms-overflow-style: none; 
+}
+
 .user-message {
     position: relative;
-    padding: 16px 10px 0px 10px;
+    left: -4px;
+    padding: 8px 10px 8px 10px;
+    margin: 10px 0px;
 }
 
 .user-message:hover {
@@ -356,15 +378,20 @@ body {
 
 .name-user {
     position: absolute;
-    top: 20px;
+    top: 8px;
     left: 74px;
 }
 
 .description-user {
     position: absolute;
     left: 74px;
-    top: 44px;
+    top: 28px;
     color: rgb(156, 156, 156);
+}
+
+.main-messagetext {
+    background-color: rgb(255, 255, 255);
+    min-width: 44%;
 }
 
 .r1 {
