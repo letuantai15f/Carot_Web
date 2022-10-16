@@ -1,42 +1,6 @@
-:root {
-    --pink-color: #e26e70;
-}
 
-* {
-    padding: 0;
-    margin: 0;
-    font-family: sans-serif;
-    box-sizing: border-box;
-}
 
-body {
-    background-image: linear-gradient(45deg,
-            rgb(65, 88, 208) 0%,
-            rgb(200, 80, 192) 50%,
-            rgb(255, 204, 112) 100%);
-    height: 100vh;
-    overflow: hidden;
-}
 
-.open-modal-btn {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    outline: none;
-    border: none;
-    padding: 20px 40px;
-    border-radius: 6px;
-    font-size: 20px;
-    cursor: pointer;
-    box-shadow: 0 0 5px #aba4a4;
-    background-color: #fff;
-    transition: 0.25s;
-}
-
-.open-modal-btn:hover {
-    background-color: rgba(255, 255, 255, 0.8);
-}
 
 .modal_profile {
     
