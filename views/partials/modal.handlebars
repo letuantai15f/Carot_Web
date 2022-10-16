@@ -1,78 +1,137 @@
+{{!-- <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+
+    <div class="modal-dialog " role="document">
+        <div class="modal__inner">
+            <div class="modal-content ">
+                <div class="modal-header">
+                    <span class="modal__header__title-text v0 truncate " title="Thông tin tài khoản">Thông tin tài
+                        khoản</span>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div id="profile-info" class="user-profile flx flx-col flx-al-str">
+                        <div id="profilePhoto" class="user-profile__photo ">
+                            <div class="avacover-profile avatar-profile">
+                                <img class="user-profile__photo__img clickable"
+                                    src="https://cover-talk.zadn.vn/9/8/f/f/4/7b34fed7e99fdb37bc976a26d203652f.jpg"
+                                    crossorigin="Anonymous" style="cursor: pointer;">
+                            </div>
+                            <div class="user-profile-preview v3 flexcontainer--col ">
+                                <div class="avatar avatar--xxl" style="background: transparent;">
+                                    <img class="avatar__photo" src="{{dataimg.avata}}">
+                                </div>
+                                <div class="preview-content truncate v3 flx flx-al-c flx-centernull"
+                                    style="width: 100%;">
+                                    <div class="flx relative margin-auto fit-content flx-al-c">
+                                        <div class="user-profile__display-name">Quang Trần</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="user-profile__groups null" style="flex: 1 1 0%;">
+                            <p class="user-profile__detail__header" data-translate-inner="STR_PERSONAL_PROFILE">Thông
+                                tin cá nhân</p>
+                            <div>
+                                <div class="user-profile-details" style="margin-bottom: 22px;">
+                                    <div class="user-profile-details__line flx flx-al-c">
+                                        <span data-translate-inner="STR_PROFILE_EMAIL">Email</span>
+                                        <span data-translate-inner="STR_EMAIL">tranvinhquang48@gmail.com</span>
+                                    </div>
+                                    <div class="user-profile-details__line">
+                                        <span data-translate-inner="STR_PROFILE_LABEL_GENDER">Giới tính</span>
+                                        <span data-translate-inner="STR_GENDER_MALE">Nam</span>
+                                    </div>
+                                    <div class="user-profile-details__line">
+                                        <span data-translate-inner="STR_PROFILE_LABEL_BIRTHDAY">Ngày sinh</span>
+                                        <span style="position: relative;">13 tháng 07, 2001</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="user-profile__actions">
+                            <div class="z--btn z--btn--fill--tertiary -lg --full-width" title
+                                style="margin: 16px 20px; max-width: 312px;">
+                                <span style="display: flex; align-items: center;">
+                                    <span class="btnpf-content" data-translate-inner="STR_EDIT_PROFILE">Cập nhật thông
+                                        tin</span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div> --}}
+        {{!-- </div>
+    </div>
+</div> --}}
+
+
+
+
 
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
-<div class="modal_profile" role="document">
-    <div class="modal__inner">
-        <div class="modal__header">
-            <span class="modal__header__title-text v0 truncate " title="Thông tin tài khoản">Thông tin tài khoản</span>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-        <div class="modal__body">
-            <div id="profile-info" class="user-profile flx flx-col flx-al-str">
-                <div id="profilePhoto" class="user-profile__photo ">
-                    <div class="avacover-profile avatar-profile">
-                        <img class="user-profile__photo__img clickable " src="https://cover-talk.zadn.vn/9/8/f/f/4/7b34fed7e99fdb37bc976a26d203652f.jpg" 
-                        crossorigin="Anonymous" style="cursor: pointer;">
-                    </div>
-                    <div class="user-profile-preview v3 flexcontainer--col ">
-                        <div class="avatar avatar--xxl" style="background: transparent;">
-                            <img class="avatar__photo" src="{{dataimg.avata}}">
+    <div class="modal_profile" role="document">
+        <div class="modal__inner">
+            <div class="modal__header">
+                <span class="modal__header__title-text v0 truncate " title="Thông tin tài khoản">Thông tin tài
+                    khoản</span>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal__body">
+                <div id="profile-info" class="user-profile flx flx-col flx-al-str">
+                    <div id="profilePhoto" class="user-profile__photo ">
+                        <div class="avacover-profile avatar-profile">
+                            <img class="user-profile__photo__img clickable "
+                                src="https://cover-talk.zadn.vn/9/8/f/f/4/7b34fed7e99fdb37bc976a26d203652f.jpg"
+                                crossorigin="Anonymous" style="cursor: pointer;">
                         </div>
-                        <div class="preview-content truncate v3 flx flx-al-c flx-centernull" style="width: 100%;">
-                            <div class="flx relative margin-auto fit-content flx-al-c">
-                                <div class="user-profile__display-name">Quang Trần</div>
+                        <div class="user-profile-preview v3 flexcontainer--col ">
+                            <div class="avatar avatar--xxl" style="background: transparent;">
+                                <img class="avatar__photo" src="{{dataimg.avata}}">
                             </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="user-profile__groups null" style="flex: 1 1 0%;">
-                    <p class="user-profile__detail__header" data-translate-inner="STR_PERSONAL_PROFILE">Thông tin cá nhân</p>
-                    <div>
-                        <div class="user-profile-details" style="margin-bottom: 22px;">
-                            <div class="user-profile-details__line flx flx-al-c">
-                                <span data-translate-inner="STR_PROFILE_EMAIL">Email</span>
-                                <span data-translate-inner="STR_EMAIL">tranvinhquang48@gmail.com</span>
-                            </div>
-                            <div class="user-profile-details__line">
-                                <span data-translate-inner="STR_PROFILE_LABEL_GENDER">Giới tính</span>
-                                <span data-translate-inner="STR_GENDER_MALE">Nam</span>
-                            </div>
-                            <div class="user-profile-details__line">
-                                <span data-translate-inner="STR_PROFILE_LABEL_BIRTHDAY">Ngày sinh</span>
-                                <span style="position: relative;">13 tháng 07, 2001</span>
+                            <div class="preview-content truncate v3 flx flx-al-c flx-centernull" style="width: 100%;">
+                                <div class="flx relative margin-auto fit-content flx-al-c">
+                                    <div class="user-profile__display-name">Quang Trần</div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="user-profile__actions">
-                    <div class="z--btn z--btn--fill--tertiary -lg --full-width" title style="margin: 16px 20px; max-width: 312px;">
-                        <span style="display: flex; align-items: center;">
-                            <span class="btnpf-content" data-translate-inner="STR_EDIT_PROFILE">Cập nhật thông tin</span>
-                        </span>
+                    <div class="user-profile__groups null" style="flex: 1 1 0%;">
+                        <p class="user-profile__detail__header" data-translate-inner="STR_PERSONAL_PROFILE">Thông tin cá
+                            nhân</p>
+                        <div>
+                            <div class="user-profile-details" style="margin-bottom: 22px;">
+                                <div class="user-profile-details__line flx flx-al-c">
+                                    <span data-translate-inner="STR_PROFILE_EMAIL">Email</span>
+                                    <span data-translate-inner="STR_EMAIL">tranvinhquang48@gmail.com</span>
+                                </div>
+                                <div class="user-profile-details__line">
+                                    <span data-translate-inner="STR_PROFILE_LABEL_GENDER">Giới tính</span>
+                                    <span data-translate-inner="STR_GENDER_MALE">Nam</span>
+                                </div>
+                                <div class="user-profile-details__line">
+                                    <span data-translate-inner="STR_PROFILE_LABEL_BIRTHDAY">Ngày sinh</span>
+                                    <span style="position: relative;">13 tháng 07, 2001</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="user-profile__actions">
+                        <div class="z--btn z--btn--fill--tertiary -lg --full-width" title
+                            style="margin: 16px 20px; max-width: 312px;">
+                            <span style="display: flex; align-items: center;">
+                                <span class="btnpf-content" data-translate-inner="STR_EDIT_PROFILE">Cập nhật thông
+                                    tin</span>
+                            </span>
+                        </div>
                     </div>
                 </div>
             </div>
+        </div>
     </div>
-</div>
-</div>
-<script>
-    const modal = document.querySelector(".modal");
-    const openModalBtn = document.querySelector(".open-modal-btn");
-    const iconCloseModal = document.querySelector(".modal__header i");
-    const buttonCloseModal = document.querySelector(".modal__footer button");
-
-    function toggleModal() {
-        modal.classList.toggle("hide");
-    }
-
-    openModalBtn.addEventListener("click", toggleModal);
-    iconCloseModal.addEventListener("click", toggleModal);
-    buttonCloseModal.addEventListener("click", toggleModal);
-
-    modal.addEventListener("click", (e) => {
-        if (e.target == e.currentTarget) toggleModal();
-    });
-
-</script>
