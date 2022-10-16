@@ -11,7 +11,10 @@
             <div class="" style="width:90% ; text-align: center; height: 80%;background-color: white;" id="form-dangnhap">
                 <div style="background-color:white;">
                 <form class=" p-4 h-100" action="/login" method="post" enctype="multipart/form-data" >
-                    <div class="form-group mb-4 mt-5">
+                    <div class="form-group m-0">
+                        <span class="alter alert-danger">{{dataText}}</span>
+                    </div>
+                    <div class="form-group mb-4 mt-3">
 
                         <input type="email" class="form-control" style="height: 50px;" 
                             aria-describedby="emailHelp" placeholder="Email" name="email">
@@ -24,10 +27,12 @@
                     </div>
                     <div class="form-group mt-1">
                         <button type="submit"  class="button cnm_btn m-3 id_btn_da" style="outline: none;">Đăng nhập</button>
+            
                     </div>
                     <div class="form-group m-0">
                         <a href="#">Quên mật khẩu?</a>
                     </div>
+                    
                     
     
 
