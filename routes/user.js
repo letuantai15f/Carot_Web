@@ -20,7 +20,6 @@ userRouter.post("/signup", upload.fields([]), async (req, res) => {
     const tuser = new User(newUser);
     console.log(tuser);
     const saveUser = await tuser.save();
-    res.status(200).json(saveUser);
     res.redirect("/");
   } catch (err) {
     res.status(500).json(err);
@@ -30,14 +29,19 @@ userRouter.post("/login", upload.fields([]), async (req, res) => {
   const { email, password } = req.body;
   const user = await User.findOne({ "account.email": email });
   if (user == null) {
-    console.log("User not found");
+    
+    return res.render("login",{dataText:"Email hoặc mật khẩu không đúng ?"});
   } else {
     if (user.account.password == password) {
     var token= jwt.sign({id:user._id,username:user.email},process.env.JWT_KEY,{expiresIn:"1h"});
       res.cookie('token', token, { maxAge: 900000, httpOnly: true });
 
       return res.redirect("/message");
-    }}
+    }
+    else{
+      res.redirect("/");
+    }
+  }
   });
 userRouter.post('/login',upload.fields([]),async(req,res)=>{
     const {email,password} = req.body;
