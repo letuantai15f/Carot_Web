@@ -6,6 +6,7 @@ const morgan = require('morgan');
 const dotenv = require('dotenv');
 const exphbs = require('express-handlebars');
 const cookieParser = require('cookie-parser');
+const { cookieJWT } = require("./middlerware/cookieJWT");
 const app = express();
 const port = 3000;
 // const path= require('path');

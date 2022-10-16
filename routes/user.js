@@ -34,10 +34,8 @@ userRouter.post("/login", upload.fields([]), async (req, res) => {
   } else {
     if (user.account.password == password) {
     var token= jwt.sign({id:user._id,username:user.email},process.env.JWT_KEY,{expiresIn:"1h"});
-      // res.redirect("/message");
-      console.log(token);
       res.cookie('token', token, { maxAge: 900000, httpOnly: true });
-      console.log(token);
+
       return res.redirect("/message");
     }}
   });
