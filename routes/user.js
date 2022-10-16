@@ -3,6 +3,7 @@ const userRouter = express.Router();
 const { User } = require("../models/model");
 const multer = require("multer");
 const upload = multer();
+const jwt=require("jsonwebtoken");
 
 userRouter.post("/signup", upload.fields([]), async (req, res) => {
   const { username, email, password, name, date, repassword, gender } =
@@ -19,70 +20,24 @@ userRouter.post("/signup", upload.fields([]), async (req, res) => {
     const tuser = new User(newUser);
     console.log(tuser);
     const saveUser = await tuser.save();
+    res.status(200).json(saveUser);
     res.redirect("/");
   } catch (err) {
-    account: {
-      email, password;
-    }
-
-  }
-  try {
-    const tuser = new User(newUser);
-    console.log(tuser);
-    const saveUser = await tuser.save();
-    res.status(200).json(saveUser);
-  } catch (err) {
-    console.log(err);
     res.status(500).json(err);
   }
 });
 userRouter.post("/login", upload.fields([]), async (req, res) => {
   const { email, password } = req.body;
   const user = await User.findOne({ "account.email": email });
-  console.log(user.account.password);
   if (user == null) {
     console.log("User not found");
   } else {
     if (user.account.password == password) {
-      res.redirect("/message");
+    var token= jwt.sign({id:user._id,username:user.email},process.env.JWT_KEY,{expiresIn:"1h"});
+      res.cookie('token', token, { maxAge: 900000, httpOnly: true });
 
-    try {
-        const tuser = new User(newUser);
-        console.log(tuser);
-        const saveUser = await tuser.save();
-        res.status(200).json(saveUser);
-    } catch (err) {
-        console.log(err);
-        res.status(500).json(err);
-    }
+      return res.redirect("/message");
     }}
   });
-userRouter.post('/login',upload.fields([]),async(req,res)=>{
-    const {email,password} = req.body;
-    const user=await User.findOne({"account.email": email});
-    
-    console.log(user.avata);
-    if(user==null){
-        console.log("User not found");
-    }else{
-        if(user.account.password==password){
-            
-            res.render('message',{dataimg:user.avata});
-     
-        }
-        else{};
 
-}});
-userRouter.post('/login', upload.fields([]), async(req, res) => {
-    const { email, password } = req.body;
-    const user = await User.findOne({ "account.email": email });
-    console.log(user.account.password);
-    if (user == null) {
-        console.log("User not found");
-    } else {
-      console.log("sai pass");
-      res.redirect("/");
-    }
-  }
-);
 module.exports = userRouter;
