@@ -5,6 +5,7 @@ var bodyParser = require('body-parser');
 const morgan = require('morgan');
 const dotenv = require('dotenv');
 const exphbs = require('express-handlebars');
+const cookieParser = require('cookie-parser');
 const app = express();
 const port = 3000;
 // const path= require('path');
@@ -18,7 +19,7 @@ dotenv.config();
 mongoose.connect((process.env.MONGODB_URL),()=>{
     console.log('MongoDB');
 })
-//
+app.use(cookieParser());
 // app.use(express.static(path.join(__dirname,'views/partials/nav.handlebars')));
 app.use(bodyParser.json({limit:"50mb"}))
 mongoose.connect((process.env.MONGODB_URL), () => {
