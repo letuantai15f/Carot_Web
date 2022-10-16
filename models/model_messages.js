@@ -15,7 +15,6 @@ const messagesSchema = new mongoose.Schema({
     // createdAt: {type:Number,default:Date.now},
     // updateAt: {type:Number,default:null},
     // deleteAt: {type:Number,default:null},
-     
     
 
 });

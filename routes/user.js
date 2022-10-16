@@ -13,7 +13,7 @@ userRouter.post("/signup", upload.fields([]), async (req, res) => {
     date,
     avata:
       "https://thtuan2-130821.s3.ap-southeast-1.amazonaws.com/zyro-image.png",
-    account: { email, password },
+    account: { email, password }
   };
   try {
     const tuser = new User(newUser);
@@ -68,7 +68,6 @@ userRouter.post('/login',upload.fields([]),async(req,res)=>{
         if(user.account.password==password){
             
             res.render('message',{dataimg:user.avata});
-     
         }
         else{};
 
