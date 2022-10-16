@@ -1,39 +1,17 @@
 const mongoose = require('mongoose');
-
-const senderSchema = new mongoose.Schema({
-    id: {
-        type: String,
-    },
-    username: {
-        type: String,
-    },
-    avatar: {
-        type: String,
-    }
-});
-
-const receiverSchema = new mongoose.Schema({
-    id: {
-        type: String,
-    },
-    username: {
-        type: String,
-    },
-    avatar: {
-        type: String,
-    }
-});
 const notificationsSchema = new mongoose.Schema({
     id: {
         type: String,
     },
     sender: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Sender"
+        id: String,
+        username: String,
+        avatar: String
     },
     receiver: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Receiver"
+        id: String,
+        username: String,
+        avatar: String
     },
     type: {
         type: String,
@@ -43,12 +21,12 @@ const notificationsSchema = new mongoose.Schema({
     },
     isRead: {
         type: Boolean,
+        default: false,
     },
     createdAt: {
-        type: timestamp,
+        type: Number,
+        default: Date.now
     }
 });
 let Notifications = mongoose.model('Notifications', notificationsSchema);
-let Sender = mongoose.model('Sender', senderSchema);
-let Receiver = mongoose.model('Receiver', receiverSchema);
-module.exports = { Notifications, Sender, Receiver };
+module.exports = { Notifications };
