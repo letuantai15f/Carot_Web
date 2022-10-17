@@ -79,18 +79,17 @@
             <div id="tab021" style="display: none;">
                 <div class="modal__body">
                     <div class="search-user search-bar search-contact">
-                        <input onkeyup="search()" id="searchContact" type="text" class="form-control" placeholder="Tìm kiếm bạn bè" style="height:30px; width:100%;">
+                        <input onkeyup="search2()" id="searchContact2" type="text" class="form-control" placeholder="Tìm kiếm bạn bè" style="height:30px; width:100%;">
                         <i class="ti-search"></i>
                     </div>
                     <div class="message-scroll contact-scroll">
-                        <div class="user-message user-message-contact">
+                        <div class="user-message user-message-contact2">
                             <img class="user-avatar user3" src="{{dataimg.avtreciver}}" alt="">
-                            <span class="name-user name-user-contact">{{dataimg.username}}</span>
+                            <span class="name-user name-user-contact2">{{dataimg.username}}</span>
                             <span class="description-user">4 bạn chung</span>
                             <div class="accept"><i class="ti-check"></i></div>
                             <div class="dismiss"><i class="ti-close"></i></div>
                         </div>
-                        
                     </div>
                 </div>
             </div>
@@ -138,16 +137,30 @@
     function search(){
         let user =[];
         let search = document.getElementById("searchContact");
+        let search2 = document.getElementById("searchContact2");
         let item = Array.from(document.getElementsByClassName("name-user-contact"))
         let fullitem = Array.from(document.getElementsByClassName("user-message-contact"))
         item.forEach(function(el){
             user = el.innerHTML
             fullitem.forEach(function(el2){
-                if(user == search.value){
+                if(user == search.value || search.value == ""){
                     el2.style.display="block"
                 }else el2.style.display="none"
             })
         })
-        
+    }
+    function search2(){
+        let user2 =[];
+        let search2 = document.getElementById("searchContact2");
+        let item2 = Array.from(document.getElementsByClassName("name-user-contact2"))
+        let fullitem2 = Array.from(document.getElementsByClassName("user-message-contact2"))
+        item2.forEach(function(el){
+            user2 = el.innerHTML
+            fullitem2.forEach(function(el2){
+                if(user2 == search2.value || search2.value == ""){
+                    el2.style.display="block"
+                }else el2.style.display="none"
+            })
+        })
     }
 </script>
