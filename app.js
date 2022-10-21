@@ -9,7 +9,7 @@ const cookieParser = require('cookie-parser');
 const { cookieJWT } = require("./middlerware/cookieJWT");
 const app = express();
 const port = 3000;
-// const path= require('path');
+const path= require('path');
 
 const userRouter = require('./routes/user')
 const contactRouter = require('./routes/contact')
@@ -17,11 +17,10 @@ const chatgroupRouter = require('./routes/chatgroup')
 const messageRouter =require('./routes/message')
 dotenv.config();
 
-mongoose.connect((process.env.MONGODB_URL),()=>{
-    console.log('MongoDB');
-})
+
 app.use(cookieParser());
 // app.use(express.static(path.join(__dirname,'views/partials/nav.handlebars')));
+app.use(express.static(path.join(__dirname,"js/account.js")));
 app.use(bodyParser.json({limit:"50mb"}))
 mongoose.connect((process.env.MONGODB_URL), () => {
         console.log('Connected to MongoDB');

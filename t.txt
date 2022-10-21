@@ -1,0 +1,121 @@
+UserImpl {
+  providerId: 'firebase',
+  proactiveRefresh: ProactiveRefresh {
+    user: [Circular *1],
+    isRunning: false,
+    timerId: null,
+    errorBackoff: 30000
+  },
+  reloadUserInfo: {
+    localId: 'aG1sL91QkGTJPMWwQohWzhMouQr2',
+    email: 'letuantai15f@gmail.com',
+    passwordHash: 'UkVEQUNURUQ=',
+    emailVerified: false,
+    passwordUpdatedAt: 1666319638535,
+    providerUserInfo: [ [Object] ],
+    validSince: '1666319638',
+    lastLoginAt: '1666319638535',
+    createdAt: '1666319638535',
+    lastRefreshAt: '2022-10-21T02:33:58.535Z'
+  },
+  reloadListener: null,
+  uid: 'aG1sL91QkGTJPMWwQohWzhMouQr2',
+  auth: <ref *2> AuthImpl {
+    app: FirebaseAppImpl {
+      _isDeleted: false,
+      _options: [Object],
+      _config: [Object],
+      _name: '[DEFAULT]',
+      _automaticDataCollectionEnabled: false,
+      _container: [ComponentContainer]
+    },
+    heartbeatServiceProvider: Provider {
+      name: 'heartbeat',
+      container: [ComponentContainer],
+      component: [Component],
+      instances: [Map],
+      instancesDeferred: Map(0) {},
+      instancesOptions: [Map],
+      onInitCallbacks: Map(0) {}
+    },
+    config: {
+      apiKey: 'AIzaSyDv8NgmBvo2SBI9FUZ6JPsBA0pl2ZDoI68',
+      authDomain: 'carot-6a8cb.firebaseapp.com',
+      clientPlatform: 'Node',
+      apiHost: 'identitytoolkit.googleapis.com',
+      tokenApiHost: 'securetoken.googleapis.com',
+      apiScheme: 'https',
+      sdkClientVersion: 'Node/JsCore/9.12.1/FirebaseCore-web'
+    },
+    currentUser: [Circular *1],
+    emulatorConfig: null,
+    operations: Promise { undefined },
+    authStateSubscription: Subscription {
+      auth: [Circular *2],
+      observer: [ObserverProxy],
+      addObserver: [Function: bound ]
+    },
+    idTokenSubscription: Subscription {
+      auth: [Circular *2],
+      observer: [ObserverProxy],
+      addObserver: [Function: bound ]
+    },
+    beforeStateQueue: AuthMiddlewareQueue { auth: [Circular *2], queue: [] },
+    redirectUser: null,
+    isProactiveRefreshEnabled: false,
+    _canInitEmulator: false,
+    _isInitialized: true,
+    _deleted: false,
+    _initializationPromise: Promise { undefined },
+    _popupRedirectResolver: null,
+    _errorFactory: ErrorFactory {
+      service: 'auth',
+      serviceName: 'Firebase',
+      errors: [Object]
+    },
+    lastNotifiedUid: 'aG1sL91QkGTJPMWwQohWzhMouQr2',
+    languageCode: null,
+    tenantId: null,
+    settings: { appVerificationDisabledForTesting: false },
+    frameworks: [],
+    name: '[DEFAULT]',
+    clientVersion: 'Node/JsCore/9.12.1/FirebaseCore-web',
+    persistenceManager: PersistenceUserManager {
+      persistence: [InMemoryPersistence],
+      auth: [Circular *2],
+      userKey: 'authUser',
+      fullUserKey: 'firebase:authUser:AIzaSyDv8NgmBvo2SBI9FUZ6JPsBA0pl2ZDoI68:[DEFAULT]',
+      fullPersistenceKey: 'firebase:persistence:AIzaSyDv8NgmBvo2SBI9FUZ6JPsBA0pl2ZDoI68:[DEFAULT]',
+      boundEventHandler: [Function: bound ]
+    }
+  },
+  stsTokenManager: StsTokenManager {
+    refreshToken: 'AOEOulbjTJHxpanF8XZ50lTOs1wz0ti8nhfdQR4gWZj3fcMdtcB9e_0Rf9HZ7m-8iaMvp6ocRZfDMQQs9R6IiwCRtC9dJICQJr8Q_EZK_t2PeMNJbC40KJnvqTSGJU0hcvgcFc9NalO56R0i53Lv4YOwAgEsJ-KXfBOyPidZXv4551mGA-5Wu70Ldwt6kOznet1LmnkPZLIWlD5JjbsxutFCpnw6d8gT0g',
+    accessToken: 'eyJhbGciOiJSUzI1NiIsImtpZCI6IjNmNjcyNDYxOTk4YjJiMzMyYWQ4MTY0ZTFiM2JlN2VkYTY4NDZiMzciLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vY2Fyb3QtNmE4Y2IiLCJhdWQiOiJjYXJvdC02YThjYiIsImF1dGhfdGltZSI6MTY2NjMxOTYzOCwidXNlcl9pZCI6ImFHMXNMOTFRa0dUSlBNV3dRb2hXemhNb3VRcjIiLCJzdWIiOiJhRzFzTDkxUWtHVEpQTVd3UW9oV3poTW91UXIyIiwiaWF0IjoxNjY2MzE5NjM4LCJleHAiOjE2NjYzMjMyMzgsImVtYWlsIjoibGV0dWFudGFpMTVmQGdtYWlsLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjpmYWxzZSwiZmlyZWJhc2UiOnsiaWRlbnRpdGllcyI6eyJlbWFpbCI6WyJsZXR1YW50YWkxNWZAZ21haWwuY29tIl19LCJzaWduX2luX3Byb3ZpZGVyIjoicGFzc3dvcmQifX0.hC0gl71wCv5C4hnbPF9E1kh277p-4L1ExsXkrNTCU57yjfrM9EwN4C5DpGV8yVlMJGGs3qagRQS0YRRChtNk7qiUo11Ltdxyr34aTdClCdxD4Si-V7ILxJz4_RVsAj9YZLdWRLlE3ZknfagcteVj16j45nHs7pb8ToDwbyi26g5UwxGhjb9_R-5PRHf5lpBoNTo8WNV5Oqga5z10drXhXQpN14KcHFpRZj0lkP4-yQhAYq1SWRFDB3nFhk2KyQ0WayKqfdlfOM0M9kPRsnMpdvxZiZR_bqwrOo9y3r-4DQsqGr5dymvZ9L-QpJxlJAIboGR9biLOhihVpAEXESvWvQ',
+    expirationTime: 1666323239515
+  },
+  accessToken: 'eyJhbGciOiJSUzI1NiIsImtpZCI6IjNmNjcyNDYxOTk4YjJiMzMyYWQ4MTY0ZTFiM2JlN2VkYTY4NDZiMzciLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vY2Fyb3QtNmE4Y2IiLCJhdWQiOiJjYXJvdC02YThjYiIsImF1dGhfdGltZSI6MTY2NjMxOTYzOCwidXNlcl9pZCI6ImFHMXNMOTFRa0dUSlBNV3dRb2hXemhNb3VRcjIiLCJzdWIiOiJhRzFzTDkxUWtHVEpQTVd3UW9oV3poTW91UXIyIiwiaWF0IjoxNjY2MzE5NjM4LCJleHAiOjE2NjYzMjMyMzgsImVtYWlsIjoibGV0dWFudGFpMTVmQGdtYWlsLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjpmYWxzZSwiZmlyZWJhc2UiOnsiaWRlbnRpdGllcyI6eyJlbWFpbCI6WyJsZXR1YW50YWkxNWZAZ21haWwuY29tIl19LCJzaWduX2luX3Byb3ZpZGVyIjoicGFzc3dvcmQifX0.hC0gl71wCv5C4hnbPF9E1kh277p-4L1ExsXkrNTCU57yjfrM9EwN4C5DpGV8yVlMJGGs3qagRQS0YRRChtNk7qiUo11Ltdxyr34aTdClCdxD4Si-V7ILxJz4_RVsAj9YZLdWRLlE3ZknfagcteVj16j45nHs7pb8ToDwbyi26g5UwxGhjb9_R-5PRHf5lpBoNTo8WNV5Oqga5z10drXhXQpN14KcHFpRZj0lkP4-yQhAYq1SWRFDB3nFhk2KyQ0WayKqfdlfOM0M9kPRsnMpdvxZiZR_bqwrOo9y3r-4DQsqGr5dymvZ9L-QpJxlJAIboGR9biLOhihVpAEXESvWvQ',
+  displayName: null,
+  email: 'letuantai15f@gmail.com',
+  emailVerified: false,
+  phoneNumber: null,
+  photoURL: null,
+  isAnonymous: false,
+  tenantId: null,
+  providerData: [
+    {
+      providerId: 'password',
+      uid: 'letuantai15f@gmail.com',
+      displayName: null,
+      email: 'letuantai15f@gmail.com',
+      phoneNumber: null,
+      photoURL: null
+    }
+  ],
+  metadata: UserMetadata {
+    createdAt: '1666319638535',
+    lastLoginAt: '1666319638535',
+    lastSignInTime: 'Fri, 21 Oct 2022 02:33:58 GMT',
+    creationTime: 'Fri, 21 Oct 2022 02:33:58 GMT'
+  }
+}
