@@ -23,10 +23,7 @@ mongoose.connect((process.env.MONGODB_URL),()=>{
 app.use(cookieParser());
 // app.use(express.static(path.join(__dirname,'views/partials/nav.handlebars')));
 app.use(bodyParser.json({limit:"50mb"}))
-mongoose.connect((process.env.MONGODB_URL), () => {
-        console.log('Connected to MongoDB');
-    })
-    //
+
 app.use(bodyParser.json({ limit: "50mb" }))
 app.use(cors());
 app.use(morgan("common"));
