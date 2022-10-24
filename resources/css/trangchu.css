@@ -1121,4 +1121,60 @@ p {
     justify-content: space-between;
     width: 100%;
 }
+.modal-footer-button-action {
 
+    
+    padding: 14px 16px;
+    background: #fff;
+}
+.z--btn.-lg {
+    height: 40px;
+    min-width: 40px;
+    padding: 0 16px;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.5;
+    line-height: 38px;
+}
+.zl-modal__footer__button--cancel {
+    margin-right: 15px;
+}
+.z--btn--fill--tertiary {
+    color: #001a33;
+    background: #e5e7eb;
+}
+.z--btn {
+    line-height: 1.5;
+    display: inline-block;
+    font-weight: var(--medium);
+    white-space: nowrap;
+    text-align: center;
+    background-image: none;
+    border: none;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    height: 40px;
+    padding: 0 16px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: fit-content;
+    width: -moz-fit-content;
+    flex-shrink: inherit;
+}
+
+.loading-v2,
+.z--btn {
+    position: relative;
+    box-sizing: border-box;
+}
+.z--btn--fill--primary {
+    color: #fff;
+    background: orangered;
+}
