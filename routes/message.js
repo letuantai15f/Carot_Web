@@ -17,6 +17,10 @@ messageRouter.get('/',cookieJwtAuth,async(req, res) =>{
         const mess= await message.find({});
         const messconact={
             avata:user.avata,
+            email:user.account.email,
+            gender:user.gender,
+            date:user.date,
+            usernameprofile:user.username,
             avtreciver:mess[0].reciver.avata,
             text:mess[0].text,
             username:mess[0].reciver.username
