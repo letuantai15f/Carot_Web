@@ -1,10 +1,10 @@
 const mongoose = require('mongoose');
 
 const contactSchema = new mongoose.Schema({
-    username: {
+    emailuser: {
         type: String,
     },
-    email: {
+    emailcontact: {
         type: String,
     },
     status: {
