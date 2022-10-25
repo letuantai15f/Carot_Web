@@ -79,17 +79,40 @@
             <div id="tab021" style="display: none;">
                 <div class="modal__body">
                     <div class="search-user search-bar search-contact">
-                        <input onkeyup="search2()" id="searchContact2" type="text" class="form-control" placeholder="Tìm kiếm bạn bè" style="height:30px; width:100%;">
+                        <input onkeyup="search2()" id="searchContact2" type="text" class="form-control" placeholder="Nhập email để tìm kiếm" style="height:30px; width:100%;">
                         <i class="ti-search"></i>
                     </div>
                     <div class="message-scroll contact-scroll">
-                        <div class="user-message user-message-contact2">
-                            <img class="user-avatar user3" src="{{dataimg.avtreciver}}" alt="">
-                            <span class="name-user name-user-contact2">{{dataimg.username}}</span>
-                            <span class="description-user">4 bạn chung</span>
-                            <div class="accept"><i class="ti-check"></i></div>
-                            <div class="dismiss"><i class="ti-close"></i></div>
-                        </div>
+                        
+                            {{#each datacontact}}
+                            <div class="user-message user-message-contact2">
+                                <img class="user-avatar user3" src="./img/avata_user.png" alt="">
+                                
+                                {{#each this}}
+                                <span class="name-user name-user-contact2">{{this.emailcontact}}</span>
+                                <span class="description-user">Muốn kết bạn</span>
+                                {{/each}}
+                                
+                                <div class="accept"><i class="ti-check"></i></div>
+                                <div class="dismiss"><i class="ti-close"></i></div>
+                            </div>
+                            {{/each}}
+                            
+                        {{!-- <form action="/" method="post" enctype="multipart/form-data">
+                            <div class="form-group m-4">
+                                <input type="text" class="form-control" style="height: 50px;"
+                                    placeholder="status" name="status" required>
+                            </div>
+                            <div class="form-group m-4">
+                                <input type="text" class="form-control" style="height: 50px;"
+                                    placeholder="Email contact" name="emailcontact" required>
+                            </div>
+                            <div class="form-group m-4">
+                                <input type="text" class="form-control" style="height: 50px;"
+                                    placeholder="email user" name="emailuser" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary" id="btngui">Gửi</button>
+                        </form> --}}
                     </div>
                 </div>
             </div>

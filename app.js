@@ -59,7 +59,7 @@ app.get('/modal', (req, res) => {
 app.use("/", userRouter)
 
 // modal contact
-app.use("/modal", contactRouter)
+app.use("/", contactRouter)
 
 // chatgroup message
 app.use("/message", messageRouter)
