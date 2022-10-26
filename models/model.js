@@ -13,7 +13,7 @@ const userSchema = new mongoose.Schema({
     date:{type:String},
     account:{
         email:{type:String},
-        password:{type:String}
+    
         
     }
 });
