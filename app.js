@@ -13,6 +13,7 @@ const server=require("http").Server(app);
 var io=require('socket.io')(server);
 const  SocketServices = require('./services/chat');
 global._io  =  io;
+global.__dirname=__dirname;
 // const path= require('path');
 
 const userRouter = require("./routes/user");
@@ -33,8 +34,8 @@ app.use(bodyParser.json({ limit: "50mb" }));
 app.use(cors());
 app.use(morgan("common"));
 app.use(express.static("resources"));
-app.engine("hbs", exphbs.engine());
-app.set("view engine", "hbs");
+app.engine(".hbs", exphbs.engine());
+app.set("view engine", ".hbs");
 // app.use((req,res,next)=>{
 //   res.io=io
 //   next();
