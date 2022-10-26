@@ -45,12 +45,14 @@ exports.authenticate = async (email, password, req, res) => {
       var status = "alert alert-danger";
       var notify = "Vui lòng xác minh email";
       var dataStatus = { status, notify };
+      
       return res.render("login", { message: dataStatus });
     }
   } catch (error) {
     var status = "alert alert-danger";
     var notify = "Email hoặc mật khẩu không đúng. vui lòng kiểm tra lại";
     var dataStatus = { status, notify };
+    console.log(error);
     return res.render("login", { message: dataStatus });
   }
 };

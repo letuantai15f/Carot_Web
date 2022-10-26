@@ -89,12 +89,13 @@
                                 <img class="user-avatar user3" src="./img/avata_user.png" alt="">
                                 
                                 {{#each this}}
-                                <span class="name-user name-user-contact2">{{this.emailcontact}}</span>
+                                <span id="emailct" class="name-user name-user-contact2">{{this.emailcontact}}</span>
                                 <span class="description-user">Muốn kết bạn</span>
+                                <div onclick="accept()" class="accept"><i class="ti-check"></i></div>
+                                <div class="dismiss"><i class="ti-close"></i></div>
                                 {{/each}}
                                 
-                                <div class="accept"><i class="ti-check"></i></div>
-                                <div class="dismiss"><i class="ti-close"></i></div>
+                                
                             </div>
                             {{/each}}
                             
@@ -139,6 +140,11 @@
         tab02.style.fontWeight ="unset"
         tab1.style.display="block"
         tab2.style.display="none"
+    }
+    function accept(){
+        let email = document.getElementById("emailct")
+        {{!-- alert(`{{datacontact.emailcontact}}`) --}}
+        alert(email.innerText)
     }
 </script>
 <script>

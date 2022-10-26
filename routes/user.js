@@ -23,7 +23,6 @@ userRouter.post("/signup", upload.fields([]), async (req, res) => {
     try{
     firebase.addUser(email, password);
     const tuser = new User(newUser);
-    console.log(tuser);
     const saveUser = await tuser.save();
     res.redirect("/");
   } catch (err) {
@@ -40,9 +39,11 @@ userRouter.post("/signup", upload.fields([]), async (req, res) => {
   }
 });
 userRouter.post("/login", upload.fields([]), async (req, res) => {
+  
   const { email, password } = req.body;
   const user = await User.findOne({ "account.email": email });
   firebase.authenticate(email, password, req, res);
+  
 });
 
 module.exports = userRouter;

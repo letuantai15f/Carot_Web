@@ -8,8 +8,27 @@ const multer = require("multer");
 const upload = multer();
 const jwt=require("jsonwebtoken");
 const jwt_decode = require('jwt-decode');
+const Message=require('../models/model_messages')
 
-
+messageRouter.get('/accept',cookieJwtAuth,async(req, res) =>{
+        
+        const token=req.cookies.token;
+        const data=jwt_decode(token);
+        // _io.emit("server-chat", "hihi");
+        const user=await User.findOne({"_id":data.id});
+        const contact=await Contact.findOne({"emailuser":user.account.email});
+        const mess= await message.find({});
+        // const usercontact=await User.findOne({"_id":mess});
+        const messconact={
+            emailuser:user.account.email,
+            avata:user.avata,
+            avtreciver:mess[0].reciver.avata,
+            text:mess[0].text,
+            username:mess[0].reciver.username
+        }
+        
+    res.render('message',{dataimg:messconact});
+});
 messageRouter.get('/',cookieJwtAuth,async(req, res) =>{
     const token=req.cookies.token;
     const data=jwt_decode(token);
@@ -26,5 +45,6 @@ messageRouter.get('/',cookieJwtAuth,async(req, res) =>{
     }
     res.render('message',{dataimg:messconact, datacontact:contact});
 });
+
 
 module.exports = messageRouter;
