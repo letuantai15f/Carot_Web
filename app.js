@@ -15,6 +15,7 @@ const userRouter = require('./routes/user')
 const contactRouter = require('./routes/contact')
 const chatgroupRouter = require('./routes/chatgroup')
 const messageRouter =require('./routes/message')
+
 dotenv.config();
 
 mongoose.connect((process.env.MONGODB_URL),()=>{
@@ -39,6 +40,7 @@ const docClient = new AWS.DynamoDB.DocumentClient();
 const tableName = "UserAccounts"
     //multer
 const multer = require('multer');
+const profileRouter = require('./routes/profile');
 const upload = multer();
 //getUI
 app.get('/', (req, res) => {
@@ -62,7 +64,7 @@ app.use("/", userRouter)
 app.use("/modal", contactRouter)
 
 // chatgroup message
-app.use("/message", messageRouter)
+app.use("/message", messageRouter, profileRouter)
 
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)

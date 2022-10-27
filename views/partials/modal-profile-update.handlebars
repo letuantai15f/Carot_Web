@@ -22,17 +22,23 @@
                                 <div class="rel" style="text-align: center; margin: -47px 0px 0px;">
                                     <input type="file" name="profile-avatar" id="profileAvatarPicker" class="inputfile"
                                         accept=".png, .jpg, .jpeg" style="display: none;">
-                                    <img src="{{dataimg.avata}}"
-                                        style="border-radius: 50%; width: 80px; height: 80px; object-fit: cover; cursor: pointer; border: 2px solid white; margin-top: 50px;">
-                                    <img class="clickable"
+                                    <img id="chosen_image" src="{{dataimg.avata}}"
+                                        style="border-radius: 50%; width: 80px; height: 80px; object-fit: cover; cursor: pointer; border: 2px solid white; margin-top: -50px;">
+                                    
+                                    <label style="margin-left: -25px; margin-top: 100px;" for="upload_image">
+                                        <input type="file" name="image" for="upload_image" id="upload_image" style="display:none;" />
+                                        <img src="https://chat.zalo.me/assets/chat_setting_avatar_icon_edit.32e49958a4d725a69beb65e5f5a568f2.png" />
+                                    </label>
+
+                                    {{!-- <img class="clickable"
                                         src="https://chat.zalo.me/assets/chat_setting_avatar_icon_edit.32e49958a4d725a69beb65e5f5a568f2.png"
-                                        style="margin-left: -25px; margin-top: 100px;">
+                                        style="margin-left: -25px; margin-top: 100px;"> --}}
                                 </div>
                             </div>
                                 {{!-- <div class="avatar avatar--xxl" style="background: transparent;">
                                     <img class="avatar__photo" src="{{dataimg.avata}}">
                                 </div> --}}
-                                <div class="preview-content truncate v3 flx flx-al-c flx-centernull"
+                                <div  class="preview-content truncate v3 flx flx-al-c flx-centernull"
                                     style="width: 100%;">
                                     <div style="padding: 0px 16px 16px;">
                                         <div class="lbl-component ">
@@ -142,3 +148,15 @@
         </div>
     </div>
 </div>
+<script>
+    let upload = document.getElementById("upload_image");
+    let chosenImg = document.getElementById("chosen_image");
+
+    upload.onchange = () => {
+        let reader = new FileReader();
+        reader.readAsDataURL(upload.files[0]);
+        reader.onload = () => {
+            chosenImg.setAttribute("src", reader.result);
+        }
+    }
+</script>
