@@ -21,7 +21,6 @@ messageRouter.get("/", cookieJwtAuth, async (req, res) => {
    
   const messconact = {
     emailuser: user.account.email,
-    email:user.account.email,
     gender:user.gender,
     date:user.date,
     usernameprofile:user.username,
