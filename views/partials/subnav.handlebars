@@ -1,37 +1,49 @@
-
-<div class="w-100" >
-    <div class="row m-0 w-100" style=" ;"  >
-        {{> nav}}
-        {{> content-message}}
-		
+<div class="w-100">
+	<div class="row m-0 w-100" style=" ;">
+		{{> nav}}
+		{{> content-message}}
+		<input type="text" value="{{dataimg.emailuser}}" id="emailuser" hidden>
 		<div class="col-5 main-messagetext">
 			<div class="row r1">
 				<img class="user-avatar user3 user4" src="{{dataimg.avtreciver}}" alt="">
 				<span class="name-user2"><b>{{dataimg.username}}</b></span>
-				<span class="online-status">Online 12 phút trước</span>
+				{{!-- <span class="online-status">Online 12 phút trước</span> --}}
 				<a href=""><i class="ti-headphone"></i></a>
 				<a href=""><i class="ti-video-camera"></i></a>
 			</div>
 			<div class="row r2">
 				<div class="mess">
-					<img class="user-avatar user3 user4" src="{{dataimg.avtreciver}}" alt="">
-					<div class="text">
-						<span>{{dataimg.text}}</span>
-					</div>
-					<div class="text2">
-						<span>Em có bạn trai rồi :>> </span>
-					</div>
+					{{!-- <ul id="messages" style="height: 100%; border: solid 1px #cecece; list-style-type: none;">
+					</ul> --}}
+					{{!-- -- <img class="user-avatar user3 user4" src="{{dataimg.avtreciver}}" alt=""> --}}
+
+
+					{{!-- <video controls autoplay>
+						<source src="https://www.w3schools.com/tags/movie.mp4" type="video/mp4">
+					</video> --}}
+
+
 				</div>
+
 			</div>
 			<div class="row r3 ">
 				<ul class="list-item3">
-					<li><a href=""><i class="ti-face-smile"></i></a></li>
-					<li><a href=""><i class="ti-camera"></i></a></li>
-					<li><a href=""><i class="ti-clip"></i></a></li>
-					<input class="text-send" type="text" placeholder="Vui lòng điền tin nhăn..." style="background-color:#E4E4E4 ;">
-					<i class="ti-angle-right "></i>
+					<li><a ><i class="ti-face-smile"></i></a></li>
+					<li><a><label for="btn-send-file"><i class="ti-camera"></i></label>
+					<input type="file" id="btn-send-file" onchange="sendfile(this)" accept="image/png" hidden />
+					</a></li>
+					<li><a><i class="ti-clip" id=""></i>
+	
+					</a></li>
+
+					<li></li>
+					<input class="text-send" name="tinnhan" type="text" placeholder="Vui lòng điền tin nhăn..."
+						style="background-color:#E4E4E4 ;" id="datamess">
+					<i onclick="send()" class="ti-angle-right" id="btnsend"></i>
+
+
 				</ul>
-				
+
 			</div>
 		</div>
 		<div class="col-3 cl3">
@@ -77,5 +89,5 @@
 				</div>
 			</div>
 		</div>
-    </div>
+	</div>
 </div>

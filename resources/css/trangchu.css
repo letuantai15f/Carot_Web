@@ -470,11 +470,27 @@ body {
     position: relative;
     width: 100%;
 }
+.imgsender,imgreciver{
+    margin: 5px;
+    border-radius: 8px;
+    font-size: 16px;
+}
+.imgreciver {
+    top: 24px;
+    left: 80px;
+}
 
+.imgsender {
+    text-align:right;
+    right: 10px;
+    color: #fff;
+}
 .text,
 .text2 {
-    position: absolute;
+    /* position: relative; */
+    width: auto;
     background-color: #f4f4f4;
+    margin: 5px;
     padding: 4px 8px 4px 8px;
     border-radius: 8px;
     font-size: 16px;
@@ -490,6 +506,8 @@ body {
     right: 10px;
     color: #fff;
 }
+
+
 
 .list-item3 {
     margin-left: 20px;
@@ -921,13 +939,13 @@ avatar_button:focus {
 .modal-content2 {
     position: absolute;
     top: 0px;
-    left: 30%;
+    left: 36%;
     background-color: #fefefe;
     margin: 4% auto;
-    border-radius: 4px;
+    border-radius: 12px;
     padding: 20px;
     border: 1px solid #888;
-    width: 40% !important;
+    width: 30% !important;
     max-height: 540px;
     animation: showModal linear 0.2s;
 }
@@ -939,7 +957,7 @@ avatar_button:focus {
     font-size: 28px;
     font-weight: bold;
     padding: 8px;
-    margin-left: 220px;
+    margin-left: 70px;
 }
 .close2:hover,
 .close2:focus {

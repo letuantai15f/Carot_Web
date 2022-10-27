@@ -1,34 +1,41 @@
 const express = require("express");
 const messageRouter = express.Router();
-const { message}=require("../models/model_messages")
+const { message } = require("../models/model_messages");
 const { User } = require("../models/model");
-const {cookieJwtAuth}=require("../middlerware/cookieJWT")
+const { cookieJwtAuth } = require("../middlerware/cookieJWT");
 const multer = require("multer");
 const upload = multer();
-const jwt=require("jsonwebtoken");
-const jwt_decode = require('jwt-decode');
+const jwt = require("jsonwebtoken");
+const jwt_decode = require("jwt-decode");
+const { Contact } = require("../models/modal_contact");
+const Message = require("../models/model_messages");
 
-messageRouter.get('/',cookieJwtAuth,async(req, res) =>{
-        const token=req.cookies.token;
-        const data=jwt_decode(token);
+messageRouter.get("/", cookieJwtAuth, async (req, res) => {
+  const token = req.cookies.token;
+  const data = jwt_decode(token);
 
-        const user=await User.findOne({"_id":data.id});
-        console.log(user);
-        const mess= await message.find({});
-        const messconact={
-            avata:user.avata,
-            email:user.account.email,
-            gender:user.gender,
-            date:user.date,
-            usernameprofile:user.username,
-            avtreciver:mess[0].reciver.avata,
-            text:mess[0].text,
-            username:mess[0].reciver.username
-        }
-        console.log(messconact);
-    res.render('message',{dataimg:messconact});
-        
+  const user = await User.findOne({ _id: data.id });
+  const contact = await Contact.find({emailuser: "letuantai15f@gmail.com"});
+  console.log(contact);
+  const mess = await message.find({});
+   
+  const messconact = {
+    emailuser: user.account.email,
+    email:user.account.email,
+    gender:user.gender,
+    date:user.date,
+    usernameprofile:user.username,
+    avata: user.avata,
+    avtreciver: mess[0].reciver.avata,
+    text: mess[0].text,
+    username: mess[0].reciver.username,
+    contact
+    
+  };
+  
+//   console.log(messconact)
 
+  res.render("message", { dataimg: messconact });
 });
 
 module.exports = messageRouter;
