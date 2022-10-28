@@ -368,7 +368,10 @@ body {
 .search-user {
     margin-top: 20px;
 }
-
+.mess{height: 95%;
+    overflow-y: scroll;
+    /* margin-top: 12px; */
+}
 .message-scroll {
     height: 75%;
     overflow-y: scroll;

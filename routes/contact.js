@@ -24,8 +24,8 @@ contactRouter.post('/delete', upload.fields([]), async(req, res) => {
 });
 
 contactRouter.post('/addfriend', upload.fields([]), async(req, res) => {  
-    const {emailcontact, emailuser} = req.body;
-    let searchcontact = await User.findOne({"account.email":emailuser})
+    const {emailuser, emailcontact} = req.body;
+    let searchcontact = await User.findOne({"account.email":emailcontact})
     console.log(searchcontact)
     if (searchcontact == null ){
         console.log("Không tìm thấy người dùng có email là " + emailcontact)
