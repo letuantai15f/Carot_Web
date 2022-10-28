@@ -677,7 +677,7 @@ body {
 
 
 
-/* .modal__inner {
+.modal__inner {
     height: 600px;
     width: 352px;
     background-color: #fff;
@@ -928,7 +928,7 @@ avatar_button:focus {
     box-shadow: none;
     background-color: orangered;
     border: orangered;
-} */
+}
 
 /* Modal Contact */
 
