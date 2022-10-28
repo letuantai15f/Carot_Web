@@ -117,13 +117,22 @@ body {
     position: relative;
 }
 
-.ti-search {
+.ti-search,
+.ti-plus {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
     right: 10px;
     width: 20px;
     cursor: pointer;
+}
+
+.search-2 {
+    top: 30%;
+}
+
+.search-contact {
+    border: none;
 }
 
 .contact-search{
@@ -668,7 +677,7 @@ body {
 
 
 
-.modal__inner {
+/* .modal__inner {
     height: 600px;
     width: 352px;
     background-color: #fff;
@@ -919,7 +928,7 @@ avatar_button:focus {
     box-shadow: none;
     background-color: orangered;
     border: orangered;
-}
+} */
 
 /* Modal Contact */
 
@@ -994,7 +1003,9 @@ avatar_button:focus {
     right: 80px;
     padding: 4px 12px;
     border-radius: 8px;
+    border: none;
 }
+
 .dismiss {
     position: absolute;
     background-color: rgb(206, 6, 6);
@@ -1002,6 +1013,7 @@ avatar_button:focus {
     right: 20px;
     padding: 4px 12px;
     border-radius: 8px;
+    border: none;
 
 }
 .user-message i {
