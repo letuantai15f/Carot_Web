@@ -22,8 +22,11 @@ const chatgroupRouter = require("./routes/chatgroup");
 const messageRouter = require("./routes/message");
 dotenv.config();
 
-mongoose.connect(process.env.MONGODB_URL, () => {
-  console.log("MongoDB");
+mongoose.connect(process.env.MONGODB_URL, (err) => {
+  if(err) {
+    console.log(err)
+  }
+  else console.log("MongoDB is connected");
 });
 
 app.use(cookieParser());
@@ -49,6 +52,7 @@ const docClient = new AWS.DynamoDB.DocumentClient();
 const tableName = "UserAccounts";
 //multer
 const multer = require("multer");
+const { options } = require("./routes/user");
 const upload = multer();
 //getUI
 app.get("/", (req, res) => {
@@ -75,8 +79,6 @@ app.use("/",userRouter);
 
 // modal contact
 app.use("/", contactRouter)
-
-app.use("/modal", contactRouter);
 
 // chatgroup message
 app.use("/message", messageRouter);

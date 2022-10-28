@@ -1,9 +1,4 @@
 <div  class="col-1 cl1">
-    {{!-- {{#each contactdata }}
-        {{#each this}}
-        <p>{{this.emailuser}}</p>
-        {{/each}}
-    {{/each}} --}}
     <div class="sub-nav">
         <div style="margin-top: 20px;" class="avatar">
         <button type="button" data-toggle="modal" data-target="#exampleModal" class="avatar_button">
@@ -16,10 +11,10 @@
         <div class="list-item2">
             <ul style="list-style-type: none;">
                 
-                {{!-- <li><a href=""><i class="ti-home" ></i></a></li> --}}
+                <li><a href=""><i class="ti-home" ></i></a></li>
                 <li><a href=""><i class="ti-comment-alt"></i></a></li>
                 <li><button id="btnModal" class="contactModal"><i class="ti-user"></i></button></li>
-                {{!-- <li><a href=""><i class="ti-bell"></i></a></li> --}}
+                <li><a href=""><i class="ti-bell"></i></a></li>
             </ul>
         </div>
         <div class="subnav-setting">
@@ -48,16 +43,14 @@
                         <i class="ti-search"></i>
                     </div>
                     <div class="message-scroll contact-scroll">
-                        
-                        {{#each dataimg.contact}}
-                        {{log this}}
-                        {{#each this}}
-                        <div class="user-message user-message-contact">
-                            <img class="user-avatar user3" src="" alt="">
-                            <span class="name-user name-user-contact">{{this.emailuser}}</span>
-                            <span class="description-user">Bạn bè</span>
-                        </div>
-                        {{/each}}
+                        {{#each datacontact2}}
+                            <div class="user-message user-message-contact2">
+                                <img class="user-avatar user3" src="./img/avata_user.png" alt="">
+                                {{#each this}}
+                                <span id="emailct" class="name-user name-user-contact2">{{this.emailcontact}}</span>
+                                <span class="description-user">Bạn bè</span>
+                                {{/each}}
+                            </div>
                         {{/each}}
                     </div>
                 </div>
@@ -65,23 +58,35 @@
             <div id="tab021" style="display: none;">
                 <div class="modal__body">
                     <div class="search-user search-bar search-contact">
-                        <input onkeyup="search2()" id="searchContact2" type="text" class="form-control" placeholder="Nhập email để tìm kiếm" style="height:30px; width:100%;">
-                        <i class="ti-search"></i>
+                        <form action="/addfriend" method="post" enctype="multipart/form-data">
+                                <input style="display: none;" type="text" name="emailuser" value="{{dataimg.emailuser}}">
+                                <input name="emailcontact" id="searchContact2" type="text" class="form-control" placeholder="Nhập email để kết bạn" style="height:30px; width:100%;">
+                                <button type="submit" class="search-contact"><i class="ti-plus search-2"></i></button>
+                        </form>
                     </div>
                     <div class="message-scroll contact-scroll">
                         
                             {{#each datacontact}}
                             <div class="user-message user-message-contact2">
                                 <img class="user-avatar user3" src="./img/avata_user.png" alt="">
-                                
                                 {{#each this}}
                                 <span id="emailct" class="name-user name-user-contact2">{{this.emailcontact}}</span>
                                 <span class="description-user">Muốn kết bạn</span>
-                                <div onclick="accept()" class="accept"><i class="ti-check"></i></div>
-                                <div class="dismiss"><i class="ti-close"></i></div>
+                                
+                                <form action="/accept" method="post" enctype="multipart/form-data">
+                                    <input style="display: none;" type="text" name="id" value="{{this._id}}">
+                                    <input style="display: none;" type="text" name="status" value="{{this.status}}">
+                                    <button type="submit" class="accept"><i class="ti-check"></i></button>
+                                </form>
                                 {{/each}}
                                 
+                                {{#each this}}
+                                <form action="/delete" method="post" enctype="multipart/form-data">
+                                    <input style="display: none;" type="text" name="id" value="{{this._id}}">
+                                    <button type="submit" class="dismiss"><i class="ti-close"></i></button>
+                                </form>
                                 
+                                {{/each}}
                             </div>
                             {{/each}}
                             
@@ -126,11 +131,6 @@
         tab02.style.fontWeight ="unset"
         tab1.style.display="block"
         tab2.style.display="none"
-    }
-    function accept(){
-        let email = document.getElementById("emailct")
-        {{!-- alert(`{{datacontact.emailcontact}}`) --}}
-        alert(email.innerText)
     }
 </script>
 <script>
