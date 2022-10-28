@@ -33,6 +33,29 @@ messageRouter.get('/',cookieJwtAuth,async(req, res) =>{
     res.render('message',{dataimg:messconact, datacontact:mycontactfalse, datacontact2:mycontacttrue,
     myuser:user});
 
+// <<<<<<< HEAD
+// =======
+//   const user = await User.findOne({ _id: data.id });
+//   const contact = await Contact.find({emailuser: "letuantai15f@gmail.com"});
+//   console.log(contact);
+//   const mess = await message.find({});
+//   const messconact = {
+//     emailuser: user.account.email,
+//     gender:user.gender,
+//     date:user.date,
+//     usernameprofile:user.username,
+//     avata: user.avata,
+//     avtreciver: mess[0].reciver.avata,
+//     text: mess[0].text,
+//     username: mess[0].reciver.username,
+//     contact
+    
+//   };
+  
+// //   console.log(messconact)
+
+//   res.render("message", { dataimg: messconact });
+// >>>>>>> 6183c82eebd062e9415c09df2482e04cd1336cb0
 });
 
 module.exports = messageRouter;

@@ -24,12 +24,12 @@ contactRouter.post('/delete', upload.fields([]), async(req, res) => {
 });
 
 contactRouter.post('/addfriend', upload.fields([]), async(req, res) => {  
-    const {emailuser, emailcontact} = req.body;
-    let searchcontact = await User.findOne({"account.email":emailcontact})
+    const {emailcontact, emailuser} = req.body;
+    let searchcontact = await User.findOne({"account.email":emailuser})
     console.log(searchcontact)
     if (searchcontact == null ){
         console.log("Không tìm thấy người dùng có email là " + emailcontact)
-    } else if (searchcontact.account.email == emailuser){
+    } else if (searchcontact.account.email == emailcontact){
         console.log("Bạn không thể kết bạn với chính mình")
     }
     else {

@@ -16,6 +16,7 @@ global._io  =  io;
 global.__dirname=__dirname;
 // const path= require('path');
 
+
 const userRouter = require("./routes/user");
 const contactRouter = require("./routes/contact");
 const chatgroupRouter = require("./routes/chatgroup");
@@ -49,6 +50,9 @@ const AWS = require("aws-sdk");
 const { response } = require("express");
 
 const docClient = new AWS.DynamoDB.DocumentClient();
+
+const profileRouter = require('./routes/profile');
+
 const tableName = "UserAccounts";
 //multer
 const multer = require("multer");
@@ -82,7 +86,6 @@ app.use("/", contactRouter)
 
 // chatgroup message
 app.use("/message", messageRouter);
-
 
 global._io.on('connection',  SocketServices.connection)
 server.listen(port, () => {
