@@ -16,16 +16,16 @@ messageRouter.get("/", cookieJwtAuth, async (req, res) => {
   // _io.emit("server-chat", "hihi");
   const user = await User.findOne({ _id: data.id });
   const contact = await Contact.findOne({ emailuser: user.account.email });
-
   const mycontacttrue = await Contact.find({
     status: true,
     emailuser: user.account.email,
   });
-  console.log(mycontacttrue);
+  // console.log(mycontacttrue);
   const mycontactfalse = await Contact.find({
     status: false,
     emailuser: user.account.email,
   });
+  
   // console.log(user.account.email)
   const mess = await message.find({});
   // const usercontact=await User.findOne({"_id":mess});
@@ -39,7 +39,6 @@ messageRouter.get("/", cookieJwtAuth, async (req, res) => {
     text: mess[0].text,
     username: mess[0].reciver.username,
   };
-
   res.render("message", {
     dataimg: messconact,
     datacontact: mycontactfalse,

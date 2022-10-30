@@ -431,6 +431,7 @@ body {
     height: 480px;
     background-color: rgb(255, 255, 255);
     border: 2px solid rgb(207, 207, 207);
+    justify-content: end;
 }
 
 .r3 {
@@ -490,11 +491,12 @@ body {
     text-align: left;
 }
 .mess .text2 span {
-    max-width: 100%;
+    /* max-width: 100%; */
     height: auto;
 }
 
-.imgsender,imgreciver{
+.imgsender,
+.imgreciver{
     margin: 5px;
     border-radius: 8px;
     font-size: 16px;
@@ -558,7 +560,7 @@ body {
     position: absolute;
     top: 54px;
     left: 20px;
-    width: 460px;
+    width: 80%;
     height: 38px;
     border-radius: 20px;
     padding-left: 20px;
