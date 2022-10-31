@@ -13,22 +13,18 @@ const Message = require("../models/model_messages");
 messageRouter.get("/", cookieJwtAuth, async (req, res) => {
   const token = req.cookies.token;
   const data = jwt_decode(token);
-  // _io.emit("server-chat", "hihi");
   const user = await User.findOne({ _id: data.id });
   const contact = await Contact.findOne({ emailuser: user.account.email });
   const mycontacttrue = await Contact.find({
     status: true,
     emailuser: user.account.email,
   });
-  // console.log(mycontacttrue);
   const mycontactfalse = await Contact.find({
     status: false,
     emailuser: user.account.email,
   });
   
-  // console.log(user.account.email)
   const mess = await message.find({});
-  // const usercontact=await User.findOne({"_id":mess});
   const messconact = {
     emailuser: user.account.email,
     gender: user.gender,
