@@ -1053,6 +1053,29 @@ avatar_button:focus {
     color: #fff;
 }
 
+.nhantin, 
+.huyketban {
+    position: absolute;
+    font-size: 12px;
+    height: 20px;
+    width: 100px;
+    right: 12px;
+    border: none;
+    cursor: pointer;
+    background-color: #9bff9f;
+    padding: 0px 8px 4px 8px;
+    border-radius: 4px;
+}
+
+.nhantin {
+    top: 8px;
+}
+
+.huyketban {
+    bottom: 8px;
+    background-color: rgb(255, 112, 141);
+}
+
 /* Modal Profile Update */
 .modal__inner__update {
     height: 650px;
