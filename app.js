@@ -82,6 +82,7 @@ app.use("/modal", contactRouter);
 
 // chatgroup message
 app.use("/message", messageRouter);
+app.use("/message", profileRouter);
 
 global._io.on('connection',  SocketServices.connection)
 server.listen(port, () => {

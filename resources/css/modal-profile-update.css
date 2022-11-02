@@ -1,0 +1,207 @@
+.modal__inner__update {
+    height: 650px;
+    width: 400px;
+    background-color: #fff;
+    border-radius: 5px;
+    overflow: hidden;
+    animation: showModal linear 0.2s;
+    position: relative;
+    margin: 25px auto;
+}
+
+.modal__dialog__header {
+    padding: 0 8px 0 16px;
+    display: flex;
+    position: relative;
+    height: 48px;
+    min-height: 48px;
+    justify-content: left;
+    border-bottom: 1px solid #e5e7eb;
+    align-items: center;
+}
+
+.modal__dialog__header__title-text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1.5;
+    display: block;
+}
+
+.modal__dialog-body.no-padding {
+    padding: 0;
+}
+
+.modal__dialog-body {
+    padding: 14px 16px 0;
+    display: -webkit-flex;
+    display: flex;
+    flex-flow: column nowrap;
+    position: relative;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.no-padding {
+    padding: 0;
+}
+
+.group-input__lg {
+    height: 38px;
+    line-height: 38px;
+}
+
+.group-input {
+    position: relative;
+    width: 100%;
+    border: 1px solid #e5e7eb;
+    background: #fff;
+    border-radius: 4px;
+    display: flex;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+.group-input .input {
+    box-sizing: border-box;
+    list-style: none;
+    position: relative;
+    width: 100%;
+    padding: 0 12px;
+    color: #001a33;
+    background-color: #fff;
+    background-image: none;
+    border: none;
+    outline: none;
+    border-radius: 4px;
+    transition: all .3s;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.5;
+}
+
+.display-name {
+    font-size: 11px;
+    font-weight: 400;
+    line-height: 1.5;
+    margin-top: 4px;
+    text-align: justify;
+    color: #394e60;
+}
+
+.profile-update .display-name__hint {
+    color: #394e60;
+}
+
+.friend-profile__detail__header {
+    padding-top: 10px;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.5;
+    text-align: left;
+}
+
+p {
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
+
+.label,
+.label2 {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #001a33;
+}
+
+.form-check-label {
+    font-size: 15px;
+    float: left;
+    margin: 5px;
+
+
+}
+
+.form-check-input {
+    width: 20px;
+    height: 20px;
+
+}
+
+#flexRadioDefault1,
+#flexRadioDefault2 {
+    accent-color: orangered;
+}
+
+.profile-update .datePicker__group {
+    justify-content: space-between;
+    width: 100%;
+}
+
+.modal-footer-button-action {
+
+
+    padding: 14px 16px;
+    background: #fff;
+}
+
+.z--btn.-lg {
+    height: 40px;
+    min-width: 40px;
+    padding: 0 16px;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.5;
+    line-height: 38px;
+}
+
+.zl-modal__footer__button--cancel {
+    margin-right: 15px;
+}
+
+.z--btn--fill--tertiary {
+    color: #001a33;
+    background: #e5e7eb;
+}
+
+.z--btn {
+    line-height: 1.5;
+    display: inline-block;
+    font-weight: var(--medium);
+    white-space: nowrap;
+    text-align: center;
+    background-image: none;
+    border: none;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    height: 40px;
+    padding: 0 16px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: fit-content;
+    width: -moz-fit-content;
+    flex-shrink: inherit;
+}
+
+.loading-v2,
+.z--btn {
+    position: relative;
+    box-sizing: border-box;
+}
+
+.z--btn--fill--primary {
+    color: #fff;
+    background: orangered;
+}
