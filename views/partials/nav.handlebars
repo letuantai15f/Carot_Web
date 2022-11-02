@@ -49,10 +49,11 @@
                                 {{#each this}}
                                 <span id="emailct" class="name-user name-user-contact2">{{this.emailcontact}}</span>
                                 <span class="description-user">Bạn bè</span>
+                                <button id="chatt" class="nhantin" value="{{this.emailcontact}}" onclick="test()">Nhắn tin</button>
+                                <button class="huyketban" onclick="block()">Hủy kết bạn</button>
                                 {{/each}}
                                 
-                                <button class="nhantin" type="submit">Nhắn tin</button>
-                                <button class="huyketban" type="submit">Hủy kết bạn</button>
+                                
                             </div>
                         {{/each}}
                     </div>

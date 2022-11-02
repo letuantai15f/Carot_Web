@@ -17,12 +17,7 @@ messageRouter.get("/", cookieJwtAuth, async (req, res) => {
   const user = await User.findOne({ _id: data.id });
   const contact = await Contact.findOne({ emailuser: user.account.email});
   const contactall = await Contact.find({ emailuser: user.account.email});
-  // console.log(contactall)
-  // let contactuser = await User.find({"account.email": contact.emailcontact})
-  // console.log(contactuser)  
-  contactall.forEach(async(el)=>{
-    let contactuser = await User.find({"account.email": el.emailcontact})
-  })
+  
   const mycontacttrue = await Contact.find({
     status: true,
     emailuser: user.account.email,
@@ -48,9 +43,11 @@ messageRouter.get("/", cookieJwtAuth, async (req, res) => {
   };
   res.render("message", {
     dataimg: messconact,
+    // dataall: datauserall,
     datacontact: mycontactfalse,
     datacontact2: mycontacttrue,
     myuser: user,
+    messages:mess
   });
 });
 module.exports = messageRouter;

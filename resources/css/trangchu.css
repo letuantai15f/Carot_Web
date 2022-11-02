@@ -431,7 +431,7 @@ body {
     height: 480px;
     background-color: rgb(255, 255, 255);
     border: 2px solid rgb(207, 207, 207);
-    justify-content: end;
+    /* justify-content: end; */
 }
 
 .r3 {
@@ -484,7 +484,7 @@ body {
 
 .mess {
     position: relative;
-    max-width: 50%;
+    width: 100%;
     max-height: 95%;
     overflow-y: scroll;
     /* margin-top: 12px; */
@@ -523,17 +523,24 @@ body {
 }
 
 .text {
+    float: left;
     top: 24px;
     left: 80px;
+    width: 50%;
 }
 
 .text2 {
     background-color: orangered;
     right: 10px;
     color: #fff;
+    float: right;
+    width: 50%;
 }
 
-
+.text span, 
+.text2 span {
+    width: auto;
+}
 
 .list-item3 {
     margin-left: 20px;

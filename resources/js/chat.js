@@ -44,7 +44,7 @@ function appendMessage(data, status) {
   var chats = document.querySelector(".mess");
   let div = document.createElement("div");
   div.classList.add(status);
-  let content = `<span width='100%'>` + data + "</span>";
+  let content = `<span>` + data + "</span>";
   div.innerHTML = content.trim();
   chats.appendChild(div);
 }
@@ -55,6 +55,11 @@ function appendImage(data,status){
   let content = "<img width='40%' height='40%'  src='" + data + "'></img>";
   div.innerHTML = content.trim();
   chats.appendChild(div);
+}
+
+function test(){
+  let txt = document.getElementById("chatt").getAttribute("value")
+  console.log(txt)
 }
 
 socket.on("server-chat", (data) => {
