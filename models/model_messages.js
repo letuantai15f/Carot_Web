@@ -6,22 +6,19 @@ const messagesSchema = new mongoose.Schema({
         ref: 'GroupChat',
     },
     sender:{
-        id:String,
-        username:String,
         email:String,
-        avata: String
+
     },
     reciver:{
-        id:String,
         username:String,
         email:String,
         avata: String
     },
     text:String,
     file:{data:Buffer,contenType: String,fileName:String},
-    // createdAt: {type:Number,default:Date.now},
-    // updateAt: {type:Number,default:null},
-    // deleteAt: {type:Number,default:null},
+    createdAt: {type:Number,default:Date.now},
+    updateAt: {type:Number,default:null},
+    deleteAt: {type:Number,default:null},
     
 
 });

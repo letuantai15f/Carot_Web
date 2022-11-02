@@ -37,11 +37,14 @@ messageRouter.get("/", cookieJwtAuth, async (req, res) => {
     avata: user.avata,
 
   };
+  const test={
+    avata:'/img/avata_user.png'
+  }
   res.render("message", {
     dataimg: messconact,
     datacontact: mycontactfalse,
     datacontact2: mycontacttrue,
-    myuser: user,
+    myuser: user,dataUserMessage:test
  
   });
 });
@@ -70,10 +73,15 @@ messageRouter.post("/addMessage", cookieJwtAuth, upload.fields([]), async (req, 
     typeChat: '1',
     members: [email, user.account.email]
   }
+  // var idGroupChat
   const check = await ChatGroup.findOne({ $and: [{ members: { $all: [user.account.email, email] } }, { typeChat: '1' }] });
   if (check == null) {
     const groupAdd2Person = new ChatGroup(groupDemo);
     const group2p = await groupAdd2Person.save();
+    var idGroupChat= group2p._id
+  }
+  else{
+    var idGroupChat=check._id
   }
   const userchat = await User.findOne({'account.email':email});
   const userChat={
@@ -88,9 +96,16 @@ messageRouter.post("/addMessage", cookieJwtAuth, upload.fields([]), async (req, 
     avata: user.avata,
 
   };
+  const messageDB=check.message;
+  const messSent=[]
+  for(let i=0;i<messageDB.length;i++){
+    const mess = await message.findOne({_id:messageDB[i] });
+    messSent.push(mess)
+  }
+
  
   res.render("message", {dataUserMessage:userChat,dataimg:messconact, datacontact: mycontactfalse,
-    datacontact2: mycontacttrue,}) 
+    datacontact2: mycontacttrue,emailContact:email,idGroupChat,messSent}) 
 })
 getUserLogin = async (req, res) => {
   const token = req.cookies.token;

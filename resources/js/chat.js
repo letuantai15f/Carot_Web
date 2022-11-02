@@ -3,9 +3,19 @@ var sender = "";
 var receiver = "";
 var btnsend = document.getElementById("btnsend");
 var btnsendfile = document.getElementById("btn-send-file");
+var test = document.getElementById("emailcontact").value;
+var email = document.getElementById("emailuser").value;
+var avata=document.getElementById('avata-login').getAttribute('src')
+var username=document.getElementById('nameContact').value
+var idGroupChat=document.getElementById('idGroupChat').value
+receiver=test
+sender=email
+
+
+
 var reader
 (function () {
-  var email = document.getElementById("emailuser").value;
+  
   socket.emit("user-connected", email);
   socket.on("user-connected", function (username) {});
   sender = email;
@@ -19,6 +29,9 @@ function sendfile(fileInput) {
       let contentMessage = {
         sender: sender,
         receiver: receiver,
+        username:username,
+        avata:avata,
+        idGroupChat:idGroupChat,
         base64: base64,
       };
       appendImage(base64,"imgsender")
@@ -29,13 +42,17 @@ function sendfile(fileInput) {
 }
 btnsend.onclick = function sendmess() {
   var mess = document.getElementById("datamess").value;
+  var idGroupChat=document.getElementById('idGroupChat').value
   let contentMessage = {
     sender: sender,
     receiver: receiver,
+    username:username,
+    avata:avata,
+    idGroupChat:idGroupChat,
     message: mess,
   };
+  console.log(contentMessage)
   if (mess != "") {
-    // addMessage(contentMessage)
     appendMessage(mess, "text2");
     socket.emit("client-chat-message", contentMessage);
     document.getElementById("datamess").value = "";
@@ -57,29 +74,26 @@ function appendImage(data,status){
   div.innerHTML = content.trim();
   chats.appendChild(div);
 }
-// $('.nhantin').click(function() {
-//   // console.log($(this).attr("value"));
-//   var email=$(this).attr("value");
-//   var username=document.getElementById("username");
-//   username.innerHTML=$(this).attr("value");
-//   receiver=email;
-//   console.log(sender)
-
-// });
 $('.user-message').click(function() {
   console.log($('this->.idroom').attr("value"));
 
 });
 
 socket.on("server-chat", (data) => {
+  console.log(data)
   var username=document.getElementById("username");
-  username.innerHTML=data.sender;
+  console.group(data.idGroupChat)
+  $('#idGroupChat').attr('value', data.idGroupChat)
+  
+  username.innerHTML=data.username;
+  $("#avataContact").attr("src",data.avata);
   receiver=data.sender;
   appendMessage(data.message, "text");
 });
 socket.on("server-chat-img", (data) => {
   var username=document.getElementById("username");
-  username.innerHTML=data.sender;
+  username.innerHTML=data.username;
+  $("#avataContact").attr("src",data.avata);
   receiver=data.sender;
   appendImage(data.path, "imgreciver");
 });

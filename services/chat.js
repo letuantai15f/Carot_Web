@@ -2,7 +2,7 @@ var users = [];
 const { async } = require('@firebase/util');
 const fs = require('fs');
 const {message} = require("../models/model_messages");
-const {GroupChat} = require("../models/modal_chat_group");
+const { ChatGroup } = require("../models/modal_chat_group");
 class SocketServices {
   //connection socket
   connection(socket) {
@@ -14,28 +14,29 @@ class SocketServices {
     // event on here
 
     socket.on("client-chat-message", async (data)=> {
-    
       const newMessage={
         sender:{
-          username:data.sender
+          email:data.sender
         },
         reciver:{
-          username:data.receiver
+          email:data.receiver
         },
+        idChat:data.idGroupChat,
+        avata:data.avata,
+        username:data.username,
         text:data.message
       }
-      // const sMessage= new message(newMessage);
-      // const saveMessage= await sMessage.save()
-      // var idChat = sMessage.idChat;
-      // var chat = GroupChat.findById(idChat);
-      // await chat.findOneAndUpdate({ $push: { message: saveMess._id } });
+      const sMessage= new message(newMessage);
+      const saveMessage= await sMessage.save()
+      var idChat = sMessage.idChat;
+      var chat = ChatGroup.findById(idChat);
+      await chat.findOneAndUpdate({ $push: { message: saveMessage._id } });
       
 
       for (let i = 0; i < users.length; i++) {
         if (users[i].email == data.receiver) {
           var socketId = users[i].userid;
-          socket.join(socketId);
-          console.log(socket.rooms)
+          // socket.join(socketId);
           socket.to(socketId).emit("server-chat", data);
         }
       }
@@ -58,6 +59,7 @@ class SocketServices {
         socket.to(socketId).emit("server-chat-img", {
           sender:data.sender,
           reciver:data.receiver,
+          idGroupChat:data.idGroupChat,
           path: data.base64,
         });
       }

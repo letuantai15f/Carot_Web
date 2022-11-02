@@ -2,7 +2,7 @@
     <div class="sub-nav">
         <div style="margin-top: 20px;" class="avatar">
         <button type="button" data-toggle="modal" data-target="#exampleModal" class="avatar_button">
-            <img src="{{dataimg.avata}}" class="user-avatar" >
+            <img id="avata-login" src="{{dataimg.avata}}" class="user-avatar" >
         </button>
         
         <a  href="">
@@ -12,7 +12,7 @@
             <ul style="list-style-type: none;">
                 
                 <li><a href=""><i class="ti-home" ></i></a></li>
-                <li><a href=""><i class="ti-comment-alt"></i></a></li>
+                <li><a href="/message/"><i class="ti-comment-alt"></i></a></li>
                 <li><button id="btnModal" class="contactModal"><i class="ti-user"></i></button></li>
                 <li><a href=""><i class="ti-bell"></i></a></li>
             </ul>
@@ -45,7 +45,7 @@
                     <div class="message-scroll contact-scroll">
                         {{#each datacontact2}}
                             <div class="user-message user-message-contact2">
-                                <img class="user-avatar user3" src="./img/avata_user.png" alt="">
+                                <img class="user-avatar user3" src="/img/avata_user.png" alt="">
                                 {{#each this}}
                                 <form action="/message/addMessage" method="post" enctype="multipart/form-data">
                                 <span id="emailct" class="name-user name-user-contact2">{{this.emailcontact}}</span>
