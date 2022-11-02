@@ -1,6 +1,6 @@
 var socket = io();
 var sender = "";
-var receiver = "kutin123v@gmail.com";
+var receiver = "";
 var btnsend = document.getElementById("btnsend");
 var btnsendfile = document.getElementById("btn-send-file");
 var reader
@@ -35,6 +35,7 @@ btnsend.onclick = function sendmess() {
     message: mess,
   };
   if (mess != "") {
+    // addMessage(contentMessage)
     appendMessage(mess, "text2");
     socket.emit("client-chat-message", contentMessage);
     document.getElementById("datamess").value = "";
@@ -56,6 +57,19 @@ function appendImage(data,status){
   div.innerHTML = content.trim();
   chats.appendChild(div);
 }
+// $('.nhantin').click(function() {
+//   // console.log($(this).attr("value"));
+//   var email=$(this).attr("value");
+//   var username=document.getElementById("username");
+//   username.innerHTML=$(this).attr("value");
+//   receiver=email;
+//   console.log(sender)
+
+// });
+$('.user-message').click(function() {
+  console.log($('this->.idroom').attr("value"));
+
+});
 
 function test(){
   let txt = document.getElementById("chatt").getAttribute("value")
@@ -63,8 +77,22 @@ function test(){
 }
 
 socket.on("server-chat", (data) => {
+  var username=document.getElementById("username");
+  username.innerHTML=data.sender;
+  receiver=data.sender;
   appendMessage(data.message, "text");
 });
 socket.on("server-chat-img", (data) => {
+  var username=document.getElementById("username");
+  username.innerHTML=data.sender;
+  receiver=data.sender;
   appendImage(data.path, "imgreciver");
 });
+function addMessage(data){
+  console.log(data)
+  var chats = document.querySelector(".messageAc");
+  let div = document.createElement("div");
+  let content = "<img class='user-avatar user3' alt=''> <span class='name-user'> <b>"+data.reciver+"</b></span> <span>"+data.message+"</span>";
+  div.innerHTML = content.trim();
+  chats.appendChild(div);
+}

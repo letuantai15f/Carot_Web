@@ -14,7 +14,7 @@ var io=require('socket.io')(server);
 const  SocketServices = require('./services/chat');
 global._io  =  io;
 global.__dirname=__dirname;
-// const path= require('path');
+const path= require('path');
 
 
 const userRouter = require("./routes/user");
@@ -38,8 +38,11 @@ app.use(bodyParser.json({ limit: "50mb" }));
 app.use(cors());
 app.use(morgan("common"));
 app.use(express.static("resources"));
-app.engine(".hbs", exphbs.engine());
+
+app.engine("hbs", exphbs.engine({extname:'.hbs'}));
 app.set("view engine", ".hbs");
+app.set('views',path.join(__dirname,'views'))
+
 // app.use((req,res,next)=>{
 //   res.io=io
 //   next();

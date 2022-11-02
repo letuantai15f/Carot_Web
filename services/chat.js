@@ -1,5 +1,8 @@
 var users = [];
+const { async } = require('@firebase/util');
 const fs = require('fs');
+const {message} = require("../models/model_messages");
+const {GroupChat} = require("../models/modal_chat_group");
 class SocketServices {
   //connection socket
   connection(socket) {
@@ -10,17 +13,36 @@ class SocketServices {
 
     // event on here
 
-    socket.on("client-chat-message", function (data) {
+    socket.on("client-chat-message", async (data)=> {
+    
+      const newMessage={
+        sender:{
+          username:data.sender
+        },
+        reciver:{
+          username:data.receiver
+        },
+        text:data.message
+      }
+      // const sMessage= new message(newMessage);
+      // const saveMessage= await sMessage.save()
+      // var idChat = sMessage.idChat;
+      // var chat = GroupChat.findById(idChat);
+      // await chat.findOneAndUpdate({ $push: { message: saveMess._id } });
+      
+
       for (let i = 0; i < users.length; i++) {
-        console.log("email mang", users[i].email);
         if (users[i].email == data.receiver) {
           var socketId = users[i].userid;
+          socket.join(socketId);
+          console.log(socket.rooms)
           socket.to(socketId).emit("server-chat", data);
         }
       }
     });
 
     socket.on("sendImage", function (data) {
+      console.log(data)
       var guess = data.base64.match(/^data:image\/(png|jpeg);base64,/)[1];
     var ext = "";
     switch(guess) {
@@ -34,6 +56,8 @@ class SocketServices {
       if (users[i].email == data.receiver) {
         var socketId = users[i].userid;
         socket.to(socketId).emit("server-chat-img", {
+          sender:data.sender,
+          reciver:data.receiver,
           path: data.base64,
         });
       }
