@@ -47,12 +47,17 @@
                             <div class="user-message user-message-contact2">
                                 <img class="user-avatar user3" src="./img/avata_user.png" alt="">
                                 {{#each this}}
+                                <form action="/message/addMessage" method="post" enctype="multipart/form-data">
                                 <span id="emailct" class="name-user name-user-contact2">{{this.emailcontact}}</span>
+                                <input type="text" name="email" value="{{this.emailcontact}}" hidden>
+                            
                                 <span class="description-user">Bạn bè</span>
-                                {{/each}}
-                                
-                                <button class="nhantin" type="submit">Nhắn tin</button>
+                                <button class="nhantin" type="submit" >Nhắn tin</button>
                                 <button class="huyketban" type="submit">Hủy kết bạn</button>
+                                </form>
+                                {{/each}}
+            
+                            
                             </div>
                         {{/each}}
                     </div>

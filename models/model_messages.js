@@ -1,13 +1,20 @@
 const mongoose = require('mongoose');
 const messagesSchema = new mongoose.Schema({
+    idChat: {
+        type: mongoose.Schema.ObjectId,
+        index: true,
+        ref: 'GroupChat',
+    },
     sender:{
         id:String,
         username:String,
+        email:String,
         avata: String
     },
     reciver:{
         id:String,
         username:String,
+        email:String,
         avata: String
     },
     text:String,
