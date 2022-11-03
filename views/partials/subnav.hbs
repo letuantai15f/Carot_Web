@@ -3,9 +3,12 @@
 		{{> nav}}
 		{{> content-message}}
 		<input type="text" value="{{dataimg.emailuser}}" id="emailuser" hidden>
+		<input type="text" value="{{dataimg.usernameprofile}}" id="nameContact" hidden>
+		<input type="text" value="{{idGroupChat}}" id="idGroupChat" hidden>
 		<div class="col-5 main-messagetext">
 			<div class="row r1">
-				<img class="user-avatar user3 user4" src="{{dataUserMessage.avata}}" >
+				<img class="user-avatar user3 user4" id="avataContact" src="{{dataUserMessage.avata}}" >
+				<input type="text" id="emailcontact" value="{{emailContact}}" hidden/>
 				<span class="name-user2"><b id="username">{{dataUserMessage.username}}</b></span>
 				{{!-- <span class="online-status">Online 12 phút trước</span> --}}
 				<a href=""><i class="ti-headphone"></i></a>
@@ -13,7 +16,11 @@
 			</div>
 			<div class="row r2">
 				<div class="mess">
-					
+					{{#each messSent}}
+						{{#each this}}
+						<p>{{text}}</p>
+						{{/each}}
+					{{/each}}
 
 				</div>
 

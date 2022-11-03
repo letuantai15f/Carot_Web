@@ -17,6 +17,11 @@ messageRouter.get("/", cookieJwtAuth, async (req, res) => {
   
   const contact = await Contact.findOne({ emailuser: user.account.email });
   const contactall = await Contact.find({ emailuser: user.account.email });
+  const groupchat = await ChatGroup.find({
+    members:user.account.email,
+    typeChat:'group',
+  });
+
   contactall.forEach(async (el) => {
     let contactuser = await User.find({ "account.email": el.emailcontact })
   })
@@ -38,13 +43,16 @@ messageRouter.get("/", cookieJwtAuth, async (req, res) => {
     avata: user.avata,
 
   };
+  const test={
+    avata:'/img/avata_user.png'
+  }
   res.render("message", {
     dataimg: messconact,
     // dataall: datauserall,
     datacontact: mycontactfalse,
     datacontact2: mycontacttrue,
-    myuser: user,
-    // messages:mess
+    myuser: user,dataUserMessage:test,
+    groupChat:groupchat
   });
 });
 
@@ -72,10 +80,15 @@ messageRouter.post("/addMessage", cookieJwtAuth, upload.fields([]), async (req, 
     typeChat: '1',
     members: [email, user.account.email]
   }
+  // var idGroupChat
   const check = await ChatGroup.findOne({ $and: [{ members: { $all: [user.account.email, email] } }, { typeChat: '1' }] });
   if (check == null) {
     const groupAdd2Person = new ChatGroup(groupDemo);
     const group2p = await groupAdd2Person.save();
+    var idGroupChat= group2p._id
+  }
+  else{
+    var idGroupChat=check._id
   }
   const userchat = await User.findOne({'account.email':email});
   const userChat={
@@ -90,8 +103,15 @@ messageRouter.post("/addMessage", cookieJwtAuth, upload.fields([]), async (req, 
     avata: user.avata,
 
   };
+  const messageDB=check.message;
+  const messSent=[]
+  for(let i=0;i<messageDB.length;i++){
+    const mess = await message.findOne({_id:messageDB[i] });
+    messSent.push(mess)
+  }
+
   res.render("message", {dataUserMessage:userChat,dataimg:messconact, datacontact: mycontactfalse,
-    datacontact2: mycontacttrue,}) 
+    datacontact2: mycontacttrue,emailContact:email,idGroupChat,messSent}) 
 })
 getUserLogin = async (req, res) => {
   const token = req.cookies.token;

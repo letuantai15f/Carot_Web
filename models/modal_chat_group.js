@@ -11,8 +11,8 @@ const chatGroupSchema = new mongoose.Schema({
 
     status: Number,
     members: [
-            {
-       type:String
+        {
+            type:String
         }
     ],
     message: [
