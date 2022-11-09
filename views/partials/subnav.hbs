@@ -5,6 +5,18 @@
 		<input type="text" value="{{dataimg.emailuser}}" id="emailuser" hidden>
 		<input type="text" value="{{dataimg.usernameprofile}}" id="nameContact" hidden>
 		<input type="text" value="{{idGroupChat}}" id="idGroupChat" hidden>
+		<input type="text" value="{{dataUserMessage.typeChat}}" id="typeChat" hidden>
+		<input type="text" value="{{dataUserMessage.username}}" id="groupChat" hidden>
+		
+		{{#each check}}
+			{{#members}}
+			
+		
+		<input type="text" class="emailGroup" value="{{this}}" hidden />
+			{{/members}}
+		{{/each}}
+		
+		
 		<div class="col-5 main-messagetext">
 			<div class="row r1">
 				<img class="user-avatar user3 user4" id="avataContact" src="{{dataUserMessage.avata}}" >
@@ -21,7 +33,6 @@
 						<p>{{text}}</p>
 						{{/each}}
 					{{/each}}
-
 				</div>
 
 			</div>

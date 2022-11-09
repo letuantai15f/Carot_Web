@@ -32,6 +32,7 @@ mongoose.connect(process.env.MONGODB_URL, (err) => {
 
 app.use(cookieParser());
 // app.use(express.static(path.join(__dirname,'views/partials/nav.handlebars')));
+app.use(express.static(__dirname+"/uploads"));
 app.use(bodyParser.json({ limit: "50mb" }));
 
 app.use(bodyParser.json({ limit: "50mb" }));
