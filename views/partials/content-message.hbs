@@ -1,7 +1,8 @@
 <div class="col-3 content-message">
 	<div class="search-user search-bar">
-		<input type="text" class="form-control" placeholder="Tìm kiếm..." style="height:30px; width:100%;">
-		<i class="ti-search"></i>
+		<input type="text" class="form-control" placeholder="Tìm kiếm..." style="height:30px; width:84%;">
+		<i class="ti-search search1"></i>
+		<i id="btnModal3" class="ti-comments add-group addGroupModal"></i>
 	</div>
 	<div class="message-scroll">
 		{{#each message}}
@@ -21,3 +22,38 @@
 		{{/each}}
 	</div>
 </div>
+<div id="myModal2" class="modal-chatgroup">
+
+    <!-- Modal group -->
+    <div class="modal-content2" role="document">
+        <div class="modal__header">
+            <h6 class="modal__header__title-text" title="Thông tin tài khoản">Danh sách nhóm</h6>
+            <div class="close2">
+                <span>&times;</span>
+            </div>
+        </div>
+        <div class="modal__body">
+            <div class="search-user search-bar search-contact">
+                <input onkeyup="search()" id="searchContact" type="text" class="form-control"
+                    placeholder="Tìm kiếm nhóm" style="height:30px; width:100%;">
+                <i class="ti-search"></i>
+            </div>
+            <div class="message-scroll contact-scroll">
+                <div class="user-message user-message-contact2">
+                    <img class="user-avatar user3" src="/img/avata_user.png" alt="">
+                    <form action="" method="post" enctype="multipart/form-data">
+                        <span id="emailct" class="name-user name-user-contact2">{{this.groupName}}</span>
+                        <input type="text" name="email" value="{{this.emailcontact}}" hidden>
+                        <span class="description-user">Thành viên: {{this.members.length}}</span>
+                        <button class="nhantin" type="submit">Nhắn tin</button>
+                        <button class="huyketban" type="submit">Rời nhóm</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+
+</script>
