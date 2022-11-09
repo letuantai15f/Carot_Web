@@ -8,11 +8,15 @@ var email = document.getElementById("emailuser").value;
 var avata=document.getElementById('avata-login').getAttribute('src')
 var username=document.getElementById('nameContact').value
 var idGroupChat=document.getElementById('idGroupChat').value
+var typeChat=document.getElementById('typeChat').value
+var nameGroup=document.getElementById('groupChat').value
+
+
 receiver=test
 sender=email
 
 
-
+var emailAccGroup=[]
 var reader
 (function () {
   
@@ -40,10 +44,34 @@ function sendfile(fileInput) {
     reader.readAsDataURL(fileInput.files[0]);
   }
 }
+ $('input[type="text"].emailGroup').each(function () {
+    
+    emailAccGroup.push($(this).val())
+});
 btnsend.onclick = function sendmess() {
   var mess = document.getElementById("datamess").value;
   var idGroupChat=document.getElementById('idGroupChat').value
-  let contentMessage = {
+ 
+  if(typeChat=='group'){
+    var contentMessage = {
+      sender: sender,
+      receiver:emailAccGroup,
+      typeChat:typeChat,
+      username:nameGroup,
+      avata:avata,
+      idGroupChat:idGroupChat,
+      message: mess,
+    };
+    console.log('mess',contentMessage)
+    if (mess != "") {
+      appendMessage(mess, "text2");
+      socket.emit("group-chat-message", contentMessage);
+      document.getElementById("datamess").value = "";
+    }
+    
+}
+  else{
+var contentMessage = {
     sender: sender,
     receiver: receiver,
     username:username,
@@ -51,12 +79,13 @@ btnsend.onclick = function sendmess() {
     idGroupChat:idGroupChat,
     message: mess,
   };
-  console.log(contentMessage)
   if (mess != "") {
     appendMessage(mess, "text2");
     socket.emit("client-chat-message", contentMessage);
     document.getElementById("datamess").value = "";
   }
+  } 
+ 
 };
 function appendMessage(data, status) {
   var chats = document.querySelector(".mess");
@@ -85,7 +114,6 @@ function test(){
 }
 
 socket.on("server-chat", (data) => {
-  console.log(data)
   var username=document.getElementById("username");
   console.group(data.idGroupChat)
   $('#idGroupChat').attr('value', data.idGroupChat)
@@ -93,6 +121,20 @@ socket.on("server-chat", (data) => {
   username.innerHTML=data.username;
   $("#avataContact").attr("src",data.avata);
   receiver=data.sender;
+
+  appendMessage(data.message, "text");
+});
+socket.on("group-server-chat", (data) => {
+  console.log(data)
+  var username=document.getElementById("username");
+  $('#idGroupChat').attr('value', data.idGroupChat)
+  username.innerHTML=data.username;
+  // $("#avataContact").attr("src",data.avata);
+  emailAccGroup=data.receiver;
+  typeChat=data.typeChat,
+  group=data.idChat
+  nameGroup=data.username
+  console.log(emailAccGroup)
   appendMessage(data.message, "text");
 });
 socket.on("server-chat-img", (data) => {

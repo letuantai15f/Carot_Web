@@ -12,27 +12,63 @@ class SocketServices {
     });
 
     // event on here
-
-    socket.on("client-chat-message", async (data)=> {
+    socket.on("group-chat-message", async (data)=> {
+  
       const newMessage={
         sender:{
           email:data.sender
         },
         reciver:{
-          email:data.receiver
+          email:[data.receiver]
         },
+        typeChat:data.typeChat,
         idChat:data.idGroupChat,
         avata:data.avata,
         username:data.username,
         text:data.message
       }
-      const sMessage= new message(newMessage);
-      const saveMessage= await sMessage.save()
-      var idChat = sMessage.idChat;
-      var chat = ChatGroup.findById(idChat);
-      await chat.findOneAndUpdate({ $push: { message: saveMessage._id } });
-      
+      var arrayEmail=[]
+      if(data.typeChat=='group'){
+       for(let i=0;i<data.receiver.length;i++){
+        if(data.receiver[i]!=data.sender){
+          arrayEmail.push(data.receiver[i])
+        }
+       }
+       for(let i=0;i<users.length;i++){
+       for(let j=0;j<arrayEmail.length;j++){
+          if(users[i].email==arrayEmail[j]){
+            var socketId = users[i].userid;
+            // socket.join(socketId);
+            socket.to(socketId).emit("group-server-chat", data);
+            
+          }
+       }
+       }
 
+      }
+    })
+    socket.on("client-chat-message", async (data)=> {
+      
+      const newMessage={
+        sender:{
+          email:data.sender
+        },
+        reciver:{
+          email:[data.receiver]
+        },
+        typeChat:data.typeChat,
+        idChat:data.idGroupChat,
+        avata:data.avata,
+        username:data.username,
+        text:data.message
+      }
+      // const sMessage= new message(newMessage);
+      // const saveMessage= await sMessage.save()
+      // var idChat = sMessage.idChat;
+      // var chat = ChatGroup.findById(idChat);
+      // await chat.findOneAndUpdate({ $push: { message: saveMessage._id } });
+      
+      
       for (let i = 0; i < users.length; i++) {
         if (users[i].email == data.receiver) {
           var socketId = users[i].userid;
@@ -43,7 +79,7 @@ class SocketServices {
     });
 
     socket.on("sendImage", function (data) {
-      console.log(data)
+     
       var guess = data.base64.match(/^data:image\/(png|jpeg);base64,/)[1];
     var ext = "";
     switch(guess) {
@@ -53,7 +89,6 @@ class SocketServices {
     }
     var savedFilename = "/upload/"+randomString(10)+ext;
     for (let i = 0; i < users.length; i++) {
-      console.log("email mang", users[i].email);
       if (users[i].email == data.receiver) {
         var socketId = users[i].userid;
         socket.to(socketId).emit("server-chat-img", {
@@ -64,23 +99,6 @@ class SocketServices {
         });
       }
     }
-    // fs.writeFile(__dirname+"/public"+savedFilename, getBase64Image(data.base64), 'base64', function(err) {
-    //   if (err !== null)
-    //     console.log(err);
-    //   else {
-        
-        
-    //   }
-    //     console.log("Send photo success!");
-    // });
-
-      // for (let i = 0; i < users.length; i++) {
-      //   console.log("email mang", users[i].email);
-      //   if (users[i].email == data.receiver) {
-      //     var socketId = users[i].userid;
-      //     socket.to(socketId).emit("server-chat-img", data);
-      //   }
-      // }
     });
 
     socket.on("user-connected", function (username) {

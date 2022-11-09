@@ -21,14 +21,22 @@ messageRouter.get("/", cookieJwtAuth, async (req, res) => {
     members:user.account.email,
     typeChat:'group',
   });
-
+  console.log(groupchat)
+  const group2=[]
+  for(let i=0;i<groupchat.length;i++){
+    group2.push({
+      _id:groupchat[i]._id,
+      groupName:groupchat[i].name,
+      members:groupchat[i].members.length
+    })
+  }
   contactall.forEach(async (el) => {
     let contactuser = await User.find({ "account.email": el.emailcontact })
   })
   const mycontacttrue = await Contact.find({
     status: true,
     emailuser: user.account.email,
-  });
+  }); 
   const mycontactfalse = await Contact.find({
     status: false,
     emailuser: user.account.email,
@@ -51,8 +59,9 @@ messageRouter.get("/", cookieJwtAuth, async (req, res) => {
     // dataall: datauserall,
     datacontact: mycontactfalse,
     datacontact2: mycontacttrue,
-    myuser: user,dataUserMessage:test,
-    groupChat:groupchat
+    myuser: user,
+    dataUserMessage:test,
+    groupChat:group2,
   });
 });
 
@@ -119,4 +128,40 @@ getUserLogin = async (req, res) => {
   const user = await User.findOne({ _id: data.id });
   return user;
 }
+messageRouter.post("/group", cookieJwtAuth, upload.fields([]), async (req, res) => {
+  const { idgroup } = req.body;
+  
+  const user = await getUserLogin(req, res)
+  const contact = await Contact.findOne({ emailuser: user.account.email });
+  const contactall = await Contact.find({ emailuser: user.account.email });
+  contactall.forEach(async (el) => {
+    let contactuser = await User.find({ "account.email": el.emailcontact })
+  })
+  const mycontacttrue = await Contact.find({
+    status: true,
+    emailuser: user.account.email,
+  });
+  const mycontactfalse = await Contact.find({
+    status: false,
+    emailuser: user.account.email,
+  });
+  const messconact = {
+    emailuser: user.account.email,
+    gender: user.gender,
+    date: user.date,
+    usernameprofile: user.username,
+    avata: user.avata,
+
+  };
+  const check = await ChatGroup.findOne({_id:idgroup});
+  groupChat2={
+    _id:check._id,
+    username:check.name,
+    typeChat:check.typeChat
+  }
+
+  res.render("message", {dataUserMessage:groupChat2,dataimg:messconact, datacontact: mycontactfalse,
+    datacontact2: mycontacttrue,idGroupChat:idgroup,check}) 
+})
+
 module.exports = messageRouter;

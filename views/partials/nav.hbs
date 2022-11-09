@@ -138,18 +138,16 @@
             </div>
             <div class="message-scroll contact-scroll">
                 {{#each groupChat}}
-                <div class="user-message user-message-contact2">
-                    <img class="user-avatar user3" src="/img/avata_user.png" alt="">
-                    {{#each this}}
-                    <form action="" method="post" enctype="multipart/form-data">
-                        <span id="emailct" class="name-user name-user-contact2">{{this.groupName}}</span>
-                        <input type="text" name="email" value="{{this.emailcontact}}" hidden>
-                        <span class="description-user">Thành viên: {{this.members.length}}</span>
-                        <button class="nhantin" type="submit">Nhắn tin</button>
-                        <button class="huyketban" type="submit">Rời nhóm</button>
-                    </form>
-                    {{/each}}
-                </div>
+                    <div class="user-message user-message-contact2">
+                        <img class="user-avatar user3" src="/img/avata_user.png" alt="">
+                        <form action="/message/group" method="post" enctype="multipart/form-data">
+                            <span id="nameGroup" class="name-user name-user-contact2">{{groupName}}</span>
+                            <input type="text" name="idgroup" value="{{_id}}" hidden>
+                            <span class="description-user">Thành viên: {{members}}</span>
+                            <button class="nhantin" type="submit">Nhắn tin</button>
+                            <button class="huyketban" type="submit">Rời nhóm</button>
+                        </form>
+                    </div>             
                 {{/each}}
             </div>
         </div>
