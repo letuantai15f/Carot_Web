@@ -15,7 +15,11 @@ const messagesSchema = new mongoose.Schema({
         avata: String
     },
     text:String,
-    file:{data:Buffer,contenType: String,fileName:String},
+    file:{
+            data:Buffer,
+            contenType: String,
+            fileName:String,
+            path:String},
     createdAt: {type:Number,default:Date.now},
     updateAt: {type:Number,default:null},
     deleteAt: {type:Number,default:null},

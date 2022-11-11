@@ -27,6 +27,37 @@ function uploadFile(file) {
 }
 exports.uploadFile = uploadFile
 
+exports.uploadFile2 =  async(file,data) =>{
+    var buf = Buffer.from(file.replace(/^data:image\/\w+;base64,/, ""),'base64')
+    const type = file.split(';')[0].split('/')[1];
+    const userId = 1;
+    var datetime = new Date();
+
+  var data = {
+    Bucket: bucketName,
+    Key: `${data}+${datetime}.${type}`, 
+    Body: buf,
+    // ACL: 'public-read',
+    ContentEncoding: 'base64',
+    ContentType: `image/${type}`
+  };
+
+  let location = '';
+  let key = '';
+ 
+    const { Location, Key } = await s3.upload(data).promise();
+    
+    location = Location;
+    key = Key;
+  
+console.log("key", key);
+  
+
+  return key;
+
+}
+
+
 
 // downloads a file from s3
 function getFileStream(fileKey) {
@@ -36,5 +67,13 @@ function getFileStream(fileKey) {
     }
 
     return s3.getObject(downloadParams).createReadStream()
+}
+exports.getUrl = async(data)=>{
+   const url= s3.getSignedUrl('getObject',{
+        Bucket: bucketName,
+        Key: data,
+        Expires: 60 * 1
+    })
+    return url
 }
 exports.getFileStream = getFileStream

@@ -21,33 +21,25 @@ const userRouter = require("./routes/user");
 const contactRouter = require("./routes/contact");
 const chatgroupRouter = require("./routes/chatgroup");
 const messageRouter = require("./routes/message");
+const userAPI=require("./apis/userAPI")
 dotenv.config();
-
+//mongodb connect
 mongoose.connect(process.env.MONGODB_URL, (err) => {
   if(err) {
     console.log(err)
   }
   else console.log("MongoDB is connected");
 });
-
 app.use(cookieParser());
-// app.use(express.static(path.join(__dirname,'views/partials/nav.handlebars')));
 app.use(express.static(__dirname+"/uploads"));
-app.use(bodyParser.json({ limit: "50mb" }));
-
 app.use(bodyParser.json({ limit: "50mb" }));
 app.use(cors());
 app.use(morgan("common"));
 app.use(express.static("resources"));
-
+//hbs
 app.engine("hbs", exphbs.engine({extname:'.hbs'}));
 app.set("view engine", ".hbs");
 app.set('views',path.join(__dirname,'views'))
-
-// app.use((req,res,next)=>{
-//   res.io=io
-//   next();
-// })
 
 //configAWS
 const AWS = require("aws-sdk");
@@ -69,21 +61,10 @@ app.get("/", (req, res) => {
 app.get("/home", (req, res) => {
   res.render("home");
 });
-// io.on("connection", function(socket){
-//   console.log("user connectedUsers");
-//   socket.on('disconnect', function(){
-//     console.log('user disconnected');
-    
-//   });
-  
-//   socket.on('client-chat-message', function(data){
-//     io.emit("server-chat", data);
-//     console.log(data);
-//   });
-// })
 
 //signup
 app.use("/",userRouter);
+app.use("/api",userAPI)
 
 // modal contact
 app.use("/", contactRouter)
