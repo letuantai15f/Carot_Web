@@ -39,11 +39,15 @@
 			<div class="row r3 ">
 				<ul class="list-item3">
 					<li><a ><i class="ti-face-smile"></i></a></li>
-					<li><a><label for="btn-send-file"><i class="ti-camera"></i></label>
-					<input type="file" id="btn-send-file" onchange="sendfile(this)" accept="image/png image/jpg" hidden />
+					<li><a><label for="btn-send-img"><i class="ti-camera"></i></label>
+					<input type="file" id="btn-send-img" onchange="sendimg(this)" accept="image/png image/jpg" multiple hidden />
 					</a></li>
-					<li><a><i class="ti-clip" id=""></i>
-	
+
+					{{!-- <li><a><label for="btn-send-file"><i class="ti-clip"></i></label>
+					<input type="file" id="btn-send-file-" onchange="sendfile(this)"accept=".xlsx,.xls,image/*,.doc, .docx,.ppt, .pptx,.txt,.pdf" hidden  />
+					</a></li> --}}
+					<li><a><label for="btn-send-file"><i class="ti-clip"></i></label>
+					<input type="file" id="btn-send-file" onchange="sendfile(this)" accept=".xlsx,.xls,image/*,.doc, .docx,.ppt, .pptx,.txt,.pdf" hidden />
 					</a></li>
 
 					<li></li>
