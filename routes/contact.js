@@ -3,6 +3,7 @@ const contactRouter = express.Router();
 const { Contact } = require('../models/modal_contact');
 const { User } = require('../models/model')
 const multer = require('multer');
+const { ChatGroup } = require('../models/modal_chat_group');
 const upload = multer();
 
 contactRouter.post('/accept', upload.fields([]), async(req, res) => {
@@ -44,6 +45,28 @@ contactRouter.post('/addfriend', upload.fields([]), async(req, res) => {
         const save = await contactuser.save();
         console.log("Gửi lời mời thành công")
     }
+    res.redirect("/message")
+});
+
+contactRouter.post('/addgroup', upload.fields([]), async(req, res) => {
+    const {nameGroup, addemail } = req.body
+    const user = await User.findOne({"account.email":req.body.email})
+    let a = [ user.account.email]
+    let result = [].concat(a,addemail)
+    const newGroup = {
+        name:nameGroup,
+        userCreate: a[0],
+        typeChat:"group",
+        message:[],
+        members:result
+    }
+    if( addemail != null){
+        const group = new ChatGroup(newGroup)
+        const save = await group.save();
+        console.log("Tạo nhóm thành công")
+    }
+    else console.log("Nhóm phải từ 2 thành viên trở lên")
+    
     res.redirect("/message")
 });
 module.exports = contactRouter;

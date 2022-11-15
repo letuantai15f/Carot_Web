@@ -157,7 +157,7 @@ var contentMessage = {
     document.getElementById("datamess").value = "";
   }
   } 
- 
+  
 };
 function appendMessage(data, status) {
   var chats = document.querySelector(".mess");

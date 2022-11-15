@@ -122,14 +122,20 @@ body {
     width: 100%;
 }
 
+
 .ti-search,
-.ti-plus {
+.ti-plus,
+.add-group {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
     right: 10px;
     width: 20px;
     cursor: pointer;
+}
+
+.search1 {
+    right: 60px;
 }
 
 .search-2 {
@@ -332,7 +338,7 @@ body {
     padding-top: 20px;
     
 }
-
+    
 .list-item2 li a,
 .subnav-setting a,
 .contactModal,
@@ -345,15 +351,24 @@ body {
     padding: 6px 32px 12px 32px;
 }
 
+.add-group {
+    border: none;
+    background-color: transparent;
+}
+.add-group:focus {
+    border: none;
+}
+
 .contactModal, 
-.groupModal {
+.groupModal{
     background-color: orangered;
     border: none;
 }
 
 .list-item2 li a:hover,
 .subnav-setting a:hover,
-.contactModal:hover {
+.contactModal:hover,
+.groupModal:hover {
     text-decoration: none;
     list-style: none;
     color: #fff;
@@ -966,7 +981,8 @@ avatar_button:focus {
 
 
 .modal2, 
-.modal-chatgroup {
+.modal-chatgroup,
+.modal-addgroup {
     display: none; 
     position: fixed; 
     z-index: 1; 
@@ -1052,6 +1068,21 @@ avatar_button:focus {
     padding: 4px 12px;
     border-radius: 8px;
     border: none;
+}
+
+.addfriendtogroup {
+    position: absolute;
+    background-color: orangered;
+    color: #fff;
+    top: 18px;
+    right: 20px;
+    padding: 4px 12px;
+    border-radius: 8px;
+    border: none;
+}
+
+.btnaddgroup {
+    transform: translate(160%, 0%);
 }
 
 .dismiss {
