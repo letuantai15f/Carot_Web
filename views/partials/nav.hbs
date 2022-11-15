@@ -13,8 +13,8 @@
 
                 <li><a href=""><i class="ti-home"></i></a></li>
                 <li><a href="/message/"><i class="ti-comment-alt"></i></a></li>
-                <li><button id="btnModal" class="contactModal"><i class="ti-user"></i></button></li>
-                <li><button id="btnModal2" class="groupModal"><i class="ti-themify-favicon"></i></button></li>
+                <li><button title="Danh sách bạn bè" id="btnModal" class="contactModal"><i class="ti-user"></i></button></li>
+                <li><button title="Danh sách nhóm" id="btnModal2" class="groupModal"><i class="ti-themify-favicon"></i></button></li>
             </ul>
         </div>
         <div class="subnav-setting">
@@ -196,9 +196,10 @@
         modal2.style.display = "none";
     }
     window.onclick = function (event) {
-        if (event.target == modal || event.target == modal2) {
+        if (event.target == modal || event.target == modal2 || event.target == modal3) {
             modal.style.display = "none";
             modal2.style.display = "none";
+            modal3.style.display = "none";
         }
     }
     function search() {

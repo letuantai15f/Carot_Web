@@ -21,7 +21,6 @@ messageRouter.get("/", cookieJwtAuth, async (req, res) => {
     members:user.account.email,
     typeChat:'group',
   });
-  console.log(groupchat)
   const group2=[]
   for(let i=0;i<groupchat.length;i++){
     group2.push({
