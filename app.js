@@ -25,10 +25,7 @@ const userAPI=require("./apis/userAPI")
 dotenv.config();
 //mongodb connect
 mongoose.connect(process.env.MONGODB_URL, (err) => {
-  if(err) {
-    console.log(err)
-  }
-  else console.log("MongoDB is connected");
+ console.log("MongoDB is connected");
 });
 app.use(cookieParser());
 app.use(express.static(__dirname+"/uploads"));
