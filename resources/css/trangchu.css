@@ -667,12 +667,14 @@ body {
 .txt1,
 .txt2 {
     position: absolute;
-    top: 270px;
-    left: 20px;
+    top: 220px;
+    left: 20%;
 }
 
 .txt2 {
-    top: 400px;
+    font-size: 20px;
+    left:0%;
+    margin: 10px;
 }
 
 .schedue,
