@@ -2,20 +2,31 @@
 	<div class="search-user search-bar">
 		<input type="text" class="form-control" placeholder="Tìm kiếm..." style="height:30px; width:84%;">
 		<i class="ti-search search1"></i>
-		<button title="Thêm nhóm" id="btnModal3" class="add-group"><i class="ti-comments"></i></button>
+		<button title="Thêm nhóm" id="btnModal3" class="add-group"><i class="fa-solid fa-users-gear"></i></button>
 	</div>
 	<div class="message-scroll">
 		{{#each message}}
-            {{!-- {{log this}}<img class="user-avatar" src="" alt=""> --}}
-            {{!-- {{#each this}} --}}
-				<div class="user-message">
+            {{#if typeChat}}
+            <form action="/message/addMessage" method="post" enctype="multipart/form-data" id="{{idChatGroup}}" name="{{idChatGroup}}">
+				<div class="user-message" onClick="document.forms['{{idChatGroup}}'].submit();">
 					<img class="user-avatar" src="{{avata}}" alt="">
 					<span class="name-user"><b>{{name}}</b></span>
                     {{!-- <span class="" style="margin-bottom: 5px;">{{members}}</span> --}}
 					<span class="description-user">{{message}}</span>
-                    
+                    <input type="text" value="{{email}}" name="email" hidden>
 				</div>
-                {{!-- {{/each}} --}}
+            </form>
+            {{else}}
+            <form action="/message/group" method="post" enctype="multipart/form-data" id="{{idChatGroup}}" name="{{idChatGroup}}">
+				<div class="user-message" onClick="document.forms['{{idChatGroup}}'].submit();">
+					<img class="user-avatar" src="{{avata}}" alt="">
+					<span class="name-user"><b>{{name}}</b></span>
+                    {{!-- <span class="" style="margin-bottom: 5px;">{{members}}</span> --}}
+					<span class="description-user">{{message}}</span>
+                    <input type="text" name="idgroup" value="{{idChatGroup}}" hidden>
+				</div>
+            </form>
+                {{/if}}
 		{{/each}}
 		{{#each groupchat}}
 				<div class="user-message">

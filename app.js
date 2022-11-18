@@ -22,6 +22,7 @@ const contactRouter = require("./routes/contact");
 const chatgroupRouter = require("./routes/chatgroup");
 const messageRouter = require("./routes/message");
 const userAPI=require("./apis/userAPI")
+const contactAPI=require("./apis/contactAPI")
 dotenv.config();
 //mongodb connect
 mongoose.connect(process.env.MONGODB_URL, (err) => {
@@ -65,6 +66,7 @@ app.use("/api",userAPI)
 
 // modal contact
 app.use("/", contactRouter)
+app.use("/api/contact",contactAPI)
 
 // chatgroup message
 app.use("/message", messageRouter);

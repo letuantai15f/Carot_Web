@@ -29,7 +29,9 @@
 				<div class="mess">
 					{{#each messSent}}
 						{{#each this}}
+						{{#if text}}
 						<p>{{text}}</p>
+						{{/if}}
 						{{/each}}
 					{{/each}}
 				</div>
@@ -61,20 +63,38 @@
 		</div>
 		<div class="col-3 cl3">
 			<div class="information">
-				<img class="user-avatar user5" src="{{dataUserMessage.avata}}" alt="">
+				{{!-- <img class="user-avatar user5" src="{{dataUserMessage.avata}}" alt="">
 				<h3 class="name-info">{{dataUserMessage.username}}</h3>
+				<ul class="txt2" style="list-style-type: none;"> --}}
 
-				<ul class="txt2" style="list-style-type: none;">
 					{{#dataUserMessage}}
+						{{#if typeChat}}
+						<img class="user-avatar user5" src="{{avata}}">
+						<h3 class="name-info">{{username}}</h3>
+					
+						<ul class="txt2" style="list-style-type: none;">
 					<li style="font-size: 20px;margin-bottom: 20px;"><h4>Thông tin:</h4></li>
-					<li style="font-size: 20px;margin-bottom: 20px;"><i class="ti-gift" style="font-size: 25px; margin-right: 20px;color: blue;"></i>{{date}}</li>
-					<li style="font-size: 20px;margin-bottom: 20px;" ><i class="ti-heart" style="font-size: 25px; margin-right: 20px;color: red;"></i>{{gender}}</li>
-					<li style="font-size: 20px;margin-bottom: 20px;"><i class="ti-email" style="font-size: 25px; margin-right: 20px;"></i>{{email}}</li>
 					<li style="align-items: center; text-align: center;"><button class="btn " style="background-color: red ; color: white;" type="submit">Hủy kết bạn</button></li>
+						</ul>
+						{{else}}
+						{{#if date}}
+						<img class="user-avatar user5" src="{{avata}}" alt="">
+						<h3 class="name-info">{{username}}</h3>
+						<ul class="txt2" style="list-style-type: none;">
+						<li style="font-size: 20px;margin-bottom: 20px;"><h4>Thông tin:</h4></li>
+					<li style="font-size: 20px;margin-bottom: 20px;"><i class="ti-gift" style="font-size: 25px; margin-right: 20px;color: blue;"></i>{{date}}</li>
+					<li style="font-size: 20px;margin-bottom: 20px;" ><i class="fa-solid fa-venus-mars" style="font-size: 25px; margin-right: 20px;color: red;"></i>{{gender}}</li>
+					<li style="font-size: 20px;margin-bottom: 20px;"><i class="fa-solid fa-envelope" style="font-size: 25px; margin-right: 20px;color: rgb(133, 133, 133);"></i>{{email}}</li>
+					<li style="align-items: center; text-align: center;"><button class="btn " style="background-color: red ; color: white;" type="submit">Hủy kết bạn</button></li>
+						</ul>
+						{{/if}}
+						
+						{{/if}}
+					
 					{{/dataUserMessage}}
-				</ul>
+				
 
-				{{!-- <p class="txt2">File phương tiện, hình ảnh, liên kết</p> --}}
+				
 			</div>
 		</div>
 	</div>
