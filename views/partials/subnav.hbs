@@ -28,9 +28,11 @@
 			<div class="row r2">
 				<div class="mess">
 					{{#each messSent}}
-						{{#each this}}
-						<p>{{text}}</p>
-						{{/each}}
+						<div class="text">
+							{{#each this}}
+							<span>{{text}}</span>
+							{{/each}}
+						</div>
 					{{/each}}
 				</div>
 

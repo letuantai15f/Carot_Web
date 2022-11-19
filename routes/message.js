@@ -21,9 +21,22 @@ messageRouter.get("/", cookieJwtAuth, async (req, res) => {
   const contactall = await getContactAll(user)
   const group2 = await getGroupChat(user)
 
+  
+  
   contactall.forEach(async (el) => {
     let contactuser = await User.find({ "account.email": el.emailcontact })
   })
+
+
+  const ctall = await Contact.find({emailuser:user.account.email})
+  
+  ctall.forEach(async(el)=>{
+    const userall = await User.findOne({"account.email":el.emailcontact})
+    const ct1 = await Contact.findOne({emailcontact:userall.account.email})
+    let avtall = [{avata:userall.avata}]
+    let rs = [].concat(avtall,el)
+  })
+
   const mycontacttrue = await Contact.find({
     status: true,
     emailuser: user.account.email,
@@ -110,7 +123,7 @@ messageRouter.get("/", cookieJwtAuth, async (req, res) => {
     myuser: user,
     dataUserMessage: test,
     groupChat: group2,
-    message:groupMessage 
+    message:groupMessage
   });
 });
 
@@ -192,6 +205,7 @@ messageRouter.post("/group", cookieJwtAuth, upload.fields([]), async (req, res) 
   contactall.forEach(async (el) => {
     let contactuser = await User.find({ "account.email": el.emailcontact })
   })
+  
   const mycontacttrue = await Contact.find({
     status: true,
     emailuser: user.account.email,
@@ -255,7 +269,8 @@ getGroupChat = async (user) => {
     group2.push({
       _id: groupchat[i]._id,
       groupName: groupchat[i].name,
-      members: groupchat[i].members.length
+      members: groupchat[i].members.length,
+      avatarGroup: groupchat[i].avatarGroup
     })
   }
   return group2;

@@ -77,7 +77,7 @@
 
                     {{#each datacontact}}
                     <div class="user-message user-message-contact2">
-                        <img class="user-avatar user3" src="./img/avata_user.png" alt="">
+                        <img class="user-avatar user3" src="/img/avata_user.png" alt="">
                         {{#each this}}
                         <span id="emailct" class="name-user name-user-contact2">{{this.emailcontact}}</span>
                         <span class="description-user">Muốn kết bạn</span>
@@ -139,7 +139,7 @@
             <div class="message-scroll contact-scroll">
                 {{#each groupChat}}
                     <div class="user-message user-message-contact2">
-                        <img class="user-avatar user3" src="/img/avata_user.png" alt="">
+                        <img class="user-avatar user3" src="{{avatarGroup}}" alt="">
                         <form action="/message/group" method="post" enctype="multipart/form-data">
                             <span id="nameGroup" class="name-user name-user-contact2">{{groupName}}</span>
                             <input type="text" name="idgroup" value="{{_id}}" hidden>

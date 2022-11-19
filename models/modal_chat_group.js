@@ -6,7 +6,7 @@ const chatGroupSchema = new mongoose.Schema({
 
     },
     userCreate: String,
-    avatar: String,
+    avatarGroup: String,
     typeChat: String,
 
     status: Number,
