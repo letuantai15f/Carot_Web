@@ -251,6 +251,10 @@ class SocketServices {
 
       }
     })
+        
+    socket.on("createRoom",async(data)=>{
+      console.log(data)
+    })
 
   }
 }

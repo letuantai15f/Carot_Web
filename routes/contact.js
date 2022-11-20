@@ -55,7 +55,7 @@ contactRouter.post('/addgroup', upload.fields([]), async(req, res) => {
     let result = [].concat(a,addemail)
     const newGroup = {
         name:nameGroup,
-        avatarGroup: "https://tse4.mm.bing.net/th?id=OIP.ya2c3T2_9NrcE8eUVHqhMQHaIz&pid=Api&P=0",
+        avatar: "https://tse4.mm.bing.net/th?id=OIP.ya2c3T2_9NrcE8eUVHqhMQHaIz&pid=Api&P=0",
         userCreate: a[0],
         typeChat:"group",
         message:[],

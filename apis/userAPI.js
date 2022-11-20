@@ -8,10 +8,10 @@ const jwt=require("jsonwebtoken");
 const firebase = require("../config/firebase");
 
 userAPI.post("/login",upload.fields([]), async (req, res) => {
-    // 
-    const x=req.body
-        console.log(req.body)
-        return res.status(200).json(x)
+    const { email, password } = req.body;
+    console.log(req.body)
+    const x=await firebase.loginAPI(email, password, req, res);
+   res.status(200).json(x)
   });
   userAPI.post("/signup",upload.fields([]), async (req, res) => {
     const { username, email, password, name, date, repassword, gender } =req.body

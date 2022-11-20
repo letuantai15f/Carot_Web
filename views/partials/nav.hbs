@@ -12,14 +12,14 @@
             <ul style="list-style-type: none;">
 
                 {{!-- <li><a href=""><i class="ti-home"></i></a></li> --}}
-                <li><a href="/message/"><i class="ti-comment-alt"></i></a></li>
-                <li><button title="Danh sách bạn bè" id="btnModal" class="contactModal"><i class="ti-user"></i></button></li>
-                <li><button title="Danh sách nhóm" id="btnModal2" class="groupModal"><i class="ti-themify-favicon"></i></button></li>
+                <li><a href="/message/"><i class="fa-solid fa-comments" style="color: white;"></i></a></li>
+               
+                <li><button title="Danh sách bạn bè" id="btnModal" class="contactModal"><i class="fa-solid fa-user" style="color: white;"></i></button></li>
+                <li><button title="Danh sách nhóm" id="btnModal2" class="groupModal"><i class="fa-solid fa-users" style="color: white;"></i></button></li>
             </ul>
         </div>
         <div class="subnav-setting">
-            <a href=""><i class="ti-settings">
-                </i></a>
+            <a href=""><i class="fa-solid fa-gear" style="color: white;"></i></a>
         </div>
     </div>
 </div>
@@ -46,18 +46,18 @@
                     <i class="ti-search"></i>
                 </div>
                 <div class="message-scroll contact-scroll">
-                    {{#each datacontact2}}
+                    {{#each contacttrue}}
                     <div class="user-message user-message-contact2">
-                        <img class="user-avatar user3" src="/img/avata_user.png" alt="">
-                        {{#each this}}
+                        <img class="user-avatar user3" src="{{this.avata}}" alt="">
+                        {{!-- {{#each this}} --}}
                         <form action="/message/addMessage" method="post" enctype="multipart/form-data">
-                            <span id="emailct" class="name-user name-user-contact2">{{this.emailcontact}}</span>
+                            <span class="name-user name-user-contact2">{{this.name}}</span>
                             <input type="text" name="email" value="{{this.emailcontact}}" hidden>
                             <span class="description-user">Bạn bè</span>
                             <button class="nhantin" type="submit">Nhắn tin</button>
                             <button class="huyketban" type="submit">Hủy kết bạn</button>
                         </form>
-                        {{/each}}
+                        {{!-- {{/each}} --}}
                     </div>
                     {{/each}}
                 </div>
@@ -75,11 +75,11 @@
                 </div>
                 <div class="message-scroll contact-scroll">
 
-                    {{#each datacontact}}
+                    {{#each contactfalse}}
                     <div class="user-message user-message-contact2">
-                        <img class="user-avatar user3" src="/img/avata_user.png" alt="">
-                        {{#each this}}
-                        <span id="emailct" class="name-user name-user-contact2">{{this.emailcontact}}</span>
+                        <img class="user-avatar user3" src="{{this.avata}}" alt="">
+                        {{!-- {{#each this}} --}}
+                        <span class="name-user name-user-contact2">{{this.name}}</span>
                         <span class="description-user">Muốn kết bạn</span>
 
                         <form action="/accept" method="post" enctype="multipart/form-data">
@@ -88,7 +88,7 @@
                             <input style="display: none;" type="text" name="status" value="{{this.status}}">
                             <button type="submit" class="accept"><i class="ti-check"></i></button>
                         </form>
-                        {{/each}}
+                        {{!-- {{/each}} --}}
 
                         {{#each this}}
                         <form action="/delete" method="post" enctype="multipart/form-data">
@@ -139,7 +139,7 @@
             <div class="message-scroll contact-scroll">
                 {{#each groupChat}}
                     <div class="user-message user-message-contact2">
-                        <img class="user-avatar user3" src="{{avatarGroup}}" alt="">
+                        <img class="user-avatar user3" src="{{avatar}}" alt="">
                         <form action="/message/group" method="post" enctype="multipart/form-data">
                             <span id="nameGroup" class="name-user name-user-contact2">{{groupName}}</span>
                             <input type="text" name="idgroup" value="{{_id}}" hidden>

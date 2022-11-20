@@ -56,3 +56,21 @@ exports.authenticate = async (email, password, req, res) => {
     return res.render("login", { message: dataStatus });
   }
 };
+exports.loginAPI = async (email, password, req, res) => {
+  const userEmail = await User.findOne({ "account.email": email });
+  try {
+    const result = await signInWithEmailAndPassword(auth, email, password);
+    if (result.user.emailVerified) {
+      var token = jwt.sign(
+        { id: userEmail._id, username: userEmail.email },
+        process.env.JWT_KEY,
+        { expiresIn: "1h" }
+      );
+    
+     return token
+    } 
+  } catch (error) {
+    
+     res.status(500)
+  }
+};

@@ -2,20 +2,31 @@
 	<div class="search-user search-bar">
 		<input type="text" class="form-control" placeholder="Tìm kiếm..." style="height:30px; width:84%;">
 		<i class="ti-search search1"></i>
-		<button title="Thêm nhóm" id="btnModal3" class="add-group"><i class="ti-comments"></i></button>
+		<button title="Thêm nhóm" id="btnModal3" class="add-group"><i class="fa-solid fa-users-gear"></i></button>
 	</div>
 	<div class="message-scroll">
 		{{#each message}}
-            {{!-- {{log this}}<img class="user-avatar" src="" alt=""> --}}
-            {{!-- {{#each this}} --}}
-				<div class="user-message">
+            {{#if typeChat}}
+            <form action="/message/addMessage" method="post" enctype="multipart/form-data" id="{{idChatGroup}}" name="{{idChatGroup}}">
+				<div class="user-message" onClick="document.forms['{{idChatGroup}}'].submit();">
 					<img class="user-avatar" src="{{avata}}" alt="">
 					<span class="name-user"><b>{{name}}</b></span>
                     {{!-- <span class="" style="margin-bottom: 5px;">{{members}}</span> --}}
 					<span class="description-user">{{message}}</span>
-                    
+                    <input type="text" value="{{email}}" name="email" hidden>
 				</div>
-                {{!-- {{/each}} --}}
+            </form>
+            {{else}}
+            <form action="/message/group" method="post" enctype="multipart/form-data" id="{{idChatGroup}}" name="{{idChatGroup}}">
+				<div class="user-message" onClick="document.forms['{{idChatGroup}}'].submit();">
+					<img class="user-avatar" src="{{avata}}" alt="">
+					<span class="name-user"><b>{{name}}</b></span>
+                    {{!-- <span class="" style="margin-bottom: 5px;">{{members}}</span> --}}
+					<span class="description-user">{{message}}</span>
+                    <input type="text" name="idgroup" value="{{idChatGroup}}" hidden>
+				</div>
+            </form>
+                {{/if}}
 		{{/each}}
 		{{#each groupchat}}
 				<div class="user-message">
@@ -45,18 +56,18 @@
                             name="nameGroup" required>
                     </div>
                     <div style="padding-left: 12px;" class="">Thêm bạn bè vào nhóm</div>
-                    {{#each datacontact2}}
+                    {{#each contacttrue}}
                     <div class="user-message user-message-contact2">
-                        <img class="user-avatar user3" src="/img/avata_user.png" alt="">
-                        {{#each this}}
-                            <span id="emailct" class="name-user name-user-contact2">{{this.emailcontact}}</span>
+                        <img class="user-avatar user3" src="{{this.avata}}" alt="">
+                        {{!-- {{#each this}} --}}
+                            <span id="emailct" class="name-user name-user-contact2">{{this.name}}</span>
                             <input type="text" name="email" value="{{this.emailuser}}" hidden>
                             <span class="description-user">Bạn bè</span>
                             
                             {{#emailcontact}}
                             <button type="button" class="addfriendtogroup" value="{{this}}">Thêm</button>
                             {{/emailcontact}}
-                        {{/each}}
+                        {{!-- {{/each}} --}}
                             
                     </div>
                     {{/each}}
@@ -77,16 +88,23 @@
     span3.onclick = function () {
         modal3.style.display = "none";
     }
+    let z = 1;
     let items = document.getElementsByClassName('addfriendtogroup');
-    let i =0;
     [].forEach.call(items, function (el) {
         el.addEventListener('click', function(){
-            el.setAttribute("style", "background-color: #9fec90; color: #000;");
-            el.innerHTML = "Đã thêm"
             let x = el.value;
-            let y = "addemail"
-            $("#f").append(`<input type="text" name="${y}" value="${x}" hidden/>`);
-            i+=1;
+            let y = "addemail";
+            if(el.innerHTML == "Thêm"){
+                el.setAttribute("style", "background-color: #9fec90; color: #000;");
+                el.innerHTML = "Đã thêm"
+                $("#f").append(`<input type="text" name="${y}" value="${x}" hidden/>`);
+            } 
+            else if (el.innerHTML == "Đã thêm") {
+                el.innerHTML = "Thêm"
+                el.setAttribute("style", "background-color: orangered; color: #fff;");
+                {{!-- document.getElementById("f").getElementsByTagName("input") --}}
+            }
+            
         });
     });
 </script>

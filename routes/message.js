@@ -25,18 +25,12 @@ messageRouter.get("/", cookieJwtAuth, async (req, res) => {
   
   contactall.forEach(async (el) => {
     let contactuser = await User.find({ "account.email": el.emailcontact })
+    // console.log(contactuser)
+    return contactuser
   })
 
-
-  const ctall = await Contact.find({emailuser:user.account.email})
-  
-  ctall.forEach(async(el)=>{
-    const userall = await User.findOne({"account.email":el.emailcontact})
-    const ct1 = await Contact.findOne({emailcontact:userall.account.email})
-    let avtall = [{avata:userall.avata}]
-    let rs = [].concat(avtall,el)
-  })
-
+  const contacttrue = []
+  const contactfalse = []
   const mycontacttrue = await Contact.find({
     status: true,
     emailuser: user.account.email,
@@ -45,6 +39,34 @@ messageRouter.get("/", cookieJwtAuth, async (req, res) => {
     status: false,
     emailuser: user.account.email,
   });
+  for (let i = 0; i < mycontacttrue.length; i++) {
+    const ct = await Contact.findOne({_id:mycontacttrue[i]._id})
+    const us = await User.findOne({"account.email":ct.emailcontact})
+    // console.log(us);
+    contacttrue.push({
+      _id: mycontacttrue[i]._id,
+      emailuser: mycontacttrue[i].emailuser,
+      emailcontact: mycontacttrue[i].emailcontact,
+      status:mycontacttrue[i].status,
+      avata:us.avata,
+      name:us.username
+    })
+  }
+  for (let j = 0; j < mycontactfalse.length; j++) {
+    const ct = await Contact.findOne({_id:mycontactfalse[j]._id})
+    const us = await User.findOne({"account.email":ct.emailcontact})
+    // console.log(us);
+    contactfalse.push({
+      _id: mycontactfalse[j]._id,
+      emailuser: mycontactfalse[j].emailuser,
+      emailcontact: mycontactfalse[j].emailcontact,
+      status:mycontactfalse[j].status,
+      avata:us.avata,
+      name:us.username
+    })
+  }
+  console.log(contactfalse);
+
   const messconact = {
     emailuser: user.account.email,
     gender: user.gender,
@@ -54,72 +76,12 @@ messageRouter.get("/", cookieJwtAuth, async (req, res) => {
 
   };
   const test = {avata: '/img/avata_user.png'}
-  // const message1=await ChatGroup.find({ members: { $all: [user.account.email] } } )
   const groupMessage=await getDataMessenger(user)
-  // const groupMessage=[]
-  // for(let i=0;i<message1.length;i++){
-  //   var username=""
-  //    if(message1[i].typeChat=="1"){
-  //     if(message1[i].members[0]==user.account.email){
-  //      const userName2=await User.findOne({"account.email":message1[i].members[1]})
-  //      username=userName2.username
-  //      if(!!message1[i].message[message1[i].message.length-1]){
-  //       var text="";
-  //       const messagetxt=await message.findOne({_id:message1[i].message[message1[i].message.length-1]})
-  //       if(messagetxt.text==undefined){
-  //           text="Ban nhan 1 file"
-  //       }else{
-  //         text=messagetxt.text
-  //       }
-  //     groupMessage.push({
-  //       name:username,
-  //       avata:userName2.avata,
-  //       // members:message1[i].members.length,
-  //       message:text
-  //     })}
-
-  //     }
-  //     else{
-  //       const userName2=await User.findOne({"account.email":message1[i].members[0]})
-  //       username=userName2.username
-  //       if(!!message1[i].message[message1[i].message.length-1]){
-  //         var text="";
-  //         const messagetxt=await message.findOne({_id:message1[i].message[message1[i].message.length-1]})
-  //         if(messagetxt.text==undefined){
-  //             text="Ban nhan 1 file"
-  //         }else{
-  //           text=messagetxt.text
-  //         }
-  //       groupMessage.push({
-  //         name:username,
-  //         avata:userName2.avata,
-  //         // members:message1[i].members.length,
-  //         message:text
-  //       })}
-        
-  //     }
-  //    }else{
-  //     if(!!message1[i].message[message1[i].message.length-1]){
-  //       var text="";
-  //       const messagetxt=await message.findOne({_id:message1[i].message[message1[i].message.length-1]})
-  //       if(messagetxt.text==undefined){
-  //           text="Ban nhan 1 file"
-  //       }else{
-  //         text=messagetxt.text
-  //       }
-  //     groupMessage.push({
-  //       name:message1[i].name,
-  //       members:message1[i].members.length,
-  //       message:text
-  //     })}}
-  // }
-
- 
 
   res.render("message", {
     dataimg: messconact,
-    datacontact: mycontactfalse,
-    datacontact2: mycontacttrue,
+    contactfalse,
+    contacttrue,
     myuser: user,
     dataUserMessage: test,
     groupChat: group2,
@@ -134,9 +96,13 @@ messageRouter.post("/addMessage", cookieJwtAuth, upload.fields([]), async (req, 
   const contact = await getContact(user)
   const contactall = await getContactAll(user)
   const group2 = await getGroupChat(user)
+  const groupMessage=await getDataMessenger(user)
   contactall.forEach(async (el) => {
     let contactuser = await User.find({ "account.email": el.emailcontact })
   })
+  
+  const contacttrue = []
+  const contactfalse = []
   const mycontacttrue = await Contact.find({
     status: true,
     emailuser: user.account.email,
@@ -145,6 +111,33 @@ messageRouter.post("/addMessage", cookieJwtAuth, upload.fields([]), async (req, 
     status: false,
     emailuser: user.account.email,
   });
+  for (let i = 0; i < mycontacttrue.length; i++) {
+    const ct = await Contact.findOne({_id:mycontacttrue[i]._id})
+    const us = await User.findOne({"account.email":ct.emailcontact})
+    // console.log(us);
+    contacttrue.push({
+      _id: mycontacttrue[i]._id,
+      emailuser: mycontacttrue[i].emailuser,
+      emailcontact: mycontacttrue[i].emailcontact,
+      status:mycontacttrue[i].status,
+      avata:us.avata,
+      name:us.username
+    })
+  }
+  for (let j = 0; j < mycontactfalse.length; j++) {
+    const ct = await Contact.findOne({_id:mycontactfalse[j]._id})
+    const us = await User.findOne({"account.email":ct.emailcontact})
+    // console.log(us);
+    contactfalse.push({
+      _id: mycontactfalse[j]._id,
+      emailuser: mycontactfalse[j].emailuser,
+      emailcontact: mycontactfalse[j].emailcontact,
+      status:mycontactfalse[j].status,
+      avata:us.avata,
+      name:us.username
+    })
+  }
+
   const groupDemo = {
     userCreate: user.account.email,
     typeChat: '1',
@@ -187,10 +180,12 @@ messageRouter.post("/addMessage", cookieJwtAuth, upload.fields([]), async (req, 
   res.render("message", {
     dataUserMessage: userChat, 
     dataimg: messconact, 
-    datacontact: mycontactfalse,
-    datacontact2: mycontacttrue, 
+    contactfalse,
+    contacttrue,
     emailContact: email, 
-    idGroupChat, messSent, 
+    idGroupChat,
+    messSent, 
+    message:groupMessage ,
     groupChat: group2,
   })
 })
@@ -201,11 +196,14 @@ messageRouter.post("/group", cookieJwtAuth, upload.fields([]), async (req, res) 
   const contact = await getContact(user)
   const contactall = await getContactAll(user)
   const group2 = await getGroupChat(user)
+  const groupMessage=await getDataMessenger(user)
   
   contactall.forEach(async (el) => {
     let contactuser = await User.find({ "account.email": el.emailcontact })
   })
   
+  const contacttrue = []
+  const contactfalse = []
   const mycontacttrue = await Contact.find({
     status: true,
     emailuser: user.account.email,
@@ -214,6 +212,33 @@ messageRouter.post("/group", cookieJwtAuth, upload.fields([]), async (req, res) 
     status: false,
     emailuser: user.account.email,
   });
+  for (let i = 0; i < mycontacttrue.length; i++) {
+    const ct = await Contact.findOne({_id:mycontacttrue[i]._id})
+    const us = await User.findOne({"account.email":ct.emailcontact})
+    // console.log(us);
+    contacttrue.push({
+      _id: mycontacttrue[i]._id,
+      emailuser: mycontacttrue[i].emailuser,
+      emailcontact: mycontacttrue[i].emailcontact,
+      status:mycontacttrue[i].status,
+      avata:us.avata,
+      name:us.username
+    })
+  }
+  for (let j = 0; j < mycontactfalse.length; j++) {
+    const ct = await Contact.findOne({_id:mycontactfalse[j]._id})
+    const us = await User.findOne({"account.email":ct.emailcontact})
+    // console.log(us);
+    contactfalse.push({
+      _id: mycontactfalse[j]._id,
+      emailuser: mycontactfalse[j].emailuser,
+      emailcontact: mycontactfalse[j].emailcontact,
+      status:mycontactfalse[j].status,
+      avata:us.avata,
+      name:us.username
+    })
+  }
+
   const messconact = {
     emailuser: user.account.email,
     gender: user.gender,
@@ -226,16 +251,24 @@ messageRouter.post("/group", cookieJwtAuth, upload.fields([]), async (req, res) 
   groupChat2 = {
     _id: check._id,
     username: check.name,
+    avata:check.avatar,
     typeChat: check.typeChat
   }
-
+  const messageDB = check.message;
+  const messSent = []
+  for (let i = 0; i < messageDB.length; i++) {
+    const mess = await message.findOne({ _id: messageDB[i] });
+    messSent.push(mess)
+  }
   res.render("message", {
     dataUserMessage: groupChat2, 
     dataimg: messconact, 
-    datacontact: mycontactfalse,
-    datacontact2: mycontacttrue, 
+    contactfalse,
+    contacttrue,
     idGroupChat: idgroup, 
     check,
+    message:groupMessage ,
+    messSent,
     groupChat: group2,
 
   })
@@ -270,7 +303,7 @@ getGroupChat = async (user) => {
       _id: groupchat[i]._id,
       groupName: groupchat[i].name,
       members: groupchat[i].members.length,
-      avatarGroup: groupchat[i].avatarGroup
+      avatar: groupchat[i].avatar
     })
   }
   return group2;
@@ -285,6 +318,7 @@ getDataMessenger=async(user)=>{
       if(message1[i].members[0]==user.account.email){
        const userName2=await User.findOne({"account.email":message1[i].members[1]})
        username=userName2.username
+       email=userName2.account.email
        if(!!message1[i].message[message1[i].message.length-1]){
         var text="";
         const messagetxt=await message.findOne({_id:message1[i].message[message1[i].message.length-1]})
@@ -294,9 +328,11 @@ getDataMessenger=async(user)=>{
           text=messagetxt.text
         }
       groupMessage.push({
+        idChatGroup:message1[i]._id,
         name:username,
         avata:userName2.avata,
-        // members:message1[i].members.length,
+        typeChat:message1[i].typeChat,
+        email,
         message:text
       })}
 
@@ -304,6 +340,7 @@ getDataMessenger=async(user)=>{
       else{
         const userName2=await User.findOne({"account.email":message1[i].members[0]})
         username=userName2.username
+        email=userName2.account.email
         if(!!message1[i].message[message1[i].message.length-1]){
           var text="";
           const messagetxt=await message.findOne({_id:message1[i].message[message1[i].message.length-1]})
@@ -313,9 +350,11 @@ getDataMessenger=async(user)=>{
             text=messagetxt.text
           }
         groupMessage.push({
+          idChatGroup:message1[i]._id,
           name:username,
           avata:userName2.avata,
-          // members:message1[i].members.length,
+          typeChat:message1[i].typeChat,
+          email,
           message:text
         })}
         
@@ -330,8 +369,11 @@ getDataMessenger=async(user)=>{
           text=messagetxt.text
         }
       groupMessage.push({
+        idChatGroup:message1[i]._id,
         name:message1[i].name,
+        avata:message1[i].avatar,
         members:message1[i].members.length,
+        // typeChat:message1[i].typeChat,
         message:text
       })}}
   }
