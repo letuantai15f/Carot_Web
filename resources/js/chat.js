@@ -1,3 +1,5 @@
+
+
 var socket = io();
 var sender = "";
 var receiver = "";
@@ -6,10 +8,14 @@ var btnsendfile = document.getElementById("btn-send-img");
 var test = document.getElementById("emailcontact").value;
 var email = document.getElementById("emailuser").value;
 var avata=document.getElementById('avata-login').getAttribute('src')
+
 var username=document.getElementById('nameContact').value
 var idGroupChat=document.getElementById('idGroupChat').value
 var typeChat=document.getElementById('typeChat').value
 var nameGroup=document.getElementById('groupChat').value
+var peerId=""
+var peer = new Peer();
+
 
 
 receiver=test
@@ -20,13 +26,22 @@ var emailAccGroup=[]
 var reader
 (function () {
   
-  socket.emit("user-connected", email);
-  socket.on("user-connected", function (username) {});
+
+peer.on('open', function(id) {
+  const data={email,id}
+	console.log('My peer ID is: ' + id);
+  document.getElementById("myPeer").setAttribute('value',id)
+  socket.emit("user-connected", data);
+  peerId=id;
+  });
+  
+  socket.on("user-connected", function (data) {});
   sender = email;
 })();
 function sendimg(fileInput) {
   var mess = document.getElementById("datamess").value;
   var idGroupChat=document.getElementById('idGroupChat').value
+  var avatacontact=document.getElementById('avataContact').getAttribute('src')
   if(typeChat=='group'){
     if (fileInput.files && fileInput.files[0]) {
       reader = new FileReader();
@@ -38,7 +53,7 @@ function sendimg(fileInput) {
           receiver: emailAccGroup,
           typeChat:typeChat,
            username:nameGroup,
-          avata:avata,
+          avata:avatacontact,
           idGroupChat:idGroupChat,
           base64: base64,
         };
@@ -123,14 +138,14 @@ function sendfile(fileInput){
 btnsend.onclick = function sendmess() {
   var mess = document.getElementById("datamess").value;
   var idGroupChat=document.getElementById('idGroupChat').value
- 
+  var avatacontact=document.getElementById('avataContact').getAttribute('src')
   if(typeChat=='group'){
     var contentMessage = {
       sender: sender,
       receiver:emailAccGroup,
       typeChat:typeChat,
       username:nameGroup,
-      avata:avata,
+      avata:avatacontact,
       idGroupChat:idGroupChat,
       message: mess,
     };
@@ -193,49 +208,155 @@ function test(){
   console.log(txt)
 }
 
-socket.on("server-chat", (data) => {
-  var username=document.getElementById("username");
-  console.group(data.idGroupChat)
-  $('#idGroupChat').attr('value', data.idGroupChat)
+socket.on("server-chat",async (data) => {
+ 
+    const x=$("#username").text();
+    if(x==""){
+     $.ajax({ //create an ajax request to display.php
+       type: "GET",
+       url: "http://localhost:3000/message/api/message",  
+       data:{email:data.sender},           
+       contentType: "application/json",   //expect html to be returned                
+       success: function(response){    
+        console.log(response)                
+           for(let i=0;i<response.length;i++){
+             if(response[i].typeNone=='1'){
+               appendMessage(response[i].text, "text");
+             }else if(response[i].typeFileNone=='1' && response[i].type=='png' ){
+              appendImage(response[i].file, "imgreciver");
+             }
+             else if(response[i].typeFileNone=='1' ){
+              appendFile(response[i].file,response[i].namefile, "imgreciver");
+             }
+             else if(response[i].typeChat){
+               appendMessage(response[i].text, "text2");
+             }
+           }
+       }
+   
+   });
+   }
+   else{
+    appendMessage(data.message, "text");
+   }
+ 
+    
   
+ 
+  var username=document.getElementById("username");
+  $('#idGroupChat').attr('value', data.idGroupChat)
   username.innerHTML=data.username;
   $("#avataContact").attr("src",data.avata);
   receiver=data.sender;
-
-  appendMessage(data.message, "text");
 });
 socket.on("group-server-chat", (data) => {
-  console.log(data)
+  const x=$("#username").text();
+    if(x==""){
+     $.ajax({ //create an ajax request to display.php
+       type: "GET",
+       url: "http://localhost:3000/message/api/group",  
+       data:{idgroup:data.idGroupChat},           
+       contentType: "application/json",   //expect html to be returned                
+       success: function(response){                    
+           for(let i=0;i<response.length;i++){
+             if(response[i].typeNone=='1'){
+               appendMessage(response[i].text, "text");
+             }else if(response[i].typeFileNone){
+              appendImage(response[i].file, "imgreciver");
+             }
+             else if(response[i].typeChat){
+               appendMessage(response[i].text, "text2");
+             }
+           }
+       }
+   
+   });
+   }
+   else{
+    appendMessage(data.message, "text");
+   }
   var username=document.getElementById("username");
   $('#idGroupChat').attr('value', data.idGroupChat)
   username.innerHTML=data.username;
-  // $("#avataContact").attr("src",data.avata);
+$("#avataContact").attr("src",data.avata);
   emailAccGroup=data.receiver;
   typeChat=data.typeChat,
   group=data.idChat
   nameGroup=data.username
-  console.log(emailAccGroup)
-  appendMessage(data.message, "text");
+  
+  // appendMessage(data.message, "text");
 });
 //img
 socket.on("server-chat-img", (data) => {
+  const x=$("#username").text();
+    if(x==""){
+     $.ajax({ //create an ajax request to display.php
+       type: "GET",
+       url: "http://localhost:3000/message/api/message",  
+       data:{email:data.sender},           
+       contentType: "application/json",   //expect html to be returned                
+       success: function(response){    
+        console.log(response)                
+           for(let i=0;i<response.length;i++){
+             if(response[i].typeNone=='1'){
+               appendMessage(response[i].text, "text");
+             }else if(response[i].typeFileNone=='1'){
+              appendImage(response[i].file, "imgreciver");
+             }
+             else if(response[i].typeChat){
+               appendMessage(response[i].text, "text2");
+             }
+           }
+       }
+   
+   });
+   }
+   else{
+    appendImage(data.path, "imgreciver");
+   }
   var username=document.getElementById("username");
   username.innerHTML=data.username;
   $("#avataContact").attr("src",data.avata);
   receiver=data.sender;
-  appendImage(data.path, "imgreciver");
+  // appendImage(data.path, "imgreciver");
 });
 socket.on("group-server-img", (data) => {
   console.log(data)
   var username=document.getElementById("username");
+  const x=$("#username").text();
+  if(x==""){
+   $.ajax({ //create an ajax request to display.php
+     type: "GET",
+     url: "http://localhost:3000/message/api/group",  
+     data:{idgroup:data.idGroupChat},           
+     contentType: "application/json",   //expect html to be returned                
+     success: function(response){                    
+         for(let i=0;i<response.length;i++){
+           if(response[i].typeNone=='1'){
+             appendMessage(response[i].text, "text");
+           }else if(response[i].typeFileNone){
+            appendImage(response[i].file, "imgreciver");
+           }
+           else if(response[i].typeChat){
+             appendMessage(response[i].text, "text2");
+           }
+         }
+     }
+ 
+ });
+ }
+ else{
+  appendImage(data.base64, "imgreciver");
+ }
+
   $('#idGroupChat').attr('value', data.idGroupChat)
   username.innerHTML=data.username;
-  // $("#avataContact").attr("src",data.avata);
+  $("#avataContact").attr("src",data.avata);
   emailAccGroup=data.receiver;
   typeChat=data.typeChat,
   group=data.idChat
   nameGroup=data.username
-  appendImage(data.base64, "imgreciver");
+  // appendImage(data.base64, "imgreciver");
 });
 //file
 socket.on("server-chat-file", (data) => {
@@ -265,4 +386,132 @@ function addMessage(data){
   div.innerHTML = content.trim();
   chats.appendChild(div);
 }
+
+
+//call
+
+function calluser(){
+  $('#modalCall').modal('show');
+  var data={
+    sender: sender,
+    receiver: receiver,
+    username:username,
+    peerId,
+  }
+  
+  socket.emit("callTo",data)
+}
+
+peer.on('call',call=>{
+  openStream().then(stream=>{
+  call.answer(stream);
+  playStream('localStream',stream);
+  call.on('stream',remoteStream=>playStream('remoteStream',remoteStream))
+  })
+})
+
+function playStream(idVideoTag,stream){
+  const video=document.getElementById(idVideoTag);
+  video.srcObject=stream;
+  video.play();
+}
+
+function openStream(){
+  const config={audio:true,video:true};
+  return navigator.mediaDevices.getUserMedia(config)
+}
+socket.on("server-call",(data)=>{
+  document.getElementById("contactPeer").value = data.peerId;
+  document.getElementById("emailcontact").value=data.data.sender
+  
+  
+  $('#modalShowCall').modal('show');
+  
+})
+socket.on("server-acceptCall",(data)=>{
+  
+  $('#modalCall').modal('hide');
+  $('#modalVideo').modal('show');
+   openStream().then(stream=>{
+    playStream('localStream',stream)
+    const call=peer.call(data.myPeer,stream)
+    call.on('stream',remoteStream=>playStream('remoteStream',remoteStream))
+   })
+    
+  
+})
+socket.on("server-cancelAccept",(data)=>{
+  console.log(data)
+  $('#modalCall').modal('hide');
+  // $("#modalCall").modal({"backdrop": "static"});
+})
+socket.on("server-cancelVideo",(data)=>{
+  console.log(data)
+  location.reload();
+})
+socket.on("server-cancelCall",(data)=>{
+  $('#modalShowCall').modal('hide');
+})
+function acceptCall(){
+  const contactPeer=  document.getElementById("contactPeer").value
+  const myPeer=document.getElementById("myPeer").value
+  const reciver=document.getElementById("emailcontact").value
+  const data={
+    sender: sender,
+    receiver: reciver,
+    contactPeer,
+    myPeer,
+  }
+  $('#modalShowCall').modal('hide');
+  $('#modalVideo').modal('show');
+  socket.emit("acceptCall",data)
+  openStream().then(stream=>{
+    playStream('localStream',stream)
+    const call=peer.call(data.peerId,stream)
+    call.on('stream',remoteStream=>playStream('remoteStream',remoteStream))
+   })
+
+}
+function cancelAccept(){
+  const contactPeer=  document.getElementById("contactPeer").value
+  const myPeer=document.getElementById("myPeer").value
+  const reciver=document.getElementById("emailcontact").value
+  const data={
+    sender: sender,
+    receiver: reciver,
+    contactPeer,
+    myPeer,
+  }
+  console.log(data)
+  socket.emit("cancelAccept",data)
+}
+function cancelVideo(){
+  const contactPeer=  document.getElementById("contactPeer").value
+  const myPeer=document.getElementById("myPeer").value
+  const reciver=document.getElementById("emailcontact").value
+  const data={
+    sender: sender,
+    receiver: reciver,
+    contactPeer,
+    myPeer,
+  }
+  console.log(data)
+  socket.emit("cancelVideo",data);
+  location.reload();
+}
+function cancelCall(){
+  const contactPeer=  document.getElementById("contactPeer").value
+  const myPeer=document.getElementById("myPeer").value
+  const reciver=document.getElementById("emailcontact").value
+  const data={
+    sender: sender,
+    receiver: reciver,
+    contactPeer,
+    myPeer,
+  }
+  $('#modalCall').modal('hide');
+  socket.emit("cancelCall",data);
+  
+}
+
 

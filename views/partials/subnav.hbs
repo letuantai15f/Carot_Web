@@ -7,11 +7,9 @@
 		<input type="text" value="{{idGroupChat}}" id="idGroupChat" hidden>
 		<input type="text" value="{{dataUserMessage.typeChat}}" id="typeChat" hidden>
 		<input type="text" value="{{dataUserMessage.username}}" id="groupChat" hidden>
-		
+
 		{{#each check}}
 			{{#members}}
-			
-		
 		<input type="text" class="emailGroup" value="{{this}}" hidden />
 			{{/members}}
 		{{/each}}
@@ -22,18 +20,107 @@
 				<img class="user-avatar user3 user4" id="avataContact" src="{{dataUserMessage.avata}}" >
 				<input type="text" id="emailcontact" value="{{emailContact}}" hidden/>
 				<span class="name-user2"><b id="username">{{dataUserMessage.username}}</b></span>
+				{{!-- call div --}}
+				<a href="#"><i class="ti-video-camera" onclick="calluser()"></i></a>
+			<div id="modalCall" class="modal hide fade" role="dialog">
+    			<div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+				<h4 class="modal-title">Đang gọi...</h4>
+            </div>
+            <div class="modal-body" style="align-items: center; text-align: center;">
+				<ul style="list-style-type: none;">
+					<li style="margin: 10px;"><img class="" width="100" id="avataContact" src="{{dataUserMessage.avata}}" ></li>
+		
+					 <li><span class="" style="font-size: 30px;"><b id="username">{{dataUserMessage.username}}</b></span></li>
+				</ul>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal" onclick="cancelCall()">Hủy</button>
+            </div>
+        </div>
+    			</div>
+			</div>
+			{{!-- modal show call --}}
+			<div id="modalShowCall" class="modal hide  fade" role="dialog">
+    			<div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+				<h4 class="modal-title">Đang gọi...</h4>
+            </div>
+            <div class="modal-body" style="align-items: center; text-align: center;">
+				<ul style="list-style-type: none;">
+					<li><input type="text" value="" id="myPeer" hidden/></li>
+					<li><input type="text" value="" id="contactPeer" hidden /></li>
+					<li style="margin: 10px;"><img class="" width="100" id="avataContact" src="{{dataUserMessage.avata}}" ></li>
+					 <li><span class="" style="font-size: 30px;"><b id="usernameCall"></b></span></li>
+				</ul>
+            </div>
+            <div class="modal-footer">
+				<button type="button" onclick="acceptCall()" class="btn btn-success" data-dismiss="modal">Chấp nhận</button>
+                <button type="button" class="btn btn-default" data-bs-dismiss="modal" onclick="cancelAccept()">Hủy</button>
+            </div>
+        </div>
+    			</div>
+			</div>
+			{{!-- modal video --}}
+			<div id="modalVideo" class="modal hide  fade" role="dialog">
+    			<div class="modal-dialog modal-lg" >
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+				<h4 class="modal-title">Đang gọi...</h4>
+            </div>
+            <div class="modal-body p-0" style="align-items: center; text-align: center;">
+				<ul style="list-style-type: none; align-items: center; text-align:center ;">
+					<li><input type="text" value="" id="myPeer" hidden/></li>
+					<li><input type="text" value="" id="contactPeer" hidden /></li>
+					
+					<li ><video id="remoteStream" width="500" height="300" controls></video></li>
+					<li ><video id="localStream" width="200" controls></video></li>
+				</ul>
+            </div>
+            <div class="modal-footer">
+				
+                <button type="button" class="btn btn-default" data-bs-dismiss="modal" onclick="cancelVideo()">Hủy</button>
+            </div>
+        </div>
+    			</div>
+			</div>
+
 				{{!-- <span class="online-status">Online 12 phút trước</span> --}}
+				{{!-- btn call --}}
+				
 			
 			</div>
 			<div class="row r2">
 				<div class="mess">
 					{{#each messSent}}
-						{{#each this}}
-						{{#if text}}
-						<p>{{text}}</p>
+						
+						{{#if typeChat}}
+							<div class="text2"><span>{{text}}</span></div>
 						{{/if}}
-						{{/each}}
+						
+							{{#if typeNone}}
+							<div class="text"><span>{{text}}</span></div>
+							{{/if}}
+							
+							{{#if namefile}}
+								<a  href="{{file}}">{{namefile}}</a>
+							{{else}}
+							{{#if typeFile}}
+								<img  src="{{file}}" width="150px" height="150px">
+							{{/if}}
+							{{/if}}
+							
+							{{#if typeFileNone}}
+								<img  src="{{file}}" width="150px" height="150px">
+							{{/if}}
 					{{/each}}
+					
+
 				</div>
 
 			</div>

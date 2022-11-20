@@ -43,10 +43,6 @@ messageRouter.get("/", cookieJwtAuth, async (req, res) => {
   const test = {avata: '/img/avata_user.png'}
   const groupMessage=await getDataMessenger(user)
 
- 
-
- console.log(groupMessage)
-
   res.render("message", {
     dataimg: messconact,
     datacontact: mycontactfalse,
@@ -83,6 +79,7 @@ messageRouter.post("/addMessage", cookieJwtAuth, upload.fields([]), async (req, 
     members: [email, user.account.email]
   }
   const check = await ChatGroup.findOne({ $and: [{ members: { $all: [user.account.email, email] } }, { typeChat: '1' }] });
+  
   if (check == null) {
     const groupAdd2Person = new ChatGroup(groupDemo);
     const group2p = await groupAdd2Person.save();
@@ -111,11 +108,42 @@ messageRouter.post("/addMessage", cookieJwtAuth, upload.fields([]), async (req, 
   };
   const messageDB = check.message;
   const messSent = []
+  
   for (let i = 0; i < messageDB.length; i++) {
-    const mess = await message.findOne({ _id: messageDB[i] });
-    messSent.push(mess)
-  }
 
+    const mess = await message.findOne({ _id: messageDB[i] }); 
+    
+    if(mess.sender.email==user.account.email){
+      if(!!mess.file.path){
+        messSent.push({
+          namefile:mess.file.fileName,
+          type:mess.file.contenType,
+          file:mess.file.path,
+          typeFile:"1"
+        })
+        
+      }if(mess.text){
+      messSent.push({
+        text:mess.text,
+        typeChat:"1"
+      })}
+    }else{
+      if(!!mess.file.path){
+        messSent.push({
+          namefile:mess.file.fileName,
+          type:mess.file.contenType,
+          file:mess.file.path,
+          typeFileNone:"1"
+        })
+      }if(mess.text){
+      messSent.push({
+        text:mess.text,
+        typeNone:"1"
+      })
+    }
+    }
+    
+  }
   res.render("message", {
     dataUserMessage: userChat, 
     dataimg: messconact, 
@@ -123,10 +151,55 @@ messageRouter.post("/addMessage", cookieJwtAuth, upload.fields([]), async (req, 
     datacontact2: mycontacttrue, 
     emailContact: email, 
     idGroupChat,
-     messSent, 
+     messSent,
     message:groupMessage ,
     groupChat: group2,
   })
+})
+messageRouter.get("/api/message",cookieJwtAuth,async (req, res)=>{
+  
+ 
+  const  email  = req.query.email;
+  const user = await getUserLogin(req, res)
+  const check = await ChatGroup.findOne({ $and: [{ members: { $all: [user.account.email, email] } }, { typeChat: '1' }] });
+  const messageDB = check.message;
+  const messSent = []
+  
+  for (let i = 0; i < messageDB.length; i++) {
+
+    const mess = await message.findOne({ _id: messageDB[i] });  
+    if(mess.sender.email==user.account.email){
+      if(!!mess.file.path){
+        messSent.push({
+          namefile:mess.file.fileName,
+          type:mess.file.contenType,
+          file:mess.file.path,
+          typeFile:"1"
+        })
+        
+      }if(mess.text){
+      messSent.push({
+        text:mess.text,
+        typeChat:"1"
+      })}
+    }else{
+      if(!!mess.file.path){
+        messSent.push({
+          namefile:mess.file.fileName,
+          type:mess.file.contenType,
+          file:mess.file.path,
+          typeFileNone:"1"
+        })
+      }if(mess.text){
+      messSent.push({
+        text:mess.text,
+        typeNone:"1"
+      })
+    }
+    }
+    
+  }
+  return res.status(200).json(messSent)
 })
 // chatGroup
 messageRouter.post("/group", cookieJwtAuth, upload.fields([]), async (req, res) => {
@@ -163,12 +236,39 @@ messageRouter.post("/group", cookieJwtAuth, upload.fields([]), async (req, res) 
     avata:check.avatar,
     typeChat: check.typeChat
   }
-  console.log(groupChat2)
   const messageDB = check.message;
   const messSent = []
   for (let i = 0; i < messageDB.length; i++) {
     const mess = await message.findOne({ _id: messageDB[i] });
-    messSent.push(mess)
+    if(mess.sender.email==user.account.email){
+      if(!!mess.file.path){
+        messSent.push({
+          namefile:mess.file.fileName,
+          type:mess.file.contenType,
+          file:mess.file.path,
+          typeFile:"1"
+        })
+        
+      }if(mess.text){
+      messSent.push({
+        text:mess.text,
+        typeChat:"1"
+      })}
+    }else{
+      if(!!mess.file.path){
+        messSent.push({
+          namefile:mess.file.fileName,
+          type:mess.file.contenType,
+          file:mess.file.path,
+          typeFileNone:"1"
+        })
+      }if(mess.text){
+      messSent.push({
+        text:mess.text,
+        typeNone:"1"
+      })
+    }
+    }
   }
   res.render("message", {
     dataUserMessage: groupChat2, 
@@ -183,6 +283,57 @@ messageRouter.post("/group", cookieJwtAuth, upload.fields([]), async (req, res) 
 
   })
 })
+messageRouter.get("/api/group",cookieJwtAuth,async (req, res)=>{
+  
+ 
+  const  idgroup  = req.query.idgroup;
+  const user = await getUserLogin(req, res)
+  const check = await ChatGroup.findOne({ _id: idgroup });
+  const messageDB = check.message;
+  const messSent = []
+  
+  
+    for (let i = 0; i < messageDB.length; i++) {
+
+      const mess = await message.findOne({ _id: messageDB[i] });  
+      if(mess.sender.email==user.account.email){
+        if(!!mess.file.path){
+          messSent.push({
+            namefile:mess.file.fileName,
+          type:mess.file.contenType,
+            file:mess.file.path,
+            typeFile:"1"
+          })
+          
+        }if(mess.text){
+        messSent.push({
+          namefile:mess.file.fileName,
+          type:mess.file.contenType,
+          text:mess.text,
+          typeChat:"1"
+        })}
+      }else{
+        if(!!mess.file.path){
+          messSent.push({
+            namefile:mess.file.fileName,
+          type:mess.file.contenType,
+            file:mess.file.path,
+            typeFileNone:"1"
+          })
+        }if(mess.text){
+        messSent.push({
+          text:mess.text,
+          typeNone:"1"
+        })
+      }
+      }
+      
+    
+  }
+  
+  return res.status(200).json(messSent)
+})
+
 
 
 getUserLogin = async (req, res) => {
