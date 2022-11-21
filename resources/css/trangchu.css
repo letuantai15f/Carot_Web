@@ -520,24 +520,29 @@ body {
 
 .imgsender,
 .imgreciver{
+    background-color: transparent;
     margin: 5px;
+    padding: 4px 8px 4px 8px;
     border-radius: 8px;
     font-size: 16px;
 }
 .imgreciver {
+    float: left;
     top: 24px;
     left: 80px;
+    width: 50%;
 }
 
 .imgsender {
-    text-align:right;
+    background-color: transparent;
     right: 10px;
     color: #fff;
+    float: right;
+    width: 50%;
 }
 .text,
 .text2 {
     /* position: relative; */
-    width: auto;
     background-color: #f4f4f4;
     margin: 5px;
     padding: 4px 8px 4px 8px;
@@ -562,7 +567,8 @@ body {
 
 .text span, 
 .text2 span {
-    width: auto;
+    max-width: 100%;
+    white-space: normal;
 }
 
 .list-item3 {
@@ -634,6 +640,10 @@ body {
     display: flex;
     justify-content: center;
     padding-top: 40px;
+}
+
+.btn-out {
+    position: absolute;
 }
 
 .name-info {

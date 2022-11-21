@@ -7,12 +7,10 @@
 		<input type="text" value="{{idGroupChat}}" id="idGroupChat" hidden>
 		<input type="text" value="{{dataUserMessage.typeChat}}" id="typeChat" hidden>
 		<input type="text" value="{{dataUserMessage.username}}" id="groupChat" hidden>
-		
+
 		{{#each check}}
 			{{#members}}
-			
-		
-			<input type="text" class="emailGroup" value="{{this}}" hidden />
+				<input type="text" class="emailGroup" value="{{this}}" hidden />
 			{{/members}}
 		{{/each}}
 		
@@ -22,18 +20,117 @@
 				<img class="user-avatar user3 user4" id="avataContact" src="{{dataUserMessage.avata}}" >
 				<input type="text" id="emailcontact" value="{{emailContact}}" hidden/>
 				<span class="name-user2"><b id="username">{{dataUserMessage.username}}</b></span>
+				{{!-- call div --}}
+				<a href="#"><i class="ti-video-camera" onclick="calluser()"></i></a>
+			<div id="modalCall" class="modal hide fade" role="dialog">
+    			<div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+				<h4 class="modal-title">Đang gọi...</h4>
+            </div>
+            <div class="modal-body" style="align-items: center; text-align: center;">
+				<ul style="list-style-type: none;">
+					<li style="margin: 10px;"><img class="" width="100" id="avataContact" src="{{dataUserMessage.avata}}" ></li>
+		
+					<li><span class="" style="font-size: 30px;"><b id="username">{{dataUserMessage.username}}</b></span></li>
+				</ul>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal" onclick="cancelCall()">Hủy</button>
+            </div>
+        </div>
+    			</div>
+			</div>
+			{{!-- modal show call --}}
+			<div id="modalShowCall" class="modal hide  fade" role="dialog">
+    			<div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+				<h4 class="modal-title">Đang gọi...</h4>
+            </div>
+            <div class="modal-body" style="align-items: center; text-align: center;">
+				<ul style="list-style-type: none;">
+					<li><input type="text" value="" id="myPeer" hidden/></li>
+					<li><input type="text" value="" id="contactPeer" hidden /></li>
+					<li style="margin: 10px;"><img class="" width="100" id="avataContact" src="{{dataUserMessage.avata}}" ></li>
+					<li><span class="" style="font-size: 30px;"><b id="usernameCall"></b></span></li>
+				</ul>
+            </div>
+            <div class="modal-footer">
+				<button type="button" onclick="acceptCall()" class="btn btn-success" data-dismiss="modal">Chấp nhận</button>
+                <button type="button" class="btn btn-default" data-bs-dismiss="modal" onclick="cancelAccept()">Hủy</button>
+            </div>
+        </div>
+    			</div>
+			</div>
+			{{!-- modal video --}}
+			<div id="modalVideo" class="modal hide  fade" role="dialog">
+    			<div class="modal-dialog modal-lg" >
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+				<h4 class="modal-title">Đang gọi...</h4>
+            </div>
+            <div class="modal-body p-0" style="align-items: center; text-align: center;">
+				<ul style="list-style-type: none; align-items: center; text-align:center ;">
+					<li><input type="text" value="" id="myPeer" hidden/></li>
+					<li><input type="text" value="" id="contactPeer" hidden /></li>
+					
+					<li ><video id="remoteStream" width="500" height="300" controls></video></li>
+					<li ><video id="localStream" width="200" controls></video></li>
+				</ul>
+            </div>
+            <div class="modal-footer">
+				
+                <button type="button" class="btn btn-default" data-bs-dismiss="modal" onclick="cancelVideo()">Hủy</button>
+            </div>
+        </div>
+    			</div>
+			</div>
+
 				{{!-- <span class="online-status">Online 12 phút trước</span> --}}
+				{{!-- btn call --}}
+				
 			
 			</div>
 			<div class="row r2">
 				<div class="mess">
 					{{#each messSent}}
-						{{#each this}}
-						{{#if text}}
-						<div class="text">{{text}}</div>
+						{{#if typeChat}}
+							<div class="text2"><span>{{text}}</span></div>
+						
 						{{/if}}
-						{{/each}}
+						
+						{{#if typeNone}}
+							<div class="text"><span>{{text}}</span></div>
+						{{/if}}
+							
+						{{#if namefile}}
+							<div class="text2">
+								<i class="ti-file"></i>
+								<a  href="{{file}}">{{namefile}}</a>
+							</div>
+							
+							{{else}}
+							{{#if typeFile}}
+								<div style="background-color: transparent;" class="text2">
+									<img style="float: right;"  src="{{file}}" width="100px" height="100px">
+								</div>
+								
+							{{/if}}
+						{{/if}}
+							
+						{{#if typeFileNone}}
+							<div style="background-color: transparent;" class="text">
+								<img  src="{{file}}" width="100px" height="100px">
+							</div>
+							
+						{{/if}}
 					{{/each}}
+					
+
 				</div>
 
 			</div>
@@ -54,7 +151,7 @@
 					<li></li>
 					<input class="text-send" name="tinnhan" type="text" placeholder="Vui lòng điền tin nhăn..."
 						style="background-color:#E4E4E4 ;" id="datamess">
-					<i onclick="send()" class="ti-angle-right" id="btnsend"></i>
+					<i onkeypress="" class="ti-angle-right" id="btnsend"></i>
 
 
 				</ul>
@@ -70,11 +167,25 @@
 					{{#dataUserMessage}}
 						{{#if typeChat}}
 							<img class="user-avatar user5" src="{{avata}}">
-							<h3 class="name-info">{{username}}</h3>
+							<h4 class="name-info">{{username}}</h3>
 						
-							<ul class="txt2" style="list-style-type: none;">
-								<li style="font-size: 20px;margin-bottom: 20px;"><h4>Thông tin:</h4></li>
-								<li style="align-items: center; text-align: center;"><button class="btn" style="background-color: red ; color: white;" type="submit">Rời Nhóm</button></li>
+							<ul class="txt2" style="list-style-type: none; top: 200px; width: 100%;">
+								<li style="font-size: 20px;margin-bottom: 20px;"><h6>Thành viên nhóm : ( {{sotv}} thành viên )</h6></li>
+								<li>
+									{{#each membersinfo}}
+									<img style="margin: 4px;" title="{{this.usname}}" class="user-avatar user3" src="{{this.avata}}" alt="">
+									{{/each}}
+								</li>
+								<li style="font-size: 20px;margin-bottom: 20px; margin-top: 20px;"><h6>Bộ sưu tập</h6></li>
+								<li>
+									<div>
+										{{#each membersinfo}}
+										<img style="width:30%; padding: 8px;" src="{{this.avata}}" alt="">
+										{{/each}}
+									</div>
+								</li>
+								<li style="align-items: center; text-align: center; margin-bottom: 12px;"><button class="btn" style="background-color: rgb(153, 255, 0) ; color: white; width: 40%;" type="submit">Quản lý nhóm</button></li>
+								<li style="align-items: center; text-align: center;"><button class="btn" style="background-color: red ; color: white;width: 40%;" type="submit">Rời Nhóm</button></li>
 							</ul>
 							{{else}}
 							{{#if date}}

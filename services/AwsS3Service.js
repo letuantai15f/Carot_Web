@@ -45,14 +45,9 @@ exports.uploadFile2 =  async(file,data) =>{
   let location = '';
   let key = '';
  
-    const { Location, Key } = await s3.upload(data).promise();
-    
-    location = Location;
+    const {  Key } = await s3.upload(data).promise();
+    location ="ap-southeast-1" ;
     key = Key;
-  
-console.log("key", key);
-  
-
   return key;
 
 }
@@ -65,15 +60,15 @@ function getFileStream(fileKey) {
         Key: fileKey,
         Bucket: bucketName
     }
-
     return s3.getObject(downloadParams).createReadStream()
 }
 exports.getUrl = async(data)=>{
-   const url= s3.getSignedUrl('getObject',{
+   const url= s3.getSignedUrlPromise('getObject',{
         Bucket: bucketName,
         Key: data,
-        Expires: 60 * 1
+        Expires: 30 * 60
     })
+    
     return url
 }
 exports.getFileStream = getFileStream

@@ -10,12 +10,13 @@ class SocketServices {
     socket.on("disconnect", () => {
       console.log(`User disconnect id is ${socket.id}`);
     });
-    socket.on("user-connected", function (username) {
+    socket.on("user-connected", function (data) {
       users.push({
         userid: socket.id,
-        email: username,
+        email: data.email,
+        peerId:data.id
       });
-      _io.emit("user-connected", username);
+      _io.emit("user-connected", data);
     });
     // event on here
     socket.on("group-chat-message", async (data) => {
@@ -24,7 +25,6 @@ class SocketServices {
         sender: {
           email: data.sender
         },
-        
         typeChat: data.typeChat,
         idChat: data.idGroupChat,
         avata: data.avata,
@@ -194,6 +194,7 @@ class SocketServices {
               avata: data.avata,
               username: data.username,
               file: {
+                fileName:data.namefile,
                 contenType: type,
                 path: url
               }
@@ -251,11 +252,55 @@ class SocketServices {
 
       }
     })
-        
-    socket.on("createRoom",async(data)=>{
-      console.log(data)
-    })
 
+    //call
+    socket.on("callTo",async(data)=>{
+      for (let i = 0; i < users.length; i++) {
+        if (users[i].email == data.receiver) {
+          const data2={
+            data,
+            peerId:data.peerId
+          }
+          var socketId = users[i].userid;
+          socket.to(socketId).emit("server-call", data2);
+        }
+      }
+    })
+    socket.on("acceptCall",async(data)=>{
+      for (let i = 0; i < users.length; i++) {
+        if (users[i].email == data.receiver) {
+          var socketId = users[i].userid;
+          socket.to(socketId).emit("server-acceptCall", data);
+        }
+      }
+    })
+    socket.on("cancelAccept",async(data)=>{
+      for (let i = 0; i < users.length; i++) {
+        if (users[i].email == data.receiver) {
+          var socketId = users[i].userid;
+          socket.to(socketId).emit("server-cancelAccept",data)
+        }
+      }
+    })
+    socket.on("cancelVideo",async(data)=>{
+      console.log(data)
+      for (let i = 0; i < users.length; i++) {
+        if (users[i].email == data.receiver) {
+          var socketId = users[i].userid;
+          socket.to(socketId).emit("server-cancelVideo",data)
+        }
+      }
+    })
+    socket.on("cancelCall",async(data)=>{
+      console.log(data)
+      for (let i = 0; i < users.length; i++) {
+        if (users[i].email == data.receiver) {
+          var socketId = users[i].userid;
+          socket.to(socketId).emit("server-cancelCall",data)
+        }
+      }
+    })
+    
   }
 }
 
