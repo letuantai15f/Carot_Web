@@ -99,20 +99,26 @@
 				<div class="mess">
 					{{#each messSent}}
 						{{#if typeChat}}
-							<div class="text2"><span>{{text}}</span></div>
-						
+							<div class="text2"><span>{{text}}</span>
+							{{!-- <span>{{sender}}</span> --}}
+							</div>
+							
 						{{/if}}
 						
 						{{#if typeNone}}
-							<div class="text"><span>{{text}}</span></div>
+							<div class="text">
+							<span>{{text}}</span>
+							<span>{{sender}}</span>
+							</div>
+							
 						{{/if}}
 							
 						{{#if namefile}}
 							<div class="text2">
 								<i class="ti-file"></i>
 								<a  href="{{file}}">{{namefile}}</a>
+								<span>{{sender}}</span>
 							</div>
-							
 							{{else}}
 							{{#if typeFile}}
 								<div style="background-color: transparent;" class="text2">

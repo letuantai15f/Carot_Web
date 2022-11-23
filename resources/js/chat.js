@@ -173,11 +173,20 @@ btnsend.onclick = function sendmess() {
     }
   } 
 };
+// append
 function appendMessage(data, status) {
   var chats = document.querySelector(".mess");
   let div = document.createElement("div");
   div.classList.add(status);
   let content = `<span>` + data + "</span>";
+  div.innerHTML = content.trim();
+  chats.appendChild(div);
+}
+function appendMessageGroup(data, sender ,status) {
+  var chats = document.querySelector(".mess");
+  let div = document.createElement("div");
+  div.classList.add(status);
+  let content = `<span>` + data + "</span>"+sender;
   div.innerHTML = content.trim();
   chats.appendChild(div);
 }
@@ -189,6 +198,14 @@ function appendImage(data,status){
   div.innerHTML = content.trim();
   chats.appendChild(div);
 }
+function appendImageGroup(data,sender,status){
+  var chats = document.querySelector(".mess");
+  let div = document.createElement("div");
+  div.classList.add(status);
+  let content = "<img width='100px' height='100px'  src='" + data + "'></img> <span>"+sender+"</span>";
+  div.innerHTML = content.trim();
+  chats.appendChild(div);
+}
 function appendFile(data,name,status){
   var chats = document.querySelector(".mess");
   let div = document.createElement("div");
@@ -197,25 +214,33 @@ function appendFile(data,name,status){
   div.innerHTML = content.trim();
   chats.appendChild(div);
 }
+function appendFileGroup(data,name,sender,status){
+  var chats = document.querySelector(".mess");
+  let div = document.createElement("div");
+  div.classList.add(status);
+  let content = "<a width='100px' height='100px'  href='" + data + "'>"+name+"</a>"+sender;
+  div.innerHTML = content.trim();
+  chats.appendChild(div);
+}
 $('.user-message').click(function() {
   console.log($('this->.idroom').attr("value"));
 
 });
-
+//
 function test(){
   let txt = document.getElementById("chatt").getAttribute("value")
   console.log(txt)
 }
 
 socket.on("server-chat",async (data) => {
- 
     const x=$("#username").text();
-    if(x==""){
-     $.ajax({ //create an ajax request to display.php
+    if(x=="" || x!=data.username){
+      $('.mess').empty();
+     $.ajax({ 
        type: "GET",
        url: "http://localhost:3000/message/api/message",  
        data:{email:data.sender},           
-       contentType: "application/json",   //expect html to be returned                
+       contentType: "application/json",               
        success: function(response){    
         console.log(response)                
            for(let i=0;i<response.length;i++){
@@ -236,12 +261,9 @@ socket.on("server-chat",async (data) => {
    });
    }
    else{
-    appendMessage(data.message, "text");
+       appendMessage(data.message, "text"); 
    }
- 
-    
-  
- 
+
   var username=document.getElementById("username");
   $('#idGroupChat').attr('value', data.idGroupChat)
   username.innerHTML=data.username;
@@ -250,21 +272,23 @@ socket.on("server-chat",async (data) => {
 });
 socket.on("group-server-chat", (data) => {
   const x=$("#username").text();
-    if(x==""){
+  console.log(data)
+    if(x=="" || x!=data.username){
      $.ajax({ //create an ajax request to display.php
        type: "GET",
        url: "http://localhost:3000/message/api/group",  
        data:{idgroup:data.idGroupChat},           
        contentType: "application/json",   //expect html to be returned                
-       success: function(response){                    
+       success: function(response){ 
+        console.log(response)                   
            for(let i=0;i<response.length;i++){
              if(response[i].typeNone=='1'){
-               appendMessage(response[i].text, "text");
+               appendMessageGroup(response[i].text, response[i].sender,"text");
              }else if(response[i].typeFileNone){
-              appendImage(response[i].file, "imgreciver");
+              appendImage(response[i].file, response[i].sender,"imgreciver");
              }
              else if(response[i].typeChat){
-               appendMessage(response[i].text, "text2");
+               appendMessageGroup(response[i].text,"","text2");
              }
            }
        }
@@ -272,7 +296,17 @@ socket.on("group-server-chat", (data) => {
    });
    }
    else{
-    appendMessage(data.message, "text");
+    $.ajax({ //create an ajax request to display.php
+      type: "GET",
+      url: "http://localhost:3000/message/api/user",  
+      data:{email:data.sender},           
+      contentType: "application/json",   //expect html to be returned                
+      success: function(response){ 
+      appendMessageGroup(data.message, response.avata,"text"); 
+      }
+  
+  });
+     
    }
   var username=document.getElementById("username");
   $('#idGroupChat').attr('value', data.idGroupChat)
@@ -320,7 +354,6 @@ socket.on("server-chat-img", (data) => {
   // appendImage(data.path, "imgreciver");
 });
 socket.on("group-server-img", (data) => {
-  console.log(data)
   var username=document.getElementById("username");
   const x=$("#username").text();
   if(x==""){
@@ -331,21 +364,31 @@ socket.on("group-server-img", (data) => {
      contentType: "application/json",   //expect html to be returned                
      success: function(response){                    
          for(let i=0;i<response.length;i++){
-           if(response[i].typeNone=='1'){
-             appendMessage(response[i].text, "text");
-           }else if(response[i].typeFileNone){
-            appendImage(response[i].file, "imgreciver");
-           }
-           else if(response[i].typeChat){
-             appendMessage(response[i].text, "text2");
-           }
+          if(response[i].typeNone=='1'){
+            appendMessageGroup(response[i].text, response[i].sender,"text");
+          }else if(response[i].typeFileNone){
+           appendImageGroup(response[i].file,response[i].sender ,"imgreciver");
+          }
+          else if(response[i].typeChat){
+            appendMessageGroup(response[i].text,"","text2");
+          }
          }
      }
  
  });
  }
  else{
-  appendImage(data.base64, "imgreciver");
+  $.ajax({ //create an ajax request to display.php
+    type: "GET",
+    url: "http://localhost:3000/message/api/user",  
+    data:{email:data.sender},           
+    contentType: "application/json",   //expect html to be returned                
+    success: function(response){ 
+    appendImageGroup(data.base64, response.username,"text"); 
+    }
+
+});
+
  }
 
   $('#idGroupChat').attr('value', data.idGroupChat)
@@ -360,22 +403,86 @@ socket.on("group-server-img", (data) => {
 //file
 socket.on("server-chat-file", (data) => {
   var username=document.getElementById("username");
+  const x=$("#username").text();
+  if(x==""){
+   $.ajax({ //create an ajax request to display.php
+     type: "GET",
+     url: "http://localhost:3000/message/api/message",  
+     data:{email:data.sender},           
+     contentType: "application/json",   //expect html to be returned                
+     success: function(response){    
+      console.log(response)                
+         for(let i=0;i<response.length;i++){
+           if(response[i].typeNone=='1'){
+             appendMessage(response[i].text, "text");
+           }else if(response[i].typeFileNone=='1'){
+            appendImage(response[i].file, "imgreciver");
+           }
+           else if(response[i].typeChat){
+             appendMessage(response[i].text, "text2");
+           }
+         }
+     }
+ 
+ });
+ }
+ else{
+  appendFile(data.path, data.namefile,"imgreciver");
+ }
+
+
   username.innerHTML=data.username;
   $("#avataContact").attr("src",data.avata);
   receiver=data.sender;
-  appendFile(data.path, data.namefile,"imgreciver");
+  // appendFile(data.path, data.namefile,"imgreciver");
 });
 socket.on("group-server-file", (data) => {
   console.log(data)
   var username=document.getElementById("username");
+  if(x==""){
+    $.ajax({ //create an ajax request to display.php
+      type: "GET",
+      url: "http://localhost:3000/message/api/group",  
+      data:{idgroup:data.idGroupChat},           
+      contentType: "application/json",   //expect html to be returned                
+      success: function(response){                    
+          for(let i=0;i<response.length;i++){
+           if(response[i].typeNone=='1'){
+             appendMessageGroup(response[i].text, response[i].sender,"text");
+           }else if(response[i].typeFileNone){
+            appendImageGroup(response[i].file,response[i].sender ,"imgreciver");
+           }
+           else if(response[i].typeChat){
+             appendMessageGroup(response[i].text,"","text2");
+           }
+          }
+      }
+  
+  });
+  }
+  else{
+   $.ajax({ //create an ajax request to display.php
+     type: "GET",
+     url: "http://localhost:3000/message/api/user",  
+     data:{email:data.sender},           
+     contentType: "application/json",   //expect html to be returned                
+     success: function(response){ 
+      appendFileGroup(data.base64, data.namefile,response.sender,"imgreciver");
+     }
+ 
+ });
+ 
+  }
+
+  
   $('#idGroupChat').attr('value', data.idGroupChat)
   username.innerHTML=data.username;
-  // $("#avataContact").attr("src",data.avata);
+  $("#avataContact").attr("src",data.avata);
   emailAccGroup=data.receiver;
   typeChat=data.typeChat,
   group=data.idChat
   nameGroup=data.username
-  appendFile(data.base64, data.namefile,"imgreciver");
+  // appendFile(data.base64, data.namefile,"imgreciver");
 });
 function addMessage(data){
   console.log(data)
