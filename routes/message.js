@@ -192,9 +192,9 @@ messageRouter.post("/addMessage", cookieJwtAuth, upload.fields([]), async (req, 
           typeChat:"1"
         })
       }
-    } else{
+    } else{var usernameSender=await User.findOne({"account.email":mess.sender.email})
       if(!!mess.file.path){
-        var usernameSender=await User.findOne({"account.email":mess.sender.email})
+        
         messSent.push({
           sender:usernameSender.avata,
           namefile:mess.file.fileName,
