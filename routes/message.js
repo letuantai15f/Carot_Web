@@ -179,6 +179,7 @@ messageRouter.post("/addMessage", cookieJwtAuth, upload.fields([]), async (req, 
     if(mess.sender.email == user.account.email){
       if(!!mess.file.path){
         messSent.push({
+          sender:user.avata,
           namefile:mess.file.fileName,
           type:mess.file.contenType,
           file:mess.file.path,
@@ -186,13 +187,16 @@ messageRouter.post("/addMessage", cookieJwtAuth, upload.fields([]), async (req, 
         })
       }if(mess.text){
         messSent.push({
+          sender:user.avata,
           text:mess.text,
           typeChat:"1"
         })
       }
     } else{
       if(!!mess.file.path){
+        var usernameSender=await User.findOne({"account.email":mess.sender.email})
         messSent.push({
+          sender:usernameSender.avata,
           namefile:mess.file.fileName,
           type:mess.file.contenType,
           file:mess.file.path,
@@ -200,6 +204,7 @@ messageRouter.post("/addMessage", cookieJwtAuth, upload.fields([]), async (req, 
         })
       }if(mess.text){
         messSent.push({
+          sender:usernameSender.avata,
           text:mess.text,
           typeNone:"1"
         })
