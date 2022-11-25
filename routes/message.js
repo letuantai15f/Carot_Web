@@ -238,6 +238,8 @@ messageRouter.get("/api/message",cookieJwtAuth,async (req, res)=>{
     if(mess.sender.email==user.account.email){
       if(!!mess.file.path){
         messSent.push({
+          
+          sender:user.avata,
           namefile:mess.file.fileName,
           type:mess.file.contenType,
           file:mess.file.path,
@@ -246,12 +248,18 @@ messageRouter.get("/api/message",cookieJwtAuth,async (req, res)=>{
         
       }if(mess.text){
       messSent.push({
+        
+        sender:user.avata,
         text:mess.text,
         typeChat:"1"
       })}
     }else{
+      var usernameSender=await User.findOne({"account.email":mess.sender.email})
       if(!!mess.file.path){
         messSent.push({
+          date:usernameSender.date,
+          gender:usernameSender.gender,
+          sender:usernameSender.avata,
           namefile:mess.file.fileName,
           type:mess.file.contenType,
           file:mess.file.path,
@@ -259,6 +267,9 @@ messageRouter.get("/api/message",cookieJwtAuth,async (req, res)=>{
         })
       }if(mess.text){
       messSent.push({
+        date:usernameSender.date,
+        gender:usernameSender.gender,
+        sender:usernameSender.avata,
         text:mess.text,
         typeNone:"1"
       })
@@ -266,6 +277,7 @@ messageRouter.get("/api/message",cookieJwtAuth,async (req, res)=>{
     }
     
   }
+  console.log(messSent)
   return res.status(200).json(messSent)
 })
 // chatGroup
