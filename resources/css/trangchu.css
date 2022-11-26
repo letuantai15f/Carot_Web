@@ -518,6 +518,12 @@ body {
     height: auto;
 }
 
+.avt-text{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+
 .imgsender,
 .imgreciver{
     background-color: #f4f4f4;
@@ -555,6 +561,7 @@ body {
     top: 24px;
     left: 80px;
     width: 50%;
+    display: inline;
 }
 
 .text2 {
@@ -563,6 +570,10 @@ body {
     color: #fff;
     float: right;
     width: 50%;
+}
+
+.text2 img {
+    display: none;
 }
 
 .text span, 
