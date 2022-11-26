@@ -222,6 +222,35 @@ function appendFileGroup(data,name,sender,status){
   div.innerHTML = content.trim();
   chats.appendChild(div);
 }
+function appendInfor(data,username,date,gender,mail){
+  var chats = document.querySelector(".information");
+  let div = document.createElement("div");
+  // div.classList.add(status);
+  let content = "<img class='user-avatar user5' src='"+data+"'>"
+  +"<h3 class='name-info'>"+username+"</h3>"
+  +"<ul class='txt2' style='list-style-type: none;'>"
+  +" <li style='font-size: 20px;margin-bottom: 20px;'><h4>Thông tin:</h4></li>"
+  +"<li style='font-size: 20px;margin-bottom: 20px;'><i class='ti-gift' style='font-size: 25px; margin-right: 20px;color: blue;'></i>"+date+"</li>"
+  +"<li style='font-size: 20px;margin-bottom: 20px;' ><i class='fa-solid fa-venus-mars' style='font-size: 25px; margin-right: 20px;color: red;'></i>"+gender+"</li>"
+  +"<li style='font-size: 20px;margin-bottom: 20px;'><i class='fa-solid fa-envelope' style='font-size: 25px; margin-right: 20px;color: rgb(133, 133, 133);'></i>"+mail+"</+li>"
+  +"</ul>"
+  
+  
+  div.innerHTML = content.trim();
+  chats.appendChild(div);
+}
+function appendInforGroup(data,username,member){
+  var chats = document.querySelector(".information");
+  let div = document.createElement("div");
+  // div.classList.add(status);
+  let content = "<img class='user-avatar user5' src='"+data+"'>"
+  +"<h3 class='name-info'>"+username+"</h3>"
+  
+  
+  
+  div.innerHTML = content.trim();
+  chats.appendChild(div);
+}
 $('.user-message').click(function() {
   console.log($('this->.idroom').attr("value"));
 
@@ -233,9 +262,14 @@ function test(){
 }
 
 socket.on("server-chat",async (data) => {
+
     const x=$("#username").text();
+
     if(x=="" || x!=data.username){
       $('.mess').empty();
+      $('.information').empty();
+      var date=""
+      var gender=""
      $.ajax({ 
        type: "GET",
        url: "http://localhost:3000/message/api/message",  
@@ -246,6 +280,9 @@ socket.on("server-chat",async (data) => {
            for(let i=0;i<response.length;i++){
              if(response[i].typeNone=='1'){
                appendMessage(response[i].text, "text");
+               date=response[i].date
+               gender=response[i].gender
+               
              }else if(response[i].typeFileNone=='1' && response[i].type=='png' ){
               appendImage(response[i].file, "imgreciver");
              }
@@ -256,24 +293,41 @@ socket.on("server-chat",async (data) => {
                appendMessage(response[i].text, "text2");
              }
            }
+           appendInfor(avata,data.username,date,gender,data.sender)
        }
    
    });
    }
    else{
-       appendMessage(data.message, "text"); 
+    
+    $.ajax({ //create an ajax request to display.php
+      type: "GET",
+      url: "http://localhost:3000/message/api/user",  
+      data:{email:data.sender},           
+      contentType: "application/json",   //expect html to be returned                
+      success: function(response){ 
+         
+      appendMessage(data.message, "text");
+       
+      }
+  
+  });
    }
 
   var username=document.getElementById("username");
   $('#idGroupChat').attr('value', data.idGroupChat)
   username.innerHTML=data.username;
   $("#avataContact").attr("src",data.avata);
+  var avata=document.getElementById("avataContact").src
+     
   receiver=data.sender;
 });
 socket.on("group-server-chat", (data) => {
   const x=$("#username").text();
   console.log(data)
     if(x=="" || x!=data.username){
+      $('.mess').empty();
+      $('.information').empty();
      $.ajax({ //create an ajax request to display.php
        type: "GET",
        url: "http://localhost:3000/message/api/group",  
@@ -291,6 +345,7 @@ socket.on("group-server-chat", (data) => {
                appendMessageGroup(response[i].text,"","text2");
              }
            }
+           appendInforGroup(data.avata,data.username,"")
        }
    
    });
@@ -322,7 +377,9 @@ $("#avataContact").attr("src",data.avata);
 //img
 socket.on("server-chat-img", (data) => {
   const x=$("#username").text();
-    if(x==""){
+    if(x=="" || x!=data.username){
+      $('.mess').empty();
+      $('.information').empty();
      $.ajax({ //create an ajax request to display.php
        type: "GET",
        url: "http://localhost:3000/message/api/message",  
@@ -356,7 +413,9 @@ socket.on("server-chat-img", (data) => {
 socket.on("group-server-img", (data) => {
   var username=document.getElementById("username");
   const x=$("#username").text();
-  if(x==""){
+  if(x=="" || x!=data.username){
+    $('.mess').empty();
+      $('.information').empty();
    $.ajax({ //create an ajax request to display.php
      type: "GET",
      url: "http://localhost:3000/message/api/group",  
@@ -404,7 +463,9 @@ socket.on("group-server-img", (data) => {
 socket.on("server-chat-file", (data) => {
   var username=document.getElementById("username");
   const x=$("#username").text();
-  if(x==""){
+  if(x=="" ||x!=data.username){
+    $('.mess').empty();
+      $('.information').empty();
    $.ajax({ //create an ajax request to display.php
      type: "GET",
      url: "http://localhost:3000/message/api/message",  
@@ -439,7 +500,9 @@ socket.on("server-chat-file", (data) => {
 socket.on("group-server-file", (data) => {
   console.log(data)
   var username=document.getElementById("username");
-  if(x==""){
+  if(x=="" || x!=data.username){
+    $('.mess').empty();
+      $('.information').empty();
     $.ajax({ //create an ajax request to display.php
       type: "GET",
       url: "http://localhost:3000/message/api/group",  
