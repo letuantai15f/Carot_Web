@@ -83,15 +83,5 @@ contactRouter.post('/deleteFriend', upload.fields([]), async(req, res) => {
     res.redirect("/message")
 });
 
-contactRouter.post('/addMessage/deleteFriend', upload.fields([]), async(req, res) => {
-    const { emailuser, emailcontact } = req.body
-    let ct1 = await Contact.findOne({"emailuser":emailuser, "emailcontact":emailcontact, status:true});
-    let ct2 = await Contact.findOne({"emailuser":emailcontact, "emailcontact":emailuser, status:true});
-    // await Contact.findByIdAndDelete(ct1._id)
-    // await Contact.findByIdAndDelete(ct2._id)
-    console.log("Xóa bạn thành công")
-    // console.log(ct1._id)
-    // console.log(ct2._id)
-    res.redirect("/message")
-});
+
 module.exports = contactRouter;

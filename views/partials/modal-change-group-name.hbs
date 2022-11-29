@@ -1,0 +1,72 @@
+<div class="modal fade" id="exampleModal_groupname" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel_groupname"
+    aria-hidden="true">
+    <div class="modal-dialog " role="document">
+        
+        <div class="modal__inner" style=" height: 400px;">
+            <div class="modal-content ">
+                <div class="modal-header">
+                    <span  class="modal__dialog__header__title-text " title="Đổi tên nhóm" style="  font-size: 16px; font-weight: 500; line-height: 1.5; display: block;">Đổi tên nhóm</span>
+                </div>
+                
+                <div class="modal-body" style="padding: 0;">
+                    <form action="/message/group/groupname" method="POST" enctype="multipart/form-data">
+                        <input type="text" value="{{dataUserMessage.typeChat}}" id="typeChat" hidden>
+                        <input type="text" value="{{idGroupChat}}" id="idGroupChat" name="idGroupChat" hidden>
+                    <div id="profile-info" class="user-profile">
+                        <div id="profilePhoto" class="user-profile__photo ">
+                            <div class="user-profile-preview v3 flexcontainer--col ">
+                                <div class="avatar" style=" display: block; margin-left: auto; margin-right: auto; margin-top: 50px; margin-bottom: 30px; width: 100px; height: 100px; color: #fff; overflow: hidden; box-sizing: border-box;">
+                                    <img style="float: none; width: 100px; height: 100px;" class="user-avatar" src="{{dataUserMessage.avata}}">
+                                </div>
+                                <div class="edit_alias-description" style="
+                                                    background: #fff;
+                                                    color: #081c36;
+                                                    border-radius: 20px;
+                                                    padding-left: 8px;
+                                                    padding-right: 8px;
+                                                    font-weight: 400;
+                                                    line-height: 1.5;
+                                                    margin: 0 auto 12px;">
+                                    <span data-translate-inner="STR_CONFIRM_CHANGE_GROUP_NAME">
+                                        "Bạn có chắn muốn đổi tên nhóm, khi xác nhận tên nhóm mới sẽ hiển thị với tất cả thành viên."
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="padding: 0px 16px 16px;">
+                                                <div class="lbl-component ">
+                                                    <div class="lbl flx flx-al-c "
+                                                        style="margin-bottom: 5px; text-align:justify;">
+                                                        <span class="label" data-translate-inner="STR_DISPLAY_NAME"
+                                                            style="font-size: 14px; font-weight: 400; line-height: 1.5; color: #001a33;">Tên
+                                                            Nhóm</span>
+                                                    </div>
+                                                    <span class="group-input  group-input__lg">
+                                                        <input id="username" name="username" tabindex="1" data-translate-placeholder="STR_TYPE_DISPLAY_NAME"
+                                                            placeholder="Nhập tên nhóm" name autocomplete="off"
+                                                            aria-autocomplete="list" class="input  undefined"
+                                                            value="{{dataUserMessage.username}}">
+                                                    </span>
+                                                    
+                                                </div>
+                                            </div>
+                        <div class="modal-footer-button-action" >
+                            <div class="" style="margin-left: 40%; ">
+                                <div class=" modal__footer__button modal__footer__button--cancel" style="float: left;"title>
+                                    <div style="border-radius: 5px; background-color: #d6dbe1; padding: 10px; font-size: 15px; text-align: center; align-items: center;" type="button" class="close" data-dismiss="modal" aria-label="Close" data-translate-inner="STR_CANCEL">Hủy</div>
+                                </div>
+                                <div class=" modal__footer__button" style="float: left;">
+                                            
+                                    <button type="submit" class="close" style="border-radius: 5px; font-size: 15px; padding: 10px; color: white; background-color: orangered;"  >Cập nhật</button>
+                                            
+                                </div>
+                            </div>
+                        </div>
+                        </form>
+                    </div>
+                </div>
+                
+            </div> 
+         </div>
+    </div>
+</div>
