@@ -1,16 +1,17 @@
 const mongoose = require('mongoose');
 
 const contactSchema = new mongoose.Schema({
-    emailuser: {
-        type: String,
+    status: {
+        type: Boolean,
     },
     emailcontact: {
         type: String,
     },
-    status: {
-        type: Boolean,
+    emailuser: {
+        type: String,
     }
 });
 
 let Contact = mongoose.model('Contact', contactSchema)
+
 module.exports = { Contact }

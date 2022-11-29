@@ -13,8 +13,6 @@ const userSchema = new mongoose.Schema({
     date:{type:String},
     account:{
         email:{type:String},
-    
-        
     }
 });
 let User=mongoose.model('User',userSchema);

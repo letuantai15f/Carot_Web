@@ -1,0 +1,241 @@
+<div class="col-1 cl1">
+    <div class="sub-nav">
+        <div style="margin-top: 20px;" class="avatar">
+            <button type="button" data-toggle="modal" data-target="#exampleModal" class="avatar_button">
+                <img id="avata-login" src="{{dataimg.avata}}" class="user-avatar">
+            </button>
+
+            <a href="">
+            </a>
+        </div>
+        <div class="list-item2">
+            <ul style="list-style-type: none;">
+
+                {{!-- <li><a href=""><i class="ti-home"></i></a></li> --}}
+                <li><a href="/message/"><i class="fa-solid fa-comments" style="color: white;"></i></a></li>
+                <li><button title="Danh sách bạn bè" id="btnModal" class="contactModal"><i class="fa-solid fa-user" style="color: white;"></i></button></li>
+                <li><button title="Danh sách nhóm" id="btnModal2" class="groupModal"><i class="fa-solid fa-users" style="color: white;"></i></button></li>
+            </ul>
+        </div>
+        <div class="subnav-setting">
+            
+                <form action="/message/logout" method="post" enctype="multipart/form-data">
+                    <label for="logout" style="margin-left: 29px;"><i class="fa-solid fa-right-from-bracket" style="color: white;"></i></label>
+               <input type="submit" id="logout" name="logout" hidden></input> 
+                 </form>
+        </div>
+    </div>
+</div>
+
+<div id="myModal" class="modal2">
+
+    <!-- Modal contact -->
+    <div class="modal-content2" role="document">
+        <div class="modal__header">
+            <h6 style="font-weight: bold;" id="tab01" onclick="changeTab1()" class="modal__header__title-text tabs"
+                title="Thông tin tài khoản">Bạn bè</h6>
+            <span>|</span>
+            <h6 id="tab02" onclick="changeTab2()" class="modal__header__title-text tabs" title="Thông tin tài khoản">Lời
+                mời kết bạn</h6>
+            <div class="close2">
+                <span>&times;</span>
+            </div>
+        </div>
+        <div id="tab011">
+            <div class="modal__body">
+                <div class="search-user search-bar search-contact">
+                    <input onkeyup="search()" id="searchContact" type="text" class="form-control"
+                        placeholder="Tìm kiếm bạn bè" style="height:30px; width:100%;">
+                    <i class="ti-search"></i>
+                </div>
+                <div class="message-scroll contact-scroll">
+                    {{#each contacttrue}}
+                    <div class="user-message user-message-contact2">
+                        <img class="user-avatar user3" src="{{this.avata}}" alt="">
+                        {{!-- {{#each this}} --}}
+                        <form action="/message/addMessage" method="post" enctype="multipart/form-data">
+                            <span class="name-user name-user-contact2">{{this.name}}</span>
+                            <input type="text" name="email" value="{{this.emailcontact}}" hidden>
+                            <span class="description-user">Bạn bè</span>
+                            <button class="nhantin" type="submit">Nhắn tin</button>
+                        </form>
+                        <form action="/deleteFriend" method="post" enctype="multipart/form-data">
+                            <input type="text" name="emailcontact" value="{{this.emailcontact}}" hidden>
+                            <input type="text" name="emailuser" value="{{this.emailuser}}" hidden>
+                            <button class="huyketban" type="submit">Hủy kết bạn</button>
+                        </form>
+                        {{!-- {{/each}} --}}
+                    </div>
+                    {{/each}}
+                </div>
+            </div>
+        </div>
+        <div id="tab021" style="display: none;">
+            <div class="modal__body">
+                <div class="search-user search-bar search-contact">
+                    <form action="/addfriend" method="post" enctype="multipart/form-data">
+                        <input style="display: none;" type="text" name="emailcontact" value="{{dataimg.emailuser}}">
+                        <input name="emailuser" id="searchContact2" type="text" class="form-control"
+                            placeholder="Nhập email để kết bạn" style="height:30px; width:100%;">
+                        <button type="submit" class="search-contact"><i class="ti-plus search-2"></i></button>
+                    </form>
+                </div>
+                <div class="message-scroll contact-scroll">
+
+                    {{#each contactfalse}}
+                    <div class="user-message user-message-contact2">
+                        <img class="user-avatar user3" src="{{this.avata}}" alt="">
+                        {{!-- {{#each this}} --}}
+                        <span class="name-user name-user-contact2">{{this.name}}</span>
+                        <span class="description-user">Muốn kết bạn</span>
+
+                        <form action="/accept" method="post" enctype="multipart/form-data">
+                            <input style="display: none;" type="text" name="id" value="{{this._id}}">
+                            <input style="display: none;" type="text" name="emailcontact" value="{{this.emailcontact}}">
+                            <input style="display: none;" type="text" name="status" value="{{this.status}}">
+                            <button type="submit" class="accept"><i class="ti-check"></i></button>
+                        </form>
+                        {{!-- {{/each}} --}}
+
+                        {{#each this}}
+                        <form action="/delete" method="post" enctype="multipart/form-data">
+                            <input style="display: none;" type="text" name="id" value="{{this._id}}">
+                            <button type="submit" class="dismiss"><i class="ti-close"></i></button>
+                        </form>
+
+                        {{/each}}
+                    </div>
+                    {{/each}}
+
+                    {{!-- <form action="/" method="post" enctype="multipart/form-data">
+                        <div class="form-group m-4">
+                            <input type="text" class="form-control" style="height: 50px;" placeholder="status"
+                                name="status" required>
+                        </div>
+                        <div class="form-group m-4">
+                            <input type="text" class="form-control" style="height: 50px;" placeholder="Email contact"
+                                name="emailcontact" required>
+                        </div>
+                        <div class="form-group m-4">
+                            <input type="text" class="form-control" style="height: 50px;" placeholder="email user"
+                                name="emailuser" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary" id="btngui">Gửi</button>
+                    </form> --}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="myModal2" class="modal-chatgroup">
+
+    <!-- Modal group -->
+    <div class="modal-content2" role="document">
+        <div class="modal__header">
+            <h6 class="modal__header__title-text" title="Thông tin tài khoản">Danh sách nhóm</h6>
+            <div class="close2">
+                <span>&times;</span>
+            </div>
+        </div>
+        <div class="modal__body">
+            <div class="search-user search-bar search-contact">
+                <input onkeyup="search()" id="searchContact" type="text" class="form-control"
+                    placeholder="Tìm kiếm nhóm" style="height:30px; width:100%;">
+                <i class="ti-search"></i>
+            </div>
+            <div class="message-scroll contact-scroll">
+                {{#each groupChat}}
+                    <div class="user-message user-message-contact2">
+                        <img class="user-avatar user3" src="{{avatar}}" alt="">
+                        <form action="/message/group" method="post" enctype="multipart/form-data">
+                            <span id="nameGroup" class="name-user name-user-contact2">{{groupName}}</span>
+                            <input type="text" name="idgroup" value="{{_id}}" hidden>
+                            <span class="description-user">Thành viên: {{members}}</span>
+                            <button class="nhantin" type="submit">Nhắn tin</button>
+                            <button class="huyketban" type="submit">Rời nhóm</button>
+                        </form>
+                    </div>             
+                {{/each}}
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function changeTab2() {
+        let tab01 = document.getElementById("tab01")
+        let tab02 = document.getElementById("tab02")
+        let tab1 = document.getElementById("tab011")
+        let tab2 = document.getElementById("tab021")
+        tab01.style.fontWeight = "unset"
+        tab02.style.fontWeight = "bold"
+        tab1.style.display = "none"
+        tab2.style.display = "block"
+    }
+    function changeTab1() {
+        let tab01 = document.getElementById("tab01")
+        let tab02 = document.getElementById("tab02")
+        let tab1 = document.getElementById("tab011")
+        let tab2 = document.getElementById("tab021")
+        tab01.style.fontWeight = "bold"
+        tab02.style.fontWeight = "unset"
+        tab1.style.display = "block"
+        tab2.style.display = "none"
+    }
+</script>
+<script>
+    var modal = document.getElementById("myModal");
+    var btn = document.getElementById("btnModal");
+    var span = document.getElementsByClassName("close2")[0];
+    var span2 = document.getElementsByClassName("close2")[1];
+    var modal2 = document.getElementById("myModal2");
+    var btn2 = document.getElementById("btnModal2");
+    btn.onclick = function () {
+        modal.style.display = "block";
+    }
+    btn2.onclick = function () {
+        modal2.style.display = "block";
+    }
+    span.onclick = function () {
+        modal.style.display = "none";
+    }
+    span2.onclick = function () {
+        modal2.style.display = "none";
+    }
+    window.onclick = function (event) {
+        if (event.target == modal || event.target == modal2 || event.target == modal3) {
+            modal.style.display = "none";
+            modal2.style.display = "none";
+            modal3.style.display = "none";
+        }
+    }
+    function search() {
+        let user = [];
+        let search = document.getElementById("searchContact");
+        let search2 = document.getElementById("searchContact2");
+        let item = Array.from(document.getElementsByClassName("name-user-contact"))
+        let fullitem = Array.from(document.getElementsByClassName("user-message-contact"))
+        item.forEach(function (el) {
+            user = el.innerHTML
+            fullitem.forEach(function (el2) {
+                if (user == search.value || search.value == "") {
+                    el2.style.display = "block"
+                } else el2.style.display = "none"
+            })
+        })
+    }
+    function search2() {
+        let user2 = [];
+        let search2 = document.getElementById("searchContact2");
+        let item2 = Array.from(document.getElementsByClassName("name-user-contact2"))
+        let fullitem2 = Array.from(document.getElementsByClassName("user-message-contact2"))
+        item2.forEach(function (el) {
+            user2 = el.innerHTML
+            fullitem2.forEach(function (el2) {
+                if (user2 == search2.value || search2.value == "") {
+                    el2.style.display = "block"
+                } else el2.style.display = "none"
+            })
+        })
+    }
+</script>

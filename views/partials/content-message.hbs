@@ -1,0 +1,110 @@
+<div class="col-3 content-message">
+	<div class="search-user search-bar">
+		<input type="text" class="form-control" placeholder="Tìm kiếm..." style="height:30px; width:84%;">
+		<i class="ti-search search1"></i>
+		<button title="Thêm nhóm" id="btnModal3" class="add-group"><i class="fa-solid fa-users-gear"></i></button>
+	</div>
+	<div class="message-scroll">
+		{{#each message}}
+            {{#if typeChat}}
+            <form action="/message/addMessage" method="post" enctype="multipart/form-data" id="{{idChatGroup}}" name="{{idChatGroup}}">
+				<div class="user-message" onClick="document.forms['{{idChatGroup}}'].submit();">
+					<img class="user-avatar" src="{{avata}}" alt="">
+					<span class="name-user"><b>{{name}}</b></span>
+                    {{!-- <span class="" style="margin-bottom: 5px;">{{members}}</span> --}}
+					<span class="description-user">{{message}}</span>
+                    <input type="text" value="{{email}}" name="email" hidden>
+				</div>
+            </form>
+            {{else}}
+            <form action="/message/group" method="post" enctype="multipart/form-data" id="{{idChatGroup}}" name="{{idChatGroup}}">
+				<div class="user-message" onClick="document.forms['{{idChatGroup}}'].submit();">
+					<img class="user-avatar" src="{{avata}}" alt="">
+					<span class="name-user"><b>{{name}}</b></span>
+                    {{!-- <span class="" style="margin-bottom: 5px;">{{members}}</span> --}}
+					<span class="description-user">{{message}}</span>
+                    <input type="text" name="idgroup" value="{{idChatGroup}}" hidden>
+				</div>
+            </form>
+                {{/if}}
+		{{/each}}
+		{{#each groupchat}}
+				<div class="user-message">
+					<input class="idroom" value="{{this.idgroup}}" hidden />
+					<img class="user-avatar" src="" alt="">
+					<span class="name-user"><b>{{this.name}}</b></span>
+					<span class="description-user"></span>
+				</div>
+		{{/each}}
+	</div>
+</div>
+<div id="myModal3" class="modal-addgroup">
+
+    <!-- Modal add group -->
+    <div class="modal-content2" role="document">
+        <div class="modal__header">
+            <h6 class="modal__header__title-text" title="Thông tin tài khoản">Tạo nhóm</h6>
+            <div class="close2">
+                <span>&times;</span>
+            </div>
+        </div>
+        <div class="modal__body">
+            <div class="message-scroll contact-scroll">
+                <form id="f" action="/addgroup" method="post" enctype="multipart/form-data">
+                    <div class="form-group m-4">
+                        <input type="text" class="form-control" style="height: 40px;" placeholder="Vui lòng chọn tên nhóm"
+                            name="nameGroup" required>
+                    </div>
+                    <div style="padding-left: 12px;" class="">Thêm bạn bè vào nhóm</div>
+                    {{#each contacttrue}}
+                    <div class="user-message user-message-contact2">
+                        <img class="user-avatar user3" src="{{this.avata}}" alt="">
+                        {{!-- {{#each this}} --}}
+                            <span id="emailct" class="name-user name-user-contact2">{{this.name}}</span>
+                            <input type="text" name="email" value="{{this.emailuser}}" hidden>
+                            <span class="description-user">Bạn bè</span>
+                            
+                            {{#emailcontact}}
+                            <button type="button" class="addfriendtogroup" value="{{this}}">Thêm</button>
+                            {{/emailcontact}}
+                        {{!-- {{/each}} --}}
+                            
+                    </div>
+                    {{/each}}
+                    <button type="submit" class="btn btn-primary btnaddgroup" id="btngui">Tạo nhóm</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    var modal3 = document.getElementById("myModal3");
+    var btn3 = document.getElementById("btnModal3");
+    var span3 = document.getElementsByClassName("close2")[2];
+    btn3.onclick = function () {
+        modal3.style.display = "block";
+    }
+    span3.onclick = function () {
+        modal3.style.display = "none";
+    }
+    let z = 1;
+    let items = document.getElementsByClassName('addfriendtogroup');
+    [].forEach.call(items, function (el) {
+        el.addEventListener('click', function(){
+            let x = el.value;
+            let y = "addemail";
+            if(el.innerHTML == "Thêm"){
+                el.setAttribute("style", "background-color: #9fec90; color: #000;");
+                el.innerHTML = "Đã thêm"
+                $("#f").append(`<input type="text" name="${y}" value="${x}" hidden/>`);
+            } 
+            else if (el.innerHTML == "Đã thêm") {
+                el.innerHTML = "Thêm"
+                el.setAttribute("style", "background-color: orangered; color: #fff;");
+                {{!-- document.getElementById("f").getElementsByTagName("input") --}}
+            }
+            
+        });
+    });
+</script>

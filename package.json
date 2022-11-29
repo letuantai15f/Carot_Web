@@ -20,7 +20,6 @@
   },
   "homepage": "https://github.com/letuantai15f/CNM_Web_N14_Network#readme",
   "dependencies": {
-    "@aws-sdk/client-s3": "^3.200.0",
     "aws-sdk": "^2.1239.0",
     "bcrypt": "^5.1.0",
     "body-parser": "^1.20.0",
@@ -32,6 +31,7 @@
     "express-handlebars": "^6.0.6",
     "firebase": "^9.12.1",
     "firebase-auth": "^0.1.2",
+    "handlebar": "^1.0.0",
     "jsonwebtoken": "^8.5.1",
     "jwt-decode": "^3.1.2",
     "mongoose": "^6.6.3",
@@ -40,6 +40,8 @@
     "node-input-validator": "^4.5.0",
     "nodemon": "^2.0.20",
     "passport-local": "^1.0.0",
-    "socket.io": "^4.5.3"
+    "socket.io": "^4.5.3",
+    "socketio-file-upload": "^0.7.3",
+    "webrtc": "^1.14.1"
   }
 }

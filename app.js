@@ -14,33 +14,30 @@ var io=require('socket.io')(server);
 const  SocketServices = require('./services/chat');
 global._io  =  io;
 global.__dirname=__dirname;
-// const path= require('path');
+const path= require('path');
 
 
 const userRouter = require("./routes/user");
 const contactRouter = require("./routes/contact");
 const chatgroupRouter = require("./routes/chatgroup");
 const messageRouter = require("./routes/message");
+const userAPI=require("./apis/userAPI")
+const contactAPI=require("./apis/contactAPI")
 dotenv.config();
-
-mongoose.connect(process.env.MONGODB_URL, () => {
-  console.log("MongoDB");
+//mongodb connect
+mongoose.connect(process.env.MONGODB_URL, (err) => {
+ console.log("MongoDB is connected");
 });
-
 app.use(cookieParser());
-// app.use(express.static(path.join(__dirname,'views/partials/nav.handlebars')));
-app.use(bodyParser.json({ limit: "50mb" }));
-
+app.use(express.static(__dirname+"/uploads"));
 app.use(bodyParser.json({ limit: "50mb" }));
 app.use(cors());
 app.use(morgan("common"));
 app.use(express.static("resources"));
-app.engine(".hbs", exphbs.engine());
+//hbs
+app.engine("hbs", exphbs.engine({extname:'.hbs'}));
 app.set("view engine", ".hbs");
-// app.use((req,res,next)=>{
-//   res.io=io
-//   next();
-// })
+app.set('views',path.join(__dirname,'views'))
 
 //configAWS
 const AWS = require("aws-sdk");
@@ -53,6 +50,7 @@ const profileRouter = require('./routes/profile');
 const tableName = "UserAccounts";
 //multer
 const multer = require("multer");
+const { options } = require("./routes/user");
 const upload = multer();
 //getUI
 app.get("/", (req, res) => {
@@ -61,28 +59,17 @@ app.get("/", (req, res) => {
 app.get("/home", (req, res) => {
   res.render("home");
 });
-// io.on("connection", function(socket){
-//   console.log("user connectedUsers");
-//   socket.on('disconnect', function(){
-//     console.log('user disconnected');
-    
-//   });
-  
-//   socket.on('client-chat-message', function(data){
-//     io.emit("server-chat", data);
-//     console.log(data);
-//   });
-// })
 
 //signup
 app.use("/",userRouter);
+app.use("/api",userAPI)
 
 // modal contact
-app.use("/modal", contactRouter);
+app.use("/", contactRouter)
+app.use("/api/contact",contactAPI)
 
 // chatgroup message
 app.use("/message", messageRouter);
-app.use("/message", profileRouter);
 
 global._io.on('connection',  SocketServices.connection)
 server.listen(port, () => {
