@@ -58,6 +58,10 @@
                             <input type="text" name="email" value="{{this.emailcontact}}" hidden>
                             <span class="description-user">Bạn bè</span>
                             <button class="nhantin" type="submit">Nhắn tin</button>
+                        </form>
+                        <form action="/deleteFriend" method="post" enctype="multipart/form-data">
+                            <input type="text" name="emailcontact" value="{{this.emailcontact}}" hidden>
+                            <input type="text" name="emailuser" value="{{this.emailuser}}" hidden>
                             <button class="huyketban" type="submit">Hủy kết bạn</button>
                         </form>
                         {{!-- {{/each}} --}}

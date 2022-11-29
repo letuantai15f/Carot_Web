@@ -537,6 +537,7 @@ body {
     top: 24px;
     left: 80px;
     width: 50%;
+    background-color: transparent;
 }
 
 .imgsender {
@@ -572,9 +573,6 @@ body {
     width: 50%;
 }
 
-.text2 img {
-    display: none;
-}
 
 .text span, 
 .text2 span {
@@ -1138,14 +1136,18 @@ avatar_button:focus {
 
 .nhantin {
     top: 8px;
-    background-color: #fafafa; 
-   
+    background-color: orangered; 
+    color: #fff;
 }
 
 .huyketban {
     bottom: 8px;
     color: #fafafa;
-    background-color: rgb(255, 112, 141);
+    background-color: rgb(159, 159, 159);
+}
+
+.nhantin:hover {
+    background-color: rgb(255, 68, 0);
 }
 
 /* Modal Profile Update */

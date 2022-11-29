@@ -99,7 +99,8 @@
 				<div class="mess">
 					{{#each messSent}}
 						{{#if typeChat}}
-							<div class="text2"><span>{{text}}</span>
+							<div class="text2">
+								<span>{{text}}</span>
 							{{!-- <span>{{sender}}</span> --}}
 							</div>
 							
@@ -108,8 +109,8 @@
 						{{#if typeNone}}
 							
 							<div class="text">
-								<img class="avt-text" src="{{sender}}" alt="">
-								<span>{{text}}</span>
+								<img style="float: left;" class="avt-text" src="{{sender}}" alt="">
+								<span> {{text}}</span>
 							</div>
 							
 						{{/if}}
@@ -123,15 +124,15 @@
 							{{else}}
 							{{#if typeFile}}
 								<div style="background-color: transparent;" class="text2">
-									<img style="float: right;"  src="{{file}}" width="100px" height="100px">
+									<img style="float:right ;" src="{{file}}" width="100px" height="100px">
 								</div>
 								
 							{{/if}}
 						{{/if}}
 							
 						{{#if typeFileNone}}
-							<div style="background-color: transparent;" class="text">
-								<img  src="{{file}}" width="100px" height="100px">
+							<div style="background-color: transparent;" class="text txtxtx">
+								<img style="float:left ;"  src="{{file}}" width="100px" height="100px">
 							</div>
 							
 						{{/if}}

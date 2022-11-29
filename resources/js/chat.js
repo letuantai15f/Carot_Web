@@ -202,7 +202,7 @@ function appendImageGroup(data,sender,status){
   var chats = document.querySelector(".mess");
   let div = document.createElement("div");
   div.classList.add(status);
-  let content = "<img width='100px' height='100px'  src='" + data + "'></img> <span>"+sender+"</span>";
+  let content = "<img style='float:left' class='avt-text' src='"+sender+"'> <img width='100px' height='100px'  src='" + data + "'></img> ";
   div.innerHTML = content.trim();
   chats.appendChild(div);
 }
@@ -417,35 +417,33 @@ socket.on("group-server-img", (data) => {
     $('.mess').empty();
       $('.information').empty();
    $.ajax({ //create an ajax request to display.php
-     type: "GET",
-     url: "http://localhost:3000/message/api/group",  
-     data:{idgroup:data.idGroupChat},           
+    type: "GET",
+    url: "http://localhost:3000/message/api/group",  
+    data:{idgroup:data.idGroupChat},           
      contentType: "application/json",   //expect html to be returned                
-     success: function(response){                    
-         for(let i=0;i<response.length;i++){
+      success: function(response){                    
+        for(let i=0;i<response.length;i++){
           if(response[i].typeNone=='1'){
             appendMessageGroup(response[i].text, response[i].sender,"text");
           }else if(response[i].typeFileNone){
-           appendImageGroup(response[i].file,response[i].sender ,"imgreciver");
+            appendImageGroup(response[i].file,response[i].sender ,"imgreciver");
           }
           else if(response[i].typeChat){
             appendMessageGroup(response[i].text,"","text2");
           }
-         }
-     }
- 
- });
- }
- else{
+        }
+    }
+  });
+}
+else{
   $.ajax({ //create an ajax request to display.php
     type: "GET",
     url: "http://localhost:3000/message/api/user",  
     data:{email:data.sender},           
     contentType: "application/json",   //expect html to be returned                
     success: function(response){ 
-    appendImageGroup(data.base64, response.username,"text"); 
+    appendImageGroup(data.base64, response.username,"imgreciver"); 
     }
-
 });
 
  }
