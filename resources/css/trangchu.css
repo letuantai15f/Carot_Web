@@ -463,6 +463,21 @@ body {
     border: 2px solid rgb(207, 207, 207);
 }
 
+.edit-name-group{
+    width: 28px; 
+    height: 28px;
+    background-color: #ccc;
+    border-radius: 50% ;
+    display: inline-block;
+    position: relative;
+    top: 6px;
+}
+.edit-name-group i {
+    position: absolute; 
+    left: 5px;
+    top: 5px;
+}
+
 .user4 {
     margin-top: 14px;
     margin-left: 20px;
@@ -547,6 +562,11 @@ body {
     float: right;
     width: 50%;
 }
+
+.imgsender img {
+    float: right;
+}
+
 .text,
 .text2 {
     /* position: relative; */
@@ -659,6 +679,7 @@ body {
     position: absolute;
     top: 150px;
     font-weight: 400;
+    text-align: center;
 }
 
 .list-info {

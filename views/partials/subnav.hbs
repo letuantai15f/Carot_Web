@@ -131,7 +131,8 @@
 						{{/if}}
 							
 						{{#if typeFileNone}}
-							<div style="background-color: transparent;" class="text txtxtx">
+							<div style="background-color: transparent;" class="text">
+								<img style='float:left' class='avt-text' src='{{sender}}'>
 								<img style="float:left ;"  src="{{file}}" width="100px" height="100px">
 							</div>
 							
@@ -175,7 +176,7 @@
 					{{#dataUserMessage}}
 						{{#if typeChat}}
 							<img class="user-avatar user5" src="{{avata}}">
-							<h4 class="name-info">{{username}}</h3>
+							<h4 class="name-info">{{username}}  <div class="edit-name-group"><i class="ti-pencil"></i></div></h4>
 						
 							<ul class="txt2" style="list-style-type: none; top: 200px; width: 100%;">
 								<li style="font-size: 20px;margin-bottom: 20px;"><h6>Thành viên nhóm : ( {{sotv}} thành viên )</h6></li>

@@ -442,7 +442,7 @@ else{
     data:{email:data.sender},           
     contentType: "application/json",   //expect html to be returned                
     success: function(response){ 
-    appendImageGroup(data.base64, response.username,"imgreciver"); 
+    appendImageGroup(data.base64, response.avata,"imgreciver"); 
     }
 });
 
