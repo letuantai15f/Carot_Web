@@ -70,4 +70,19 @@ contactRouter.post('/addgroup', upload.fields([]), async(req, res) => {
     
     res.redirect("/message")
 });
+
+contactRouter.post('/deleteFriend', upload.fields([]), async(req, res, next) => {
+    const {emailuser, emailcontact} = req.body;
+    // const { _id } = req;
+    // const { userId } = req.params;
+    console.log(emailuser, emailcontact);
+    try {
+        await Contact.findByIdAndDelete(emailuser, emailcontact);
+
+        //res.status(204).json();
+    } catch (err) {
+        next(err);
+    }
+    res.redirect("/message")
+});
 module.exports = contactRouter;

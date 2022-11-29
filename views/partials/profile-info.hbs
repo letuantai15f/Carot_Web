@@ -1,7 +1,16 @@
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog " role="document">
-        <div class="modal__inner">
+{{!-- <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true"> --}}
+    
+    <div class="modal-dialog2 "  role="document">
+        <div class="button_back" style="float: left; margin-top: 42%; width: 15%; " > 
+            <a href="http://localhost:3000/message">
+                <button type="button" style="background: orangered;
+                border-radius: 10px;" class="m-2 id_btn_da_profile">Quay lại</button>
+            </a>
+            
+        </div>
+        
+        <div class="modal__inner" style="float: left; margin-left: 22%;">
             <div class="modal-content ">
                 <div class="modal-header">
                     <span class="modal__header__title-text v0 truncate " title="Thông tin tài khoản">Thông tin tài
@@ -20,12 +29,12 @@
                             </div>
                             <div class="user-profile-preview v3 flexcontainer--col ">
                                 <div class="avatar avatar--xxl" style="background: transparent;">
-                                    <img class="avatar__photo" src="{{dataimg.avata}}">
+                                    <img class="avatar__photo" src="{{dataprofile.avata}}">
                                 </div>
                                 <div class="preview-content truncate v3 flx flx-al-c flx-centernull"
                                     style="width: 100%;">
                                     <div class="flx relative margin-auto fit-content flx-al-c">
-                                        <div class="user-profile__display-name">{{dataimg.usernameprofile}}</div>
+                                        <div class="user-profile__display-name">{{dataprofile.username}}</div>
                                     </div>
                                 </div>
                             </div>
@@ -37,23 +46,23 @@
                                 <div class="user-profile-details" style="margin-bottom: 22px;">
                                     <div class="user-profile-details__line flx flx-al-c">
                                         <span data-translate-inner="STR_PROFILE_EMAIL">Email</span>
-                                        <span data-translate-inner="STR_EMAIL">{{dataimg.emailuser}}</span>
+                                        <span data-translate-inner="STR_EMAIL">{{dataprofile.emailuser}}</span>
                                     </div>
                                     <div class="user-profile-details__line">
                                         <span data-translate-inner="STR_PROFILE_LABEL_GENDER">Giới tính</span>
-                                        <span data-translate-inner="STR_GENDER_MALE">{{dataimg.gender}}</span>
+                                        <span data-translate-inner="STR_GENDER_MALE">{{dataprofile.gender}}</span>
                                     </div>
                                     <div class="user-profile-details__line">
                                         <span data-translate-inner="STR_PROFILE_LABEL_BIRTHDAY">Ngày sinh</span>
-                                        <span style="position: relative;">{{dataimg.date}}</span>
+                                        <span style="position: relative;">{{dataprofile.date}}</span>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="user-profile__actions" data-toggle="modal" data-target="#exampleModal_update" data-dismiss="modal">
-                            <div class="z--btn z--btn--fill--tertiary -lg --full-width" title
+                            <div class="btn btn--fill--tertiary -lg --full-width" title
                                 style="margin: 16px 20px; max-width: 312px;">
-                                <span style="display: flex; align-items: center;">
+                                <span style="display: flex; align-items: center; margin-left: 80px;">
                                     <span class="btnpf-content"  data-translate-inner="STR_EDIT_PROFILE">Cập nhật thông
                                         tin</span>
                                 </span>
@@ -65,4 +74,4 @@
             </div> 
          </div>
     </div>
-</div>
+{{!-- </div> --}}

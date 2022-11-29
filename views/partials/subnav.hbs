@@ -172,8 +172,12 @@
 
 					{{#dataUserMessage}}
 						{{#if typeChat}}
-							<img class="user-avatar user5" src="{{avata}}">
-							<h4 class="name-info">{{username}}</h3>
+							<img style="position: absolute;" class="user-avatar user5" src="{{avata}}">
+							<div style="width: 100%; margin-left: 20%;" data-toggle="modal" data-target="#exampleModal_groupname" data-dismiss="modal">
+								<h4 class="name-info">{{username}}</h3>
+							</div>
+							
+							
 						
 							<ul class="txt2" style="list-style-type: none; top: 200px; width: 100%;">
 								<li style="font-size: 20px;margin-bottom: 20px;"><h6>Thành viên nhóm : ( {{sotv}} thành viên )</h6></li>

@@ -4,147 +4,139 @@
     <div class="modal-dialog " role="document">
         <div class="modal__inner__update">
             <div class="modal-content ">
-                <div class="modal-header">
-                    <span class="modal__header__title-text v0 truncate " title="Thông tin tài khoản">Cập nhật thông
-                        tin</span>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body" style="padding: 0;">
-                    <div id="profile-info" class="user-profile">
-                        <div id="profilePhoto" class="user-profile__photo ">
-                            <img class="user-profile__photo__img clickable"
-                                src="https://cover-talk.zadn.vn/9/8/f/f/4/7b34fed7e99fdb37bc976a26d203652f.jpg"
-                                style="position: relative; top: px; left: -20px; width: 420px; height: 155px; object-fit: cover;">
+                {{!-- <form action="/message/profile/uploadprofile" method="POST" enctype="multipart/form-data"> --}}
+                    <div class="modal-header">
+                        <span class="modal__header__title-text v0 truncate " title="Thông tin tài khoản">Cập nhật thông
+                            tin</span>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body" style="padding: 0;">
+                            <form action="/message/profile/uploadprofile" method="POST" enctype="multipart/form-data">
+                            <div id="profile-info" class="user-profile">
+                                <div id="profilePhoto" class="user-profile__photo ">
+                                    <img class="user-profile__photo__img clickable"
+                                        src="https://cover-talk.zadn.vn/9/8/f/f/4/7b34fed7e99fdb37bc976a26d203652f.jpg"
+                                        style="position: relative; top: px; width: 398px; height: 155px; object-fit: cover;">
 
-                            <div class="user-profile-preview v3 flexcontainer--col ">
-                                <div class="rel" style="text-align: center; margin: -47px 0px 0px;">
-                                    <input type="file" name="profile-avatar" id="profileAvatarPicker" class="inputfile"
-                                        accept=".png, .jpg, .jpeg" style="display: none;">
-                                    <img id="chosen_image" src="{{dataimg.avata}}"
-                                        style="border-radius: 50%; width: 80px; height: 80px; object-fit: cover; cursor: pointer; border: 2px solid white; margin-top: -50px;">
-                                    
-                                    <label style="margin-left: -25px; margin-top: 100px;" for="upload_image">
-                                        <input type="file" name="image" for="upload_image" id="upload_image" style="display:none;" />
-                                        <img src="https://chat.zalo.me/assets/chat_setting_avatar_icon_edit.32e49958a4d725a69beb65e5f5a568f2.png" />
-                                    </label>
-
-                                    {{!-- <img class="clickable"
-                                        src="https://chat.zalo.me/assets/chat_setting_avatar_icon_edit.32e49958a4d725a69beb65e5f5a568f2.png"
-                                        style="margin-left: -25px; margin-top: 100px;"> --}}
-                                </div>
-                            </div>
-                                {{!-- <div class="avatar avatar--xxl" style="background: transparent;">
-                                    <img class="avatar__photo" src="{{dataimg.avata}}">
-                                </div> --}}
-                                <div  class="preview-content truncate v3 flx flx-al-c flx-centernull"
-                                    style="width: 100%;">
-                                    <div style="padding: 0px 16px 16px;">
-                                        <div class="lbl-component ">
-                                            <div class="lbl flx flx-al-c "
-                                                style="margin-bottom: 5px; text-align:justify;">
-                                                <span class="label" data-translate-inner="STR_DISPLAY_NAME"
-                                                    style="font-size: 14px; font-weight: 400; line-height: 1.5; color: #001a33;">Tên
-                                                    hiển thị</span>
+                                    <div class="user-profile-preview v3 flexcontainer--col ">
+                                        <div class="rel" style="text-align: center; margin: -47px 0px 0px;">
+                                            
+                                            
+                                            <img id="chosen_image" src="{{dataprofile.avata}}"
+                                            style="border-radius: 50%; width: 80px; height: 80px; object-fit: cover; cursor: pointer; border: 2px solid white; margin-top: -50px;">
+                                            {{!-- <input type="file" name="hinh" accept="image/png image/jpg" > --}}
+                                            {{!-- <input type="file" name="file" for="upload_image" id="upload_image" style="display:none;" /> --}}
+                                            <label  style="margin-left: -25px; margin-top: 100px;" for="upload_image">
+                                                <input type="file" name="file" for="upload_image" accept="image/*" id="upload_image" style="display:none;" />
+                                                <img src="https://chat.zalo.me/assets/chat_setting_avatar_icon_edit.32e49958a4d725a69beb65e5f5a568f2.png" />
+                                                <input type="hidden" name="_id" value="{{dataprofile._id}}">
+                                            </label>
+                                        </div>
+                                    </div>
+                                     
+                                        <div  class="preview-content truncate v3 flx flx-al-c flx-centernull"
+                                            style="width: 100%;">
+                                            <div style="padding: 0px 16px 16px;">
+                                                <div class="lbl-component ">
+                                                    <div class="lbl flx flx-al-c "
+                                                        style="margin-bottom: 5px; text-align:justify;">
+                                                        <span class="label" data-translate-inner="STR_DISPLAY_NAME"
+                                                            style="font-size: 14px; font-weight: 400; line-height: 1.5; color: #001a33;">Tên
+                                                            hiển thị</span>
+                                                    </div>
+                                                    <span class="group-input  group-input__lg">
+                                                        <input id="username" name="username" tabindex="1" data-translate-placeholder="STR_TYPE_DISPLAY_NAME"
+                                                            placeholder="Nhập tên hiển thị" name autocomplete="off"
+                                                            aria-autocomplete="list" class="input  undefined"
+                                                            value="{{dataprofile.username}}">
+                                                    </span>
+                                                    <div class="display-name">
+                                                        <div class="display-name__hint">
+                                                            <div>
+                                                                <span data-translate-inner="STR_PROFILE_DISPLAY_NAME_HINT">Sử
+                                                                    dụng tên thật để bạn bè dễ dàng nhận diện hơn</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
-                                            <span class="group-input  group-input__lg">
-                                                <input tabindex="1" data-translate-placeholder="STR_TYPE_DISPLAY_NAME"
-                                                    placeholder="Nhập tên hiển thị" name autocomplete="off"
-                                                    aria-autocomplete="list" class="input  undefined"
-                                                    value="{{dataimg.usernameprofile}}">
-                                            </span>
-                                            <div class="display-name">
-                                                <div class="display-name__hint">
-                                                    <div>
-                                                        <span data-translate-inner="STR_PROFILE_DISPLAY_NAME_HINT">Sử
-                                                            dụng tên thật để bạn bè dễ dàng nhận diện hơn</span>
+                                            <div style="border-top: 8px solid #e5e7eb;">
+                                                <div style="padding: 0px 16px;">
+                                                    <p class="friend-profile__detail__header"
+                                                        data-translate-inner="STR_PERSONAL_PROFILE">Thông tin cá nhân</p>
+                                                    <div class="lbl-component " style="margin-top: 16px; text-align: justify;">
+                                                        <div class="lbl flx flx-al-c " style="margin-bottom: 5px;">
+                                                            <span class="label"
+                                                                data-translate-inner="STR_PROFILE_UPDATE_LABEL_GENDER">Giới
+                                                                tính</span>
+                                                        </div>
+                                                        <div  class="select" style="">
+                                                            <select class="gender" name="gender" id="gender" style="width: 100px; padding: 10px;">
+                                                                <option selected disabled hidden>{{dataprofile.gender}}</option>
+                                                                <option value="Nam">Nam</option>
+                                                                <option value="Nữ">Nữ</option>
+                                                            </select>
+                                                        </div>       
+                                                        {{!-- <div class="flx flx-al-c">
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" type="radio"
+                                                                    name="genderNam" id="flexRadioDefault1" value="Nam"
+                                                                    checked>
+                                                                <label class="form-check-label"
+                                                                    for="flexRadioDefault1">Nam</label>
+                                                            </div>
+                                                            <div class="form-check" style="margin-left: 90px;">
+                                                                <input class="form-check-input" type="radio"
+                                                                    name="flexRadioDefault" id="flexRadioDefault2" value="Nữ">
+                                                                <label class="form-check-label"
+                                                                    for="flexRadioDefault2">Nữ</label>
+                                                            </div>
+                                                        </div> --}}
+                                                    </div>
+                                                    <div class="lbl-component " style="margin-top: 50px; text-align: justify;">
+                                                        <div class="lbl flx flx-al-c " style="margin-bottom: 5px;">
+                                                            <span class="label"
+                                                                data-translate-inner="STR_PROFILE_UPDATE_LABEL_BIRTHDAY">Ngày
+                                                                sinh</span>
+                                                        </div>
+                                                      {{!-- <form action="/message/profile/uploadprofile" method="POST" enctype="multipart/form-data"> --}}
+                                                        <div class="datePicker">
+                                                            <input type="date" class="form-control " style="height: 50px;" value="{{dataprofile.date}}"
+                                                                name="date">
+                                                        </div>
+                                                        {{!-- <button type="submit">ffff</button> --}}
+                                                        
+
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div style="border-top: 8px solid #e5e7eb;">
-                                        <div style="padding: 0px 16px;">
-                                            <p class="friend-profile__detail__header"
-                                                data-translate-inner="STR_PERSONAL_PROFILE">Thông tin cá nhân</p>
-                                            <div class="lbl-component " style="margin-top: 16px; text-align: justify;">
-                                                <div class="lbl flx flx-al-c " style="margin-bottom: 5px;">
-                                                    <span class="label"
-                                                        data-translate-inner="STR_PROFILE_UPDATE_LABEL_GENDER">Giới
-                                                        tính</span>
-                                                </div>
-                                                <div class="flx flx-al-c">
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="radio"
-                                                            name="flexRadioDefault" id="flexRadioDefault1" value="Nam"
-                                                            checked>
-                                                        <label class="form-check-label"
-                                                            for="flexRadioDefault1">Nam</label>
-                                                    </div>
-                                                    <div class="form-check" style="margin-left: 90px;">
-                                                        <input class="form-check-input" type="radio"
-                                                            name="flexRadioDefault" id="flexRadioDefault2" value="Nữ">
-                                                        <label class="form-check-label"
-                                                            for="flexRadioDefault2">Nữ</label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="lbl-component " style="margin-top: 50px; text-align: justify;">
-                                                <div class="lbl flx flx-al-c " style="margin-bottom: 5px;">
-                                                    <span class="label"
-                                                        data-translate-inner="STR_PROFILE_UPDATE_LABEL_BIRTHDAY">Ngày
-                                                        sinh</span>
-                                                </div>
-                                                <div class="datePicker">
-                                                    <input type="date" class="form-control " style="height: 50px;" value="{{dataimg.date}}"
-                                                        name="date">
-                                                    {{!-- <div class="flx datePicker__group">
-                                                        <div class="flx flx-al-c flx-center" style="width: 28%;">
-                                                            <div style="width: 100%; box-sizing: border-box;">
-
-                                                            </div>
-                                                        </div>
-                                                        <div class="flx flx-al-c flx-center" style="width: 28%;">
-                                                            <div style="width: 100%; box-sizing: border-box;">
-
-                                                            </div>
-                                                        </div>
-                                                        <div class="flx flx-al-c flx-center" style="width: 41%;">
-                                                            <div style="width: 100%; box-sizing: border-box;">
-                                                                <div class="flx flx-al-c z-dropdown-preview --square --l"
-                                                                    style="width: 100%; box-sizing: border-box;">
-
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div> --}}
-                                                </div>
-
-                                            </div>
-                                        </div>
+                                </div>
+                            </div>
+                            {{!-- <form action="/message/profile/uploadprofile" method="POST" enctype="multipart/form-data"> --}}
+                            <div class="modal-footer-button-action">
+                                <div class="" style="margin-left: 55%;">
+                                    <div class="btn btn--fill--tertiary  modal__footer__button modal__footer__button--cancel" style="float: left;"title>
+                                        <div style="font-size: 15px; text-align: center; align-items: center; padding-top: 5px;" type="button" class="close" data-dismiss="modal" aria-label="Close" data-translate-inner="STR_CANCEL">Hủy</div>
+                                    </div>
+                                    <div class="btn btn--fill--primary  modal__footer__button" style="float: left;">
+                                            
+                                                <button type="submit" class="close" style="font-size: 15px; padding-top: 5px; color: rgb(255, 255, 255);"  >Cập nhật</button>
+                                            
                                     </div>
                                 </div>
                             </div>
-                        </div>
-
+                            </form>
                     </div>
-                </div>
-                <div class="modal-footer">
-                    <div class="modal-footer-button-action flx  flx-e">
-                        <div class="flx">
-                            <div class="z--btn z--btn--fill--tertiary -lg --rounded zl-modal__footer__button zl-modal__footer__button--cancel" style="float: left;"title>
-                                <div class="truncate" data-translate-inner="STR_CANCEL">Hủy</div>
-                            </div>
-                            <div class="z--btn z--btn--fill--primary -lg --rounded zl-modal__footer__button" style="float: left;">
-                                <div class="truncate" data-translate-inner="STR_UPDATE">Cập nhật</div>
-                            </div>
-                        </div>
+                    <div class="modal-footer">
+                            
                     </div>
-                </div>
-
+                {{!-- </form>   --}}
             </div>
-        </div>
+        </div>  
     </div>
 </div>
 <script>
@@ -158,4 +150,6 @@
             chosenImg.setAttribute("src", reader.result);
         }
     }
+
+    
 </script>

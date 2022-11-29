@@ -219,6 +219,20 @@ messageRouter.post("/addMessage", cookieJwtAuth, upload.fields([]), async (req, 
     groupChat: group2,
   })
 })
+
+messageRouter.post("/groupname", cookieJwtAuth, upload.fields([]), async(req, res) => {
+  const user = await getUserLogin(req, res);
+  const _id = req.body.idGroupChat;
+  console.log(_id);
+  try {
+      await ChatGroup.findByIdAndUpdate({ _id: _id }, { $set: { name: req.body.username}});
+      
+      res.redirect("/message");
+    
+  } catch (error) {
+    console.log(error.message);
+  }
+});
 messageRouter.get("/api/message",cookieJwtAuth,async (req, res)=>{
   
   const  email  = req.query.email;

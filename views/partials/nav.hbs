@@ -1,11 +1,8 @@
 <div class="col-1 cl1">
     <div class="sub-nav">
         <div style="margin-top: 20px;" class="avatar">
-            <button type="button" data-toggle="modal" data-target="#exampleModal" class="avatar_button">
-                <img id="avata-login" src="{{dataimg.avata}}" class="user-avatar">
-            </button>
-
-            <a href="">
+            <a  href="http://localhost:3000/message/profile">
+            <img src="{{dataimg.avata}}" class="user-avatar" >
             </a>
         </div>
         <div class="list-item2">
@@ -58,8 +55,14 @@
                             <input type="text" name="email" value="{{this.emailcontact}}" hidden>
                             <span class="description-user">Bạn bè</span>
                             <button class="nhantin" type="submit">Nhắn tin</button>
+                            
+                        </form>
+                        <form action="/deleteFriend" method="post" enctype="multipart/form-data">
+                            <input type="text" name="emailcontact" value="{{this.emailcontact}}" hidden>
+                            <input type="text" name="emailuser" value="{{this.emailuser}}" hidden>
                             <button class="huyketban" type="submit">Hủy kết bạn</button>
                         </form>
+                            
                         {{!-- {{/each}} --}}
                     </div>
                     {{/each}}

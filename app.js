@@ -70,6 +70,10 @@ app.use("/api/contact",contactAPI)
 
 // chatgroup message
 app.use("/message", messageRouter);
+app.use("/message/group", messageRouter);
+
+// profile
+app.use("/message/profile", profileRouter);
 
 global._io.on('connection',  SocketServices.connection)
 server.listen(port, () => {
