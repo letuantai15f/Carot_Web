@@ -82,6 +82,4 @@ contactRouter.post('/deleteFriend', upload.fields([]), async(req, res) => {
     // console.log(ct2._id)
     res.redirect("/message")
 });
-
-
 module.exports = contactRouter;

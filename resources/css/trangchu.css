@@ -463,6 +463,21 @@ body {
     border: 2px solid rgb(207, 207, 207);
 }
 
+.edit-name-group{
+    width: 28px; 
+    height: 28px;
+    background-color: #ccc;
+    border-radius: 50% ;
+    display: inline-block;
+    position: relative;
+    top: 6px;
+}
+.edit-name-group i {
+    position: absolute; 
+    left: 5px;
+    top: 5px;
+}
+
 .user4 {
     margin-top: 14px;
     margin-left: 20px;
@@ -578,6 +593,7 @@ body {
     width: 50%;
 }
 
+
 .text span, 
 .text2 span {
     max-width: 100%;
@@ -663,6 +679,7 @@ body {
     position: absolute;
     top: 150px;
     font-weight: 400;
+    text-align: center;
 }
 
 .list-info {
@@ -743,6 +760,7 @@ body {
 .list-img:hover {
     opacity: 0.8;
 }
+
 
 
 /* Modal Contact */
@@ -897,46 +915,3 @@ body {
     background-color: rgb(255, 68, 0);
 }
 
-
-p {
-    display: block;
-    margin-block-start: 1em;
-    margin-block-end: 1em;
-    margin-inline-start: 0px;
-    margin-inline-end: 0px;
-}
-.label, .label2 {
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 1.5;
-    color: #001a33;
-}
-.form-check-label {
-    font-size: 15px;
-    float: left;
-    margin: 5px;
-    
-    
-}
-.form-check-input {
-    width: 20px;
-    height: 20px;
-    width: 100px;
-    right: 12px;
-    border: solid 1px  ;
-    cursor: pointer;
-    padding: 0px 8px 4px 8px;
-    border-radius: 10px;
-}
-
-.nhantin {
-    top: 8px;
-    background-color: #fafafa; 
-   
-}
-
-.huyketban {
-    bottom: 8px;
-    color: #fafafa;
-    background-color: rgb(255, 112, 141);
-}

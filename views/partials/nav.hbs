@@ -1,8 +1,10 @@
 <div class="col-1 cl1">
     <div class="sub-nav">
         <div style="margin-top: 20px;" class="avatar">
-            <a  href="http://localhost:3000/message/profile">
-            <img src="{{dataimg.avata}}" class="user-avatar" >
+            
+
+            <a href="http://localhost:3000/message/profile">
+                <img id="avata-login" src="{{dataimg.avata}}" class="user-avatar">
             </a>
         </div>
         <div class="list-item2">
@@ -18,8 +20,8 @@
             
                 <form action="/message/logout" method="post" enctype="multipart/form-data">
                     <label for="logout" style="margin-left: 29px;"><i class="fa-solid fa-right-from-bracket" style="color: white;"></i></label>
-               <input type="submit" id="logout" name="logout" hidden></input> 
-                 </form>
+                <input type="submit" id="logout" name="logout" hidden></input> 
+                </form>
         </div>
     </div>
 </div>
@@ -55,14 +57,12 @@
                             <input type="text" name="email" value="{{this.emailcontact}}" hidden>
                             <span class="description-user">Bạn bè</span>
                             <button class="nhantin" type="submit">Nhắn tin</button>
-                            
                         </form>
                         <form action="/deleteFriend" method="post" enctype="multipart/form-data">
                             <input type="text" name="emailcontact" value="{{this.emailcontact}}" hidden>
                             <input type="text" name="emailuser" value="{{this.emailuser}}" hidden>
                             <button class="huyketban" type="submit">Hủy kết bạn</button>
                         </form>
-                            
                         {{!-- {{/each}} --}}
                     </div>
                     {{/each}}

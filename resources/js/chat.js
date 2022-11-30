@@ -337,7 +337,7 @@ socket.on("group-server-chat", (data) => {
         console.log(response)                   
            for(let i=0;i<response.length;i++){
              if(response[i].typeNone=='1'){
-               appendMessageGroup(response[i].text, response[i].sender,"text");
+              appendMessageGroup(response[i].text, response[i].sender,"text");
              }else if(response[i].typeFileNone){
               appendImage(response[i].file, response[i].sender,"imgreciver");
              }
