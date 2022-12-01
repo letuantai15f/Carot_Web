@@ -562,6 +562,7 @@ function calluser(){
   var data={
     sender: sender,
     receiver: receiver,
+    avata:avata,
     username:username,
     peerId,
   }
@@ -590,7 +591,8 @@ function openStream(){
 socket.on("server-call",(data)=>{
   document.getElementById("contactPeer").value = data.peerId;
   document.getElementById("emailcontact").value=data.data.sender
-  
+  document.getElementById("avataContact").setAttribute('src',data.data.avata)
+  document.getElementById("usernameCall").innerHTML = data.data.username
   
   $('#modalShowCall').modal('show');
   
